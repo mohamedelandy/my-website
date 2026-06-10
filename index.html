@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mohamed Elnady — Senior React Native Developer with 8+ years building cross-platform mobile apps.">
+  <meta property="og:title" content="Mohamed Elnady · Senior React Native Developer">
+  <meta property="og:description" content="8+ years building scalable cross-platform mobile apps. 15+ production apps across e-commerce, real estate & on-demand.">
+  <meta property="og:type" content="website">
+  <title>Mohamed Elnady · Senior React Native Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg:       #0B1524;
+      --bg2:      #132035;
+      --bg3:      #1A2D47;
+      --teal:     #00D4AA;
+      --teal-dim: rgba(0,212,170,0.1);
+      --teal-glo: rgba(0,212,170,0.28);
+      --gold:     #E8B86D;
+      --gold-dim: rgba(232,184,109,0.1);
+      --text:     #EBE8E4;
+      --muted:    #8B9BB4;
+      --bdr:      rgba(0,212,170,0.12);
+      --r:        12px;
+      --t:        all 0.25s cubic-bezier(0.4,0,0.2,1);
+      --fdis:     'Space Grotesk', sans-serif;
+      --fbod:     'Inter', sans-serif;
+      --fmon:     'JetBrains Mono', monospace;
+    }
+
+    body { background: var(--bg); color: var(--text); font-family: var(--fbod); line-height: 1.6; overflow-x: hidden; }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 2px; }
+
+    /* ── NAV ─────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1rem 3rem;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(11,21,36,0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--bdr);
+      transition: var(--t);
+    }
+    .nav-logo {
+      font-family: var(--fdis); font-weight: 700; font-size: 1.05rem;
+      color: var(--text); text-decoration: none;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .logo-dot {
+      width: 8px; height: 8px; background: var(--teal); border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: var(--muted); text-decoration: none; font-size: .875rem; font-weight: 500; transition: var(--t); letter-spacing: .02em; }
+    .nav-links a:hover { color: var(--teal); }
+    .nav-cta {
+      color: var(--teal) !important;
+      border: 1.5px solid var(--teal); padding: .4rem 1.1rem; border-radius: 6px;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--teal) !important; color: var(--bg) !important; }
+
+    /* ── HERO ────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center; padding: 8rem 5rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    #hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image: linear-gradient(rgba(0,212,170,.04) 1px,transparent 1px),
+                        linear-gradient(90deg,rgba(0,212,170,.04) 1px,transparent 1px);
+      background-size: 48px 48px; pointer-events: none;
+    }
+    #hero::after {
+      content: ''; position: absolute;
+      top: 15%; left: 25%; width: 550px; height: 550px;
+      background: radial-gradient(circle,rgba(0,212,170,.05) 0%,transparent 70%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; z-index: 1; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: var(--teal-dim); border: 1px solid var(--bdr);
+      padding: .35rem .9rem; border-radius: 20px;
+      font-size: .78rem; font-weight: 500; color: var(--teal);
+      margin-bottom: 1.5rem; font-family: var(--fmon); letter-spacing: .05em;
+    }
+    .blink { width:6px; height:6px; background:var(--teal); border-radius:50%; animation:blink 1.5s ease-in-out infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+    .hero-name {
+      font-family: var(--fdis);
+      font-size: clamp(2.8rem,5vw,4.8rem);
+      font-weight: 700; line-height: 1.05; letter-spacing: -.025em;
+      margin-bottom: .5rem;
+    }
+    .hero-name span { color: var(--teal); }
+
+    .hero-title {
+      font-family: var(--fmon); font-size: clamp(.9rem,1.8vw,1.2rem);
+      color: var(--muted); margin-bottom: 1.5rem; height: 1.8em; overflow: hidden;
+    }
+    #typed {
+      color: var(--teal); border-right: 2px solid var(--teal);
+      animation: cur .8s step-end infinite; padding-right: 3px;
+    }
+    @keyframes cur { 0%,100%{border-color:var(--teal)} 50%{border-color:transparent} }
+
+    .hero-bio { color: var(--muted); font-size: 1rem; line-height: 1.75; max-width: 480px; margin-bottom: 2.5rem; }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: .45rem;
+      padding: .72rem 1.7rem; border-radius: 8px;
+      font-family: var(--fbod); font-size: .9rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: var(--t); letter-spacing: .01em;
+    }
+    .btn-primary { background: var(--teal); color: var(--bg); border: none; }
+    .btn-primary:hover { background: #00bfa0; transform: translateY(-1px); box-shadow: 0 8px 24px var(--teal-glo); }
+    .btn-outline { background: transparent; color: var(--text); border: 1.5px solid rgba(255,255,255,.15); }
+    .btn-outline:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-1px); }
+
+    .hero-meta { display: flex; gap: 1.5rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--bdr); flex-wrap: wrap; }
+    .hero-meta-item { font-size: .8rem; color: var(--muted); display: flex; align-items: center; gap: .35rem; }
+    .hero-meta-item svg { color: var(--teal); flex-shrink: 0; }
+
+    /* ── PHONE ───────────────────────── */
+    .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; z-index: 1; }
+
+    .phone-wrap { position: relative; width: 270px; animation: float 4s ease-in-out infinite; }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+
+    .phone-glow {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 310px; height: 620px;
+      background: radial-gradient(ellipse,rgba(0,212,170,.1) 0%,transparent 65%);
+      filter: blur(18px); z-index: -1;
+    }
+    .phone-frame {
+      width: 270px; height: 545px;
+      border: 2.5px solid rgba(0,212,170,.45);
+      border-radius: 40px; background: var(--bg2);
+      position: relative; overflow: hidden;
+      box-shadow: 0 0 0 1px rgba(0,212,170,.08), 0 28px 56px rgba(0,0,0,.5);
+    }
+    .phone-frame::before {
+      content: ''; position: absolute; top: 11px; left: 50%; transform: translateX(-50%);
+      width: 72px; height: 20px; background: var(--bg); border-radius: 10px; z-index: 10;
+    }
+    .screen-track {
+      display: flex; width: 300%; height: 100%;
+      animation: slide 9s ease-in-out infinite;
+    }
+    @keyframes slide {
+      0%,27%    { transform: translateX(0); }
+      33%,60%   { transform: translateX(-33.33%); }
+      66%,93%   { transform: translateX(-66.66%); }
+      100%      { transform: translateX(0); }
+    }
+    .app-screen {
+      width: calc(100% / 3); height: 100%; flex-shrink: 0;
+      padding: 44px 14px 14px;
+    }
+    .scr1 { background: linear-gradient(180deg,#0f1f38 0%,#0B1524 100%); }
+    .scr2 { background: linear-gradient(180deg,#0d1a2e 0%,#0B1524 100%); }
+    .scr3 { background: linear-gradient(180deg,#0f1a30 0%,#0B1524 100%); }
+
+    .scr-hdr { display: flex; align-items: center; justify-content: space-between; padding: 6px 0 14px; }
+    .scr-ttl { font-family: var(--fdis); font-size: .82rem; font-weight: 600; color: var(--text); }
+
+    .p-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+    .p-card { background: var(--bg3); border-radius: 9px; overflow: hidden; border: 1px solid var(--bdr); }
+    .p-img { height: 65px; background: linear-gradient(135deg,var(--bg3) 0%,#1e3555 100%); display: flex; align-items: center; justify-content: center; }
+    .p-inf { padding: 7px; }
+    .p-lbl { width: 70%; height: 4px; background: rgba(255,255,255,.15); border-radius: 2px; margin-bottom: 4px; }
+    .p-prc { width: 42%; height: 4px; background: var(--teal); opacity: .65; border-radius: 2px; }
+
+    .s-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+    .s-blk { background: var(--bg3); border-radius: 8px; padding: 9px; border: 1px solid var(--bdr); }
+    .s-num { font-family: var(--fdis); font-size: 1.05rem; font-weight: 700; color: var(--teal); }
+    .s-lbl { font-size: .55rem; color: var(--muted); margin-top: 2px; }
+    .bar-wrap { background: var(--bg3); border-radius: 8px; padding: 11px; border: 1px solid var(--bdr); }
+    .bar-chart { display: flex; align-items: flex-end; gap: 4px; height: 54px; }
+    .bar { flex: 1; background: var(--teal); opacity: .6; border-radius: 3px 3px 0 0; }
+
+    .prof-sec { display: flex; align-items: center; gap: 9px; padding: 6px 0 14px; }
+    .prof-av { width: 40px; height: 40px; border-radius: 11px; background: linear-gradient(135deg,var(--teal),#0074cc); }
+    .p-nl { width: 76px; height: 5px; background: rgba(255,255,255,.2); border-radius: 2px; margin-bottom: 4px; }
+    .p-rl { width: 52px; height: 4px; background: var(--teal); opacity: .5; border-radius: 2px; }
+    .menu-list { display: flex; flex-direction: column; gap: 6px; }
+    .menu-item { background: var(--bg3); border: 1px solid var(--bdr); border-radius: 8px; padding: 9px 11px; display: flex; align-items: center; justify-content: space-between; }
+    .mi-l { display: flex; align-items: center; gap: 7px; }
+    .mi-dot { width: 22px; height: 22px; border-radius: 5px; }
+    .mi-lbl { width: 58px; height: 4px; background: rgba(255,255,255,.18); border-radius: 2px; }
+    .mi-arr { width: 7px; height: 7px; border-right: 1.5px solid var(--muted); border-top: 1.5px solid var(--muted); transform: rotate(45deg); }
+
+    /* ── STATS ───────────────────────── */
+    #stats {
+      background: var(--bg2);
+      border-top: 1px solid var(--bdr); border-bottom: 1px solid var(--bdr);
+      padding: 2.5rem 5rem;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem;
+      max-width: 860px; margin: 0 auto;
+    }
+    .stat-item { text-align: center; }
+    .stat-number { font-family: var(--fdis); font-size: 2.6rem; font-weight: 700; color: var(--teal); line-height: 1; margin-bottom: .25rem; }
+    .stat-label  { font-size: .82rem; color: var(--muted); font-weight: 500; letter-spacing: .03em; }
+
+    /* ── SHARED SECTION ──────────────── */
+    .sec { padding: 6rem 5rem; }
+    .eyebrow { font-family: var(--fmon); font-size: .72rem; color: var(--teal); letter-spacing: .12em; text-transform: uppercase; margin-bottom: .75rem; }
+    .sec-title { font-family: var(--fdis); font-size: clamp(1.8rem,3vw,2.5rem); font-weight: 700; letter-spacing: -.025em; margin-bottom: .75rem; }
+    .sec-sub { color: var(--muted); font-size: 1rem; max-width: 540px; line-height: 1.75; margin-bottom: 3.5rem; }
+
+    /* ── ABOUT ───────────────────────── */
+    #about { background: var(--bg); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .about-text { color: var(--muted); font-size: 1rem; line-height: 1.8; }
+    .about-text p { margin-bottom: 1rem; }
+    .about-text strong { color: var(--text); }
+
+    .traits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .trait-card { background: var(--bg2); border: 1px solid var(--bdr); border-radius: var(--r); padding: 1.25rem; transition: var(--t); }
+    .trait-card:hover { border-color: var(--teal); background: var(--teal-dim); }
+    .trait-icon { font-size: 1.5rem; margin-bottom: .5rem; }
+    .trait-title { font-family: var(--fdis); font-size: .9rem; font-weight: 600; color: var(--text); margin-bottom: .25rem; }
+    .trait-desc  { font-size: .8rem; color: var(--muted); line-height: 1.5; }
+
+    /* ── SKILLS ──────────────────────── */
+    #skills { background: var(--bg2); }
+    .skills-groups { display: flex; flex-direction: column; gap: 2.5rem; }
+    .grp-title {
+      font-family: var(--fmon); font-size: .72rem; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .grp-title::after { content: ''; flex: 1; height: 1px; background: var(--bdr); }
+    .pills { display: flex; flex-wrap: wrap; gap: .6rem; }
+    .pill {
+      display: inline-flex; align-items: center; gap: .35rem;
+      background: var(--bg); border: 1.5px solid var(--bdr); border-radius: 6px;
+      padding: .38rem .9rem; font-size: .83rem; font-weight: 500; color: var(--muted);
+      transition: var(--t); cursor: default;
+    }
+    .pill:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-dim); transform: translateY(-1px); }
+    .pill.hi { border-color: rgba(0,212,170,.35); color: var(--teal); background: var(--teal-dim); }
+
+    /* ── TIMELINE ────────────────────── */
+    #experience { background: var(--bg); }
+    .timeline { position: relative; padding-left: 1.75rem; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px;
+      background: linear-gradient(180deg,var(--teal) 0%,rgba(0,212,170,.08) 100%);
+    }
+    .tl-item { position: relative; padding: 0 0 3.5rem 2.5rem; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -.45rem; top: 6px;
+      width: 14px; height: 14px; background: var(--teal); border-radius: 50%;
+      border: 2px solid var(--bg); box-shadow: 0 0 0 3px var(--teal-glo);
+    }
+    .tl-date   { font-family: var(--fmon); font-size: .72rem; color: var(--teal); letter-spacing: .08em; margin-bottom: .45rem; }
+    .tl-co     { font-family: var(--fdis); font-size: 1.3rem; font-weight: 700; margin-bottom: .2rem; }
+    .tl-role   { font-size: .9rem; color: var(--muted); margin-bottom: .2rem; }
+    .tl-loc    { font-size: .78rem; color: var(--muted); opacity: .65; margin-bottom: .9rem; }
+    .tl-desc {
+      font-size: .83rem; color: var(--muted); font-style: italic; margin-bottom: 1rem;
+      padding: .7rem 1rem; background: var(--bg2); border-radius: 8px; border-left: 2px solid var(--teal);
+    }
+    .tl-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
+    .tl-list li { font-size: .875rem; color: var(--muted); display: flex; gap: .55rem; align-items: flex-start; }
+    .tl-list li::before { content: '→'; color: var(--teal); font-size: .75rem; margin-top: 3px; flex-shrink: 0; }
+
+    /* ── PROJECTS ────────────────────── */
+    #projects { background: var(--bg2); }
+    .proj-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
+    .proj-card {
+      background: var(--bg); border: 1px solid var(--bdr); border-radius: 16px;
+      overflow: hidden; transition: var(--t);
+    }
+    .proj-card:hover { border-color: var(--teal); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.3),0 0 20px var(--teal-glo); }
+    .proj-top { height: 120px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+    .proj-icon { font-size: 2.4rem; position: relative; z-index: 1; }
+    .proj-body { padding: 1.2rem; }
+    .proj-region { font-family: var(--fmon); font-size: .62rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .4rem; }
+    .proj-name { font-family: var(--fdis); font-size: 1.1rem; font-weight: 700; margin-bottom: .5rem; }
+    .proj-desc { font-size: .83rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+    .proj-tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+    .tag { font-size: .68rem; font-family: var(--fmon); padding: .2rem .6rem; border-radius: 4px; background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,212,170,.2); }
+
+    /* ── ACHIEVEMENTS ────────────────── */
+    #achievements { background: var(--bg); }
+    .ach-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+    .ach-card {
+      background: var(--bg2); border: 1px solid var(--bdr); border-radius: var(--r);
+      padding: 1.5rem; transition: var(--t); position: relative; overflow: hidden;
+    }
+    .ach-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold); }
+    .ach-card:hover { border-color: rgba(232,184,109,.35); background: var(--gold-dim); }
+    .ach-icon  { font-size: 1.75rem; margin-bottom: .75rem; }
+    .ach-title { font-family: var(--fdis); font-size: .95rem; font-weight: 700; margin-bottom: .5rem; line-height: 1.3; }
+    .ach-desc  { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ── EDUCATION ───────────────────── */
+    #education { background: var(--bg2); }
+    .edu-lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .edu-card {
+      background: var(--bg); border: 1px solid var(--bdr); border-radius: var(--r);
+      padding: 1.5rem 1.75rem; display: flex; align-items: center; gap: 1.2rem;
+    }
+    .edu-ico { width: 50px; height: 50px; border-radius: 12px; background: var(--teal-dim); border: 1px solid var(--bdr); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
+    .edu-deg  { font-family: var(--fdis); font-size: 1rem; font-weight: 700; }
+    .edu-uni  { font-size: .875rem; color: var(--muted); margin-top: .2rem; }
+    .edu-yrs  { font-family: var(--fmon); font-size: .72rem; color: var(--teal); margin-top: .25rem; }
+    .lang-list { display: flex; flex-direction: column; gap: 1.1rem; }
+    .lang-item { display: flex; align-items: center; gap: 1rem; }
+    .lang-name { font-family: var(--fdis); font-size: .95rem; font-weight: 600; min-width: 75px; }
+    .lang-bar  { flex: 1; height: 4px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
+    .lang-fill { height: 100%; background: var(--teal); border-radius: 2px; }
+    .lang-lvl  { font-size: .75rem; color: var(--muted); min-width: 55px; text-align: right; }
+
+    /* ── CONTACT ─────────────────────── */
+    #contact {
+      background: var(--bg); padding: 7rem 5rem;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    #contact::before {
+      content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 580px; height: 580px;
+      background: radial-gradient(circle,rgba(0,212,170,.05) 0%,transparent 70%);
+      pointer-events: none;
+    }
+    .con-title { font-family: var(--fdis); font-size: clamp(2rem,4vw,3.4rem); font-weight: 700; letter-spacing: -.025em; margin-bottom: 1rem; line-height: 1.15; }
+    .con-sub   { color: var(--muted); font-size: 1.05rem; margin-bottom: 2.5rem; }
+    .con-btns  { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+    .con-info  { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+    .con-item  { font-size: .83rem; color: var(--muted); display: flex; align-items: center; gap: .4rem; }
+    .con-item a { color: inherit; text-decoration: none; transition: var(--t); }
+    .con-item a:hover { color: var(--teal); }
+
+    /* ── FOOTER ──────────────────────── */
+    footer { background: var(--bg2); border-top: 1px solid var(--bdr); padding: 1.5rem 5rem; display: flex; justify-content: space-between; align-items: center; }
+    footer p { font-size: .78rem; color: var(--muted); }
+    footer span { color: var(--teal); }
+
+    /* ── SCROLL REVEAL ───────────────── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.vis { opacity: 1; transform: none; }
+    .stagger > * { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+    .stagger.vis > *:nth-child(1) { opacity:1;transform:none;transition-delay:0s }
+    .stagger.vis > *:nth-child(2) { opacity:1;transform:none;transition-delay:.08s }
+    .stagger.vis > *:nth-child(3) { opacity:1;transform:none;transition-delay:.16s }
+    .stagger.vis > *:nth-child(4) { opacity:1;transform:none;transition-delay:.24s }
+    .stagger.vis > *:nth-child(5) { opacity:1;transform:none;transition-delay:.32s }
+    .stagger.vis > *:nth-child(6) { opacity:1;transform:none;transition-delay:.4s }
+
+    /* ── RESPONSIVE ──────────────────── */
+    @media (max-width: 1024px) {
+      #hero { grid-template-columns: 1fr; padding: 7rem 3rem 4rem; text-align: center; }
+      .hero-bio { margin: 0 auto 2.5rem; }
+      .hero-actions, .hero-meta { justify-content: center; }
+      .hero-visual { margin-top: 3.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .proj-grid { grid-template-columns: 1fr 1fr; }
+      .ach-grid { grid-template-columns: 1fr 1fr; }
+      nav { padding: 1rem 2rem; }
+      .nav-links { display: none; }
+      .sec, #contact { padding: 5rem 3rem; }
+      #stats { padding: 2rem 3rem; }
+      footer { padding: 1.5rem 3rem; }
+    }
+    @media (max-width: 640px) {
+      #hero { padding: 6rem 1.5rem 3rem; }
+      .sec, #contact { padding: 4rem 1.5rem; }
+      #stats { padding: 1.5rem; }
+      .stats-grid { grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+      .proj-grid, .ach-grid, .edu-lang-grid { grid-template-columns: 1fr; }
+      .traits-grid { grid-template-columns: 1fr; }
+      .phone-wrap { transform: scale(.9); }
+      footer { flex-direction: column; gap: .4rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ───────────────────────────────── -->
+<nav id="nav">
+  <a class="nav-logo" href="#hero"><span class="logo-dot"></span>ME.</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#achievements">Impact</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ──────────────────────────────── -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-badge"><span class="blink"></span>Open to Senior Mobile Roles</div>
+    <h1 class="hero-name">Mohamed<br><span>Elnady</span></h1>
+    <div class="hero-title"><span id="typed"></span></div>
+    <p class="hero-bio">
+      8+ years building scalable cross-platform mobile apps. Clean architecture, native modules, and production-grade CI/CD pipelines — all the way from commit to store.
+    </p>
+    <div class="hero-actions">
+      <a href="mailto:muhammed.elnady@hotmail.com" class="btn btn-primary">✉ Get in Touch</a>
+      <a href="https://linkedin.com/in/mohammedelnady" target="_blank" rel="noopener noreferrer" class="btn btn-outline">LinkedIn ↗</a>
+      <!-- Replace '#' with your CV PDF link or a download attribute -->
+      <a href="#" class="btn btn-outline">Download CV ↓</a>
+    </div>
+    <div class="hero-meta">
+      <span class="hero-meta-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Cairo, Egypt
+      </span>
+      <span class="hero-meta-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.13 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.04 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 5.94 5.94l1.31-1.31a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +201226492575
+      </span>
+      <span class="hero-meta-item">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+        React Native · iOS · Android
+      </span>
+    </div>
+  </div>
+
+  <!-- Animated Phone Mockup -->
+  <div class="hero-visual">
+    <div class="phone-wrap">
+      <div class="phone-glow"></div>
+      <div class="phone-frame">
+        <div class="screen-track">
+
+          <!-- Screen 1: E-commerce Store -->
+          <div class="app-screen scr1">
+            <div class="scr-hdr">
+              <span class="scr-ttl">Tjaara Store</span>
+              <div style="width:22px;height:22px;border-radius:50%;background:var(--teal);opacity:.65;"></div>
+            </div>
+            <div class="p-grid">
+              <div class="p-card"><div class="p-img"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,170,0.5)" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><div class="p-inf"><div class="p-lbl"></div><div class="p-prc"></div></div></div>
+              <div class="p-card"><div class="p-img"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,170,0.5)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="p-inf"><div class="p-lbl"></div><div class="p-prc"></div></div></div>
+              <div class="p-card"><div class="p-img"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,170,0.5)" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="p-inf"><div class="p-lbl"></div><div class="p-prc"></div></div></div>
+              <div class="p-card"><div class="p-img"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,170,0.5)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="p-inf"><div class="p-lbl"></div><div class="p-prc"></div></div></div>
+            </div>
+          </div>
+
+          <!-- Screen 2: Dashboard -->
+          <div class="app-screen scr2">
+            <div class="scr-hdr"><span class="scr-ttl">Dashboard</span></div>
+            <div class="s-row">
+              <div class="s-blk"><div class="s-num">2.4k</div><div class="s-lbl">Orders Today</div></div>
+              <div class="s-blk"><div class="s-num" style="color:var(--gold)">$12k</div><div class="s-lbl">Revenue</div></div>
+            </div>
+            <div class="bar-wrap">
+              <div style="font-size:.58rem;color:var(--muted);margin-bottom:7px;">Weekly Sales</div>
+              <div class="bar-chart">
+                <div class="bar" style="height:44%"></div>
+                <div class="bar" style="height:68%"></div>
+                <div class="bar" style="height:55%"></div>
+                <div class="bar" style="height:80%"></div>
+                <div class="bar" style="height:62%"></div>
+                <div class="bar" style="height:95%;background:var(--gold)"></div>
+                <div class="bar" style="height:74%"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Screen 3: Partners App -->
+          <div class="app-screen scr3">
+            <div class="prof-sec">
+              <div class="prof-av"></div>
+              <div><div class="p-nl"></div><div class="p-rl"></div></div>
+            </div>
+            <div class="menu-list">
+              <div class="menu-item"><div class="mi-l"><div class="mi-dot" style="background:rgba(0,212,170,.28)"></div><div class="mi-lbl"></div></div><div class="mi-arr"></div></div>
+              <div class="menu-item"><div class="mi-l"><div class="mi-dot" style="background:rgba(232,184,109,.28)"></div><div class="mi-lbl"></div></div><div class="mi-arr"></div></div>
+              <div class="menu-item"><div class="mi-l"><div class="mi-dot" style="background:rgba(100,180,255,.28)"></div><div class="mi-lbl"></div></div><div class="mi-arr"></div></div>
+              <div class="menu-item"><div class="mi-l"><div class="mi-dot" style="background:rgba(200,100,255,.28)"></div><div class="mi-lbl"></div></div><div class="mi-arr"></div></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS ─────────────────────────────── -->
+<div id="stats">
+  <div class="stats-grid stagger">
+    <div class="stat-item"><div class="stat-number" data-count="8">8+</div><div class="stat-label">Years Experience</div></div>
+    <div class="stat-item"><div class="stat-number" data-count="15">15+</div><div class="stat-label">Apps Shipped</div></div>
+    <div class="stat-item"><div class="stat-number" data-count="4">4</div><div class="stat-label">Companies</div></div>
+    <div class="stat-item"><div class="stat-number" data-count="2">2+</div><div class="stat-label">Countries Served</div></div>
+  </div>
+</div>
+
+<!-- ─── ABOUT ─────────────────────────────── -->
+<section id="about" class="sec">
+  <div class="eyebrow">About Me</div>
+  <div class="sec-title">Crafting mobile experiences<br>people actually use</div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>I'm a <strong>Senior React Native Developer</strong> based in Cairo, Egypt, with over 8 years building cross-platform mobile apps that scale in production.</p>
+      <p>My work spans <strong>e-commerce, real estate, and on-demand platforms</strong> — primarily across the Saudi and Egyptian markets. I care about architecture quality: clean code, proper testing, and CI/CD pipelines that make deployments worry-free.</p>
+      <p>Beyond writing code, I focus on <strong>engineering team growth</strong> — through code reviews, architecture discussions, and knowledge sharing that raises the bar for the whole team.</p>
+      <p>I thrive in environments where <strong>ownership is high</strong>, technical decisions matter, and shipping good products is the real goal.</p>
+    </div>
+    <div class="traits-grid stagger">
+      <div class="trait-card"><div class="trait-icon">📱</div><div class="trait-title">Cross-Platform Expert</div><div class="trait-desc">React Native with native iOS/Android modules for full platform coverage</div></div>
+      <div class="trait-card"><div class="trait-icon">⚡</div><div class="trait-title">Performance Focused</div><div class="trait-desc">Profiling, optimization, and clean architecture for apps that stay fast</div></div>
+      <div class="trait-card"><div class="trait-icon">🔄</div><div class="trait-title">CI/CD Automation</div><div class="trait-desc">Azure DevOps & GitHub Actions pipelines for reliable automated releases</div></div>
+      <div class="trait-card"><div class="trait-icon">🏗️</div><div class="trait-title">Clean Architecture</div><div class="trait-desc">Modular, maintainable code that scales across teams and years</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SKILLS ────────────────────────────── -->
+<section id="skills" class="sec">
+  <div class="eyebrow">Tech Stack</div>
+  <div class="sec-title">What I build with</div>
+  <div class="sec-sub">A focused set of tools, chosen for what they actually deliver in production mobile development.</div>
+  <div class="skills-groups reveal">
+    <div>
+      <div class="grp-title">Mobile Development</div>
+      <div class="pills">
+        <span class="pill hi">React Native</span><span class="pill hi">TypeScript</span><span class="pill hi">JavaScript ES6+</span>
+        <span class="pill">Swift</span><span class="pill">Objective-C</span><span class="pill">Kotlin</span><span class="pill">Java</span>
+        <span class="pill">Native Modules (iOS/Android)</span>
+      </div>
+    </div>
+    <div>
+      <div class="grp-title">State Management & Frontend</div>
+      <div class="pills">
+        <span class="pill hi">Redux</span><span class="pill hi">React Query</span><span class="pill">Zustand</span><span class="pill">Context API</span>
+      </div>
+    </div>
+    <div>
+      <div class="grp-title">Backend & APIs</div>
+      <div class="pills">
+        <span class="pill hi">REST APIs</span><span class="pill">GraphQL</span>
+        <span class="pill hi">Firebase (FCM · Firestore · Auth)</span>
+        <span class="pill">Google Maps API</span><span class="pill">Payment Gateways</span>
+      </div>
+    </div>
+    <div>
+      <div class="grp-title">Testing & CI/CD</div>
+      <div class="pills">
+        <span class="pill hi">Jest</span><span class="pill hi">Detox</span><span class="pill">Unit Testing</span>
+        <span class="pill">E2E Testing</span><span class="pill hi">GitHub Actions</span><span class="pill hi">Azure DevOps</span>
+      </div>
+    </div>
+    <div>
+      <div class="grp-title">Tools & Design</div>
+      <div class="pills">
+        <span class="pill hi">Git</span><span class="pill">Agile / Scrum</span><span class="pill">Code Reviews</span>
+        <span class="pill">Clean Architecture</span><span class="pill">Figma</span>
+        <span class="pill">Responsive Design</span><span class="pill">Dynamic Theming</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── EXPERIENCE ───────────────────────── -->
+<section id="experience" class="sec">
+  <div class="eyebrow">Career</div>
+  <div class="sec-title">Where I've worked</div>
+  <div class="sec-sub">8 years across four companies, each adding a new layer to my cross-platform mobile expertise.</div>
+  <div class="timeline">
+
+    <div class="tl-item reveal">
+      <div class="tl-dot"></div>
+      <div class="tl-date">2023 — PRESENT</div>
+      <div class="tl-co">Tjaara Company</div>
+      <div class="tl-role">Senior React Native Developer</div>
+      <div class="tl-loc">📍 Cairo, Egypt</div>
+      <div class="tl-desc">All-in-one e-commerce platform helping businesses launch, manage, and grow online stores.</div>
+      <ul class="tl-list">
+        <li>Led technical development of the Tjaara Multi-Stores mobile application</li>
+        <li>Implemented and maintained CI/CD pipelines using Azure DevOps & GitHub Actions</li>
+        <li>Designed reusable UI components and dynamic theming systems for multi-store configs</li>
+        <li>Contributed to Dashboard and Partners apps enabling store and developer workflows</li>
+        <li>Drove code reviews and engineering standards across the mobile team</li>
+      </ul>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot" style="background:var(--gold);box-shadow:0 0 0 3px rgba(232,184,109,.3);"></div>
+      <div class="tl-date">2021 — 2023</div>
+      <div class="tl-co">Ejjadh Company</div>
+      <div class="tl-role">Senior Mobile Developer (React Native & Android)</div>
+      <div class="tl-loc">📍 Mansoura, Egypt</div>
+      <div class="tl-desc">Saudi-based digital solutions firm delivering cross-platform apps across multiple industries.</div>
+      <ul class="tl-list">
+        <li>Delivered cross-platform apps in e-commerce, real estate, and on-demand domains</li>
+        <li>Built native Android/iOS modules to extend React Native capabilities</li>
+        <li>Integrated Firebase, Google Maps, and payment gateways</li>
+        <li>Ran automated unit and E2E tests using Jest and Detox</li>
+      </ul>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot" style="background:var(--bg3);border:2px solid var(--teal);box-shadow:none;"></div>
+      <div class="tl-date">2019 — 2021</div>
+      <div class="tl-co">Leadership Orbit</div>
+      <div class="tl-role">Senior Android Developer</div>
+      <div class="tl-loc">📍 Cairo, Egypt</div>
+      <div class="tl-desc">Saudi digital solutions company delivering mobile and web platforms.</div>
+      <ul class="tl-list">
+        <li>Developed and deployed Android apps with Java and Kotlin using modular architecture</li>
+        <li>Applied Clean Architecture principles for maintainable, testable codebases</li>
+        <li>Contributed across the full product lifecycle from requirements to deployment</li>
+      </ul>
+    </div>
+
+    <div class="tl-item reveal">
+      <div class="tl-dot" style="background:var(--bg3);border:2px solid rgba(0,212,170,.4);box-shadow:none;"></div>
+      <div class="tl-date">2017 — 2019</div>
+      <div class="tl-co">Rivers</div>
+      <div class="tl-role">Android Developer</div>
+      <div class="tl-loc">📍 Mansoura, Egypt</div>
+      <div class="tl-desc">Saudi software company specializing in custom mobile/web apps, e-commerce, and e-learning.</div>
+      <ul class="tl-list">
+        <li>Refactored 4 legacy projects into modern Kotlin-based implementations</li>
+        <li>Enforced clean code and scalable architecture across 5 projects</li>
+        <li>Collaborated with designers, PMs, and backend teams to ship user-friendly apps</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── PROJECTS ──────────────────────────── -->
+<section id="projects" class="sec">
+  <div class="eyebrow">Work</div>
+  <div class="sec-title">Key Projects</div>
+  <div class="sec-sub">Live applications powering real businesses in Saudi Arabia and across the region.</div>
+  <div class="proj-grid stagger">
+
+    <div class="proj-card">
+      <div class="proj-top" style="background:linear-gradient(135deg,#0d2035 0%,#0B1524 100%);">
+        <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(0,212,170,.07) 0%,transparent 70%)"></div>
+        <div class="proj-icon">🛍️</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-region">🇸🇦 Saudi Arabia · 2023–Present</div>
+        <div class="proj-name">Tjaara Stores App</div>
+        <div class="proj-desc">E-commerce platform enabling businesses to create personalized online stores with customizable themes, product management, and seamless checkout.</div>
+        <div class="proj-tags"><span class="tag">React Native</span><span class="tag">TypeScript</span><span class="tag">Dynamic Theming</span><span class="tag">Firebase</span></div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top" style="background:linear-gradient(135deg,#0d2035 0%,#0B1524 100%);">
+        <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(232,184,109,.07) 0%,transparent 70%)"></div>
+        <div class="proj-icon">📊</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-region">🇸🇦 Saudi Arabia · 2024–Present</div>
+        <div class="proj-name">Tjaara Dashboard App</div>
+        <div class="proj-desc">Mobile management suite for store owners — real-time analytics, product/category control, and multi-store operations in the palm of your hand.</div>
+        <div class="proj-tags"><span class="tag">React Native</span><span class="tag">Redux</span><span class="tag">Analytics</span><span class="tag">Azure DevOps</span></div>
+      </div>
+    </div>
+
+    <div class="proj-card">
+      <div class="proj-top" style="background:linear-gradient(135deg,#0d2035 0%,#0B1524 100%);">
+        <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(100,150,255,.07) 0%,transparent 70%)"></div>
+        <div class="proj-icon">🤝</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-region">🇸🇦 Saudi Arabia · 2025–Present</div>
+        <div class="proj-name">Tjaara Partners App</div>
+        <div class="proj-desc">Developer/merchant platform enabling seamless third-party integration of apps, themes, and services within the Tjaara ecosystem.</div>
+        <div class="proj-tags"><span class="tag">React Native</span><span class="tag">GraphQL</span><span class="tag">3rd-Party APIs</span><span class="tag">GitHub Actions</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── ACHIEVEMENTS ──────────────────────── -->
+<section id="achievements" class="sec">
+  <div class="eyebrow">Impact</div>
+  <div class="sec-title">Key Achievements</div>
+  <div class="sec-sub">Milestones that shaped my growth as a mobile engineer and technical lead.</div>
+  <div class="ach-grid stagger">
+    <div class="ach-card"><div class="ach-icon">📦</div><div class="ach-title">Cross-Platform Delivery at Scale</div><div class="ach-desc">Delivered and maintained 15+ cross-platform mobile apps across diverse industries with production-grade stability and scalable architecture.</div></div>
+    <div class="ach-card"><div class="ach-icon">🏗️</div><div class="ach-title">Technical Ownership</div><div class="ach-desc">Took ownership of core mobile modules, driving architectural decisions, improving code quality, and ensuring release reliability through CI/CD automation.</div></div>
+    <div class="ach-card"><div class="ach-icon">⚡</div><div class="ach-title">Performance & Architecture</div><div class="ach-desc">Refactored legacy modules and optimized API integration layers using clean, modular architecture — improving responsiveness and long-term maintainability.</div></div>
+    <div class="ach-card"><div class="ach-icon">🛒</div><div class="ach-title">Tjaara Platform Expansion</div><div class="ach-desc">Key contributor to Tjaara's three-app ecosystem — Stores, Dashboard, and Partners — enabling multi-store operations and seamless third-party integrations.</div></div>
+    <div class="ach-card"><div class="ach-icon">👥</div><div class="ach-title">Engineering Standards</div><div class="ach-desc">Elevated team quality through consistent code reviews, architecture guidance, and knowledge sharing that strengthened engineering consistency.</div></div>
+    <div class="ach-card"><div class="ach-icon">🔄</div><div class="ach-title">Legacy Modernization</div><div class="ach-desc">Refactored 4 legacy Android projects into modern Kotlin implementations, significantly improving maintainability, scalability, and developer experience.</div></div>
+  </div>
+</section>
+
+<!-- ─── EDUCATION & LANGUAGES ─────────────── -->
+<section id="education" class="sec">
+  <div class="edu-lang-grid">
+    <div>
+      <div class="eyebrow">Education</div>
+      <div class="sec-title" style="font-size:1.6rem;margin-bottom:2rem;">Academic Background</div>
+      <div class="edu-card reveal">
+        <div class="edu-ico">🎓</div>
+        <div>
+          <div class="edu-deg">Bachelor of Computer Science</div>
+          <div class="edu-uni">Mansoura University</div>
+          <div class="edu-yrs">2011 — 2015</div>
+        </div>
+      </div>
+      <!-- SUGGESTED: Add certifications below this card
+      <div class="edu-card reveal" style="margin-top:1rem;">
+        <div class="edu-ico">🏅</div>
+        <div>
+          <div class="edu-deg">Your Certification Name</div>
+          <div class="edu-uni">Issuing Organization</div>
+          <div class="edu-yrs">Year</div>
+        </div>
+      </div>
+      -->
+    </div>
+    <div>
+      <div class="eyebrow">Languages</div>
+      <div class="sec-title" style="font-size:1.6rem;margin-bottom:2rem;">Communication</div>
+      <div class="lang-list reveal">
+        <div class="lang-item">
+          <div class="lang-name">Arabic</div>
+          <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
+          <div class="lang-lvl">Native</div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">English</div>
+          <div class="lang-bar"><div class="lang-fill" style="width:80%"></div></div>
+          <div class="lang-lvl">Proficient</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ───────────────────────────── -->
+<section id="contact">
+  <div class="con-title">Let's build something<br><span style="color:var(--teal)">great together</span></div>
+  <p class="con-sub">Open to senior mobile roles, freelance projects, and technical collaboration.</p>
+  <div class="con-btns">
+    <a href="mailto:muhammed.elnady@hotmail.com" class="btn btn-primary">✉ Send Email</a>
+    <a href="https://linkedin.com/in/mohammedelnady" target="_blank" rel="noopener noreferrer" class="btn btn-outline">LinkedIn Profile ↗</a>
+  </div>
+  <div class="con-info">
+    <div class="con-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.13 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.04 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 5.94 5.94l1.31-1.31a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      <a href="tel:+201226492575">+20 122 649 2575</a>
+    </div>
+    <div class="con-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      <a href="mailto:muhammed.elnady@hotmail.com">muhammed.elnady@hotmail.com</a>
+    </div>
+    <div class="con-item">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Cairo, Egypt
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ────────────────────────────── -->
+<footer>
+  <p>© 2025 <span>Mohamed Elnady</span>. Crafted with care.</p>
+  <p>Senior React Native Developer · Cairo, Egypt</p>
+</footer>
+
+<script>
+  /* ── TYPING EFFECT ─────────────────────── */
+  const roles=['Senior React Native Developer','Cross-Platform Mobile Engineer','Native Module Specialist','Clean Architecture Advocate'];
+  let ri=0,ci=0,del=false;
+  const el=document.getElementById('typed');
+  function type(){
+    const s=roles[ri];
+    if(!del){el.textContent=s.slice(0,ci++);if(ci>s.length){del=true;setTimeout(type,2200);return;}}
+    else{el.textContent=s.slice(0,ci--);if(ci<0){del=false;ri=(ri+1)%roles.length;ci=0;setTimeout(type,450);return;}}
+    setTimeout(type,del?42:72);
+  }
+  type();
+
+  /* ── COUNTER ANIMATION ─────────────────── */
+  let counted=false;
+  function runCounters(){
+    if(counted)return; counted=true;
+    document.querySelectorAll('[data-count]').forEach(el=>{
+      const target=parseInt(el.dataset.count);
+      const suffix=el.textContent.includes('+')?'+':'';
+      let n=0; const step=Math.max(1,Math.ceil(target/32));
+      const t=setInterval(()=>{
+        n=Math.min(n+step,target);
+        el.textContent=n+'+';
+        if(n>=target)clearInterval(t);
+      },48);
+    });
+  }
+
+  /* ── INTERSECTION OBSERVER ─────────────── */
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('vis');
+        if(e.target.closest('#stats'))runCounters();
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+
+  document.querySelectorAll('.reveal,.stagger').forEach(el=>io.observe(el));
+
+  /* ── NAV SCROLL ────────────────────────── */
+  window.addEventListener('scroll',()=>{
+    document.getElementById('nav').style.background=
+      window.scrollY>60?'rgba(11,21,36,0.97)':'rgba(11,21,36,0.85)';
+  },{passive:true});
+
+  /* ── ACTIVE NAV LINK ───────────────────── */
+  const secs=document.querySelectorAll('section[id]');
+  const links=document.querySelectorAll('.nav-links a');
+  const so=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting)links.forEach(l=>{
+        l.style.color=l.getAttribute('href')==='#'+e.target.id?'var(--teal)':'';
+      });
+    });
+  },{threshold:.45});
+  secs.forEach(s=>so.observe(s));
+</script>
+
+</body>
+</html>
