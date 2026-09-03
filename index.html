@@ -3,398 +3,1333 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Mohamed Elnady — Senior React Native Developer with 8+ years building cross-platform mobile apps.">
+  <meta name="description" content="Mohamed Elnady — Senior React Native Developer & Open Source Creator with 8+ years building scalable mobile apps.">
   <meta property="og:title" content="Mohamed Elnady · Senior React Native Developer">
-  <meta property="og:description" content="8+ years building scalable cross-platform mobile apps. 15+ production apps across e-commerce, real estate & on-demand.">
+  <meta property="og:description" content="8+ years building production-grade mobile apps across e-commerce, real estate, and open source libraries.">
   <meta property="og:type" content="website">
   <title>Mohamed Elnady · Senior React Native Developer</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
     :root {
-      --bg:       #0B1524;
-      --bg2:      #132035;
-      --bg3:      #1A2D47;
-      --teal:     #00D4AA;
-      --teal-dim: rgba(0,212,170,0.1);
-      --teal-glo: rgba(0,212,170,0.28);
-      --gold:     #E8B86D;
-      --gold-dim: rgba(232,184,109,0.1);
-      --text:     #EBE8E4;
-      --muted:    #8B9BB4;
-      --bdr:      rgba(0,212,170,0.12);
-      --r:        12px;
-      --t:        all 0.25s cubic-bezier(0.4,0,0.2,1);
-      --fdis:     'Space Grotesk', sans-serif;
-      --fbod:     'Inter', sans-serif;
-      --fmon:     'JetBrains Mono', monospace;
+      --bg:          #070E18;
+      --bg2:         #0E1B2E;
+      --bg3:         #15263F;
+      --card-bg:     rgba(14, 27, 46, 0.72);
+      --card-border: rgba(0, 212, 170, 0.12);
+      --card-hover:  rgba(0, 212, 170, 0.28);
+      
+      --teal:        #00D4AA;
+      --teal-dim:    rgba(0, 212, 170, 0.1);
+      --teal-glo:    rgba(0, 212, 170, 0.28);
+      
+      --gold:        #E8B86D;
+      --gold-dim:    rgba(232, 184, 109, 0.12);
+      
+      --violet:      #9D7BFF;
+      --violet-dim:  rgba(157, 123, 255, 0.12);
+      --violet-glo:  rgba(157, 123, 255, 0.3);
+      
+      --rose:        #FF5C8A;
+      --rose-dim:    rgba(255, 92, 138, 0.12);
+      --rose-glo:    rgba(255, 92, 138, 0.28);
+
+      --blue:        #38BDF8;
+      --blue-dim:    rgba(56, 189, 248, 0.12);
+
+      --text:        #F1F5F9;
+      --text-soft:   #CBD5E1;
+      --muted:       #8A9BB3;
+      --bdr:         rgba(255, 255, 255, 0.08);
+      --bdr-accent:  rgba(0, 212, 170, 0.18);
+      --r:           14px;
+      --t:           all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+      --fdis:        'Space Grotesk', sans-serif;
+      --fbod:        'Inter', sans-serif;
+      --fmon:        'JetBrains Mono', monospace;
     }
 
-    body { background: var(--bg); color: var(--text); font-family: var(--fbod); line-height: 1.6; overflow-x: hidden; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--fbod);
+      line-height: 1.6;
+      overflow-x: hidden;
+      selection-background-color: var(--teal);
+    }
+    ::selection { background: var(--teal); color: var(--bg); }
 
-    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--teal); border-radius: 2px; }
+    ::-webkit-scrollbar-thumb { background: rgba(0, 212, 170, 0.35); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--teal); }
 
     /* ── NAV ─────────────────────────── */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 1rem 3rem;
+      padding: 1rem 3.5rem;
       display: flex; align-items: center; justify-content: space-between;
-      background: rgba(11,21,36,0.85);
-      backdrop-filter: blur(14px);
+      background: rgba(7, 14, 24, 0.82);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--bdr);
       transition: var(--t);
     }
     .nav-logo {
-      font-family: var(--fdis); font-weight: 700; font-size: 1.05rem;
+      font-family: var(--fdis); font-weight: 700; font-size: 1.15rem;
       color: var(--text); text-decoration: none;
-      display: flex; align-items: center; gap: 0.5rem;
+      display: flex; align-items: center; gap: 0.6rem;
+      letter-spacing: -0.01em;
     }
     .logo-dot {
-      width: 8px; height: 8px; background: var(--teal); border-radius: 50%;
+      width: 9px; height: 9px; background: var(--teal); border-radius: 50%;
+      box-shadow: 0 0 12px var(--teal);
       animation: pulse 2s ease-in-out infinite;
     }
-    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.8)} }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(.85)} }
 
-    .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a { color: var(--muted); text-decoration: none; font-size: .875rem; font-weight: 500; transition: var(--t); letter-spacing: .02em; }
+    .nav-right { display: flex; align-items: center; gap: 2.2rem; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: .88rem; font-weight: 500;
+      transition: var(--t); letter-spacing: .02em;
+    }
     .nav-links a:hover { color: var(--teal); }
+    
+    .nav-social-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--bdr);
+      color: var(--muted);
+      transition: var(--t);
+    }
+    .nav-social-btn:hover {
+      color: var(--teal); border-color: var(--teal); background: var(--teal-dim); transform: translateY(-1px);
+    }
+
     .nav-cta {
       color: var(--teal) !important;
-      border: 1.5px solid var(--teal); padding: .4rem 1.1rem; border-radius: 6px;
-      font-weight: 600 !important;
+      border: 1.5px solid var(--teal); padding: .45rem 1.25rem; border-radius: 8px;
+      font-weight: 600 !important; font-size: .86rem !important;
+      transition: var(--t);
     }
-    .nav-cta:hover { background: var(--teal) !important; color: var(--bg) !important; }
+    .nav-cta:hover {
+      background: var(--teal) !important; color: var(--bg) !important;
+      box-shadow: 0 0 20px var(--teal-glo);
+    }
 
     /* ── HERO ────────────────────────── */
     #hero {
       min-height: 100vh;
-      display: grid; grid-template-columns: 1fr 1fr;
-      align-items: center; padding: 8rem 5rem 4rem;
+      display: grid; grid-template-columns: 1.15fr 0.85fr;
+      align-items: center; padding: 8.5rem 5rem 4rem;
       position: relative; overflow: hidden;
     }
     #hero::before {
       content: ''; position: absolute; inset: 0;
-      background-image: linear-gradient(rgba(0,212,170,.04) 1px,transparent 1px),
-                        linear-gradient(90deg,rgba(0,212,170,.04) 1px,transparent 1px);
-      background-size: 48px 48px; pointer-events: none;
-    }
-    #hero::after {
-      content: ''; position: absolute;
-      top: 15%; left: 25%; width: 550px; height: 550px;
-      background: radial-gradient(circle,rgba(0,212,170,.05) 0%,transparent 70%);
+      background-image: 
+        radial-gradient(circle at 1px 1px, rgba(0,212,170,0.06) 1px, transparent 0),
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+      background-size: 36px 36px, 72px 72px, 72px 72px;
       pointer-events: none;
     }
+    .hero-glow-1 {
+      position: absolute; top: 12%; left: 20%; width: 550px; height: 550px;
+      background: radial-gradient(circle, rgba(0,212,170,0.08) 0%, transparent 65%);
+      filter: blur(40px); pointer-events: none;
+    }
+    .hero-glow-2 {
+      position: absolute; bottom: 10%; right: 10%; width: 450px; height: 450px;
+      background: radial-gradient(circle, rgba(157,123,255,0.07) 0%, transparent 65%);
+      filter: blur(40px); pointer-events: none;
+    }
+
     .hero-content { position: relative; z-index: 1; }
 
     .hero-badge {
-      display: inline-flex; align-items: center; gap: .5rem;
-      background: var(--teal-dim); border: 1px solid var(--bdr);
-      padding: .35rem .9rem; border-radius: 20px;
-      font-size: .78rem; font-weight: 500; color: var(--teal);
-      margin-bottom: 1.5rem; font-family: var(--fmon); letter-spacing: .05em;
+      display: inline-flex; align-items: center; gap: .55rem;
+      background: rgba(0,212,170,0.08); border: 1px solid rgba(0,212,170,0.22);
+      padding: .4rem 1rem; border-radius: 30px;
+      font-size: .8rem; font-weight: 600; color: var(--teal);
+      margin-bottom: 1.75rem; font-family: var(--fmon); letter-spacing: .04em;
     }
-    .blink { width:6px; height:6px; background:var(--teal); border-radius:50%; animation:blink 1.5s ease-in-out infinite; }
-    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .blink {
+      width: 7px; height: 7px; background: var(--teal); border-radius: 50%;
+      box-shadow: 0 0 8px var(--teal);
+      animation: blink 1.5s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.2} }
 
     .hero-name {
       font-family: var(--fdis);
-      font-size: clamp(2.8rem,5vw,4.8rem);
-      font-weight: 700; line-height: 1.05; letter-spacing: -.025em;
-      margin-bottom: .5rem;
+      font-size: clamp(3rem, 5.5vw, 5.2rem);
+      font-weight: 700; line-height: 1.05; letter-spacing: -.03em;
+      margin-bottom: .6rem;
     }
-    .hero-name span { color: var(--teal); }
+    .hero-name span {
+      background: linear-gradient(135deg, var(--teal) 0%, #38BDF8 60%, var(--violet) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
     .hero-title {
-      font-family: var(--fmon); font-size: clamp(.9rem,1.8vw,1.2rem);
-      color: var(--muted); margin-bottom: 1.5rem; height: 1.8em; overflow: hidden;
+      font-family: var(--fmon); font-size: clamp(.95rem, 1.9vw, 1.25rem);
+      color: var(--text-soft); margin-bottom: 1.5rem; height: 2em; display: flex; align-items: center;
     }
     #typed {
-      color: var(--teal); border-right: 2px solid var(--teal);
-      animation: cur .8s step-end infinite; padding-right: 3px;
+      color: var(--teal); border-right: 2.5px solid var(--teal);
+      animation: cur .8s step-end infinite; padding-right: 4px; font-weight: 600;
     }
     @keyframes cur { 0%,100%{border-color:var(--teal)} 50%{border-color:transparent} }
 
-    .hero-bio { color: var(--muted); font-size: 1rem; line-height: 1.75; max-width: 480px; margin-bottom: 2.5rem; }
+    .hero-bio {
+      color: var(--muted); font-size: 1.05rem; line-height: 1.8;
+      max-width: 530px; margin-bottom: 2.5rem;
+    }
+    .hero-bio strong { color: var(--text); font-weight: 600; }
 
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
 
     .btn {
-      display: inline-flex; align-items: center; gap: .45rem;
-      padding: .72rem 1.7rem; border-radius: 8px;
-      font-family: var(--fbod); font-size: .9rem; font-weight: 600;
+      display: inline-flex; align-items: center; gap: .55rem;
+      padding: .75rem 1.8rem; border-radius: 9px;
+      font-family: var(--fbod); font-size: .92rem; font-weight: 600;
       cursor: pointer; text-decoration: none; transition: var(--t); letter-spacing: .01em;
     }
-    .btn-primary { background: var(--teal); color: var(--bg); border: none; }
-    .btn-primary:hover { background: #00bfa0; transform: translateY(-1px); box-shadow: 0 8px 24px var(--teal-glo); }
-    .btn-outline { background: transparent; color: var(--text); border: 1.5px solid rgba(255,255,255,.15); }
-    .btn-outline:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-1px); }
+    .btn-primary {
+      background: var(--teal); color: #070E18; border: 1px solid var(--teal);
+      box-shadow: 0 4px 20px var(--teal-glo);
+    }
+    .btn-primary:hover {
+      background: #05e2b6; transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,212,170,0.45);
+    }
+    .btn-outline {
+      background: rgba(255,255,255,0.03); color: var(--text);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .btn-outline:hover {
+      border-color: var(--teal); color: var(--teal);
+      background: var(--teal-dim); transform: translateY(-2px);
+    }
+    .btn-github {
+      background: rgba(157, 123, 255, 0.08); color: #D8B4FE;
+      border: 1px solid rgba(157, 123, 255, 0.25);
+    }
+    .btn-github:hover {
+      border-color: var(--violet); color: #fff;
+      background: rgba(157, 123, 255, 0.18); transform: translateY(-2px);
+      box-shadow: 0 6px 20px var(--violet-glo);
+    }
 
-    .hero-meta { display: flex; gap: 1.5rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--bdr); flex-wrap: wrap; }
-    .hero-meta-item { font-size: .8rem; color: var(--muted); display: flex; align-items: center; gap: .35rem; }
+    .hero-meta {
+      display: flex; gap: 1.8rem; margin-top: 2.5rem; padding-top: 1.5rem;
+      border-top: 1px solid var(--bdr); flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      font-size: .83rem; color: var(--muted); display: flex; align-items: center; gap: .45rem;
+      font-family: var(--fmon);
+    }
     .hero-meta-item svg { color: var(--teal); flex-shrink: 0; }
 
-    /* ── PHONE ───────────────────────── */
-    .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; z-index: 1; }
+    /* ── PHONE MOCKUP ────────────────── */
+    .hero-visual {
+      display: flex; justify-content: center; align-items: center;
+      position: relative; z-index: 1;
+    }
 
-    .phone-wrap { position: relative; width: 270px; animation: float 4s ease-in-out infinite; }
-    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+    .orbit-ring {
+      position: absolute; border-radius: 50%; border: 1px dashed rgba(0, 212, 170, 0.14);
+      pointer-events: none; animation: spin 45s linear infinite;
+    }
+    .orbit-ring-1 { width: 380px; height: 380px; }
+    .orbit-ring-2 { width: 480px; height: 480px; border-color: rgba(157, 123, 255, 0.12); animation-direction: reverse; animation-duration: 60s; }
+    @keyframes spin { 100% { transform: rotate(360deg); } }
+
+    .phone-wrap {
+      position: relative; width: 285px; animation: float 5s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
 
     .phone-glow {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-      width: 310px; height: 620px;
-      background: radial-gradient(ellipse,rgba(0,212,170,.1) 0%,transparent 65%);
-      filter: blur(18px); z-index: -1;
+      width: 320px; height: 610px;
+      background: radial-gradient(ellipse, rgba(0,212,170,0.18) 0%, rgba(157,123,255,0.1) 40%, transparent 70%);
+      filter: blur(28px); z-index: -1;
     }
     .phone-frame {
-      width: 270px; height: 545px;
-      border: 2.5px solid rgba(0,212,170,.45);
-      border-radius: 40px; background: var(--bg2);
+      width: 285px; height: 570px;
+      border: 2px solid rgba(255, 255, 255, 0.16);
+      border-radius: 42px; background: #08101D;
       position: relative; overflow: hidden;
-      box-shadow: 0 0 0 1px rgba(0,212,170,.08), 0 28px 56px rgba(0,0,0,.5);
+      box-shadow: 
+        0 0 0 1px rgba(0, 212, 170, 0.15),
+        0 30px 60px rgba(0, 0, 0, 0.65),
+        inset 0 0 20px rgba(0, 0, 0, 0.8);
     }
-    .phone-frame::before {
-      content: ''; position: absolute; top: 11px; left: 50%; transform: translateX(-50%);
-      width: 72px; height: 20px; background: var(--bg); border-radius: 10px; z-index: 10;
+    .phone-notch {
+      position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+      width: 86px; height: 22px; background: #050A12; border-radius: 12px; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between; padding: 0 10px;
     }
+    .notch-camera { width: 7px; height: 7px; background: #1a2a40; border-radius: 50%; }
+    .notch-sensor { width: 5px; height: 5px; background: #0d1a29; border-radius: 50%; }
+
     .screen-track {
       display: flex; width: 300%; height: 100%;
-      animation: slide 9s ease-in-out infinite;
+      animation: slide 11s ease-in-out infinite;
     }
     @keyframes slide {
-      0%,27%    { transform: translateX(0); }
-      33%,60%   { transform: translateX(-33.33%); }
-      66%,93%   { transform: translateX(-66.66%); }
+      0%,28%    { transform: translateX(0); }
+      33%,62%   { transform: translateX(-33.333%); }
+      67%,95%   { transform: translateX(-66.666%); }
       100%      { transform: translateX(0); }
     }
     .app-screen {
-      width: calc(100% / 3); height: 100%; flex-shrink: 0;
-      padding: 44px 14px 14px;
+      width: calc(100% / 3);
+      height: 100%;
+      flex-shrink: 0;
+      padding: 38px 11px 8px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow: hidden;
+      position: relative;
     }
-    .scr1 { background: linear-gradient(180deg,#0f1f38 0%,#0B1524 100%); }
-    .scr2 { background: linear-gradient(180deg,#0d1a2e 0%,#0B1524 100%); }
-    .scr3 { background: linear-gradient(180deg,#0f1a30 0%,#0B1524 100%); }
 
-    .scr-hdr { display: flex; align-items: center; justify-content: space-between; padding: 6px 0 14px; }
-    .scr-ttl { font-family: var(--fdis); font-size: .82rem; font-weight: 600; color: var(--text); }
+    /* Universal Screen Top Status & Header */
+    .scr-status-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.56rem;
+      font-family: var(--fmon);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 0 4px 4px;
+    }
+    .scr-status-right {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.52rem;
+    }
 
-    .p-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
-    .p-card { background: var(--bg3); border-radius: 9px; overflow: hidden; border: 1px solid var(--bdr); }
-    .p-img { height: 65px; background: linear-gradient(135deg,var(--bg3) 0%,#1e3555 100%); display: flex; align-items: center; justify-content: center; }
-    .p-inf { padding: 7px; }
-    .p-lbl { width: 70%; height: 4px; background: rgba(255,255,255,.15); border-radius: 2px; margin-bottom: 4px; }
-    .p-prc { width: 42%; height: 4px; background: var(--teal); opacity: .65; border-radius: 2px; }
+    .scr-body {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      overflow: hidden;
+    }
 
-    .s-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
-    .s-blk { background: var(--bg3); border-radius: 8px; padding: 9px; border: 1px solid var(--bdr); }
-    .s-num { font-family: var(--fdis); font-size: 1.05rem; font-weight: 700; color: var(--teal); }
-    .s-lbl { font-size: .55rem; color: var(--muted); margin-top: 2px; }
-    .bar-wrap { background: var(--bg3); border-radius: 8px; padding: 11px; border: 1px solid var(--bdr); }
-    .bar-chart { display: flex; align-items: flex-end; gap: 4px; height: 54px; }
-    .bar { flex: 1; background: var(--teal); opacity: .6; border-radius: 3px 3px 0 0; }
+    /* Universal Phone Bottom Tab Bar */
+    .phone-tabbar {
+      background: rgba(7, 14, 25, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      padding: 4px 8px 3px;
+      margin-top: 4px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      flex-shrink: 0;
+    }
+    .phone-tab-items {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .phone-tab {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+      font-size: 0.44rem;
+      font-family: var(--fmon);
+      color: var(--muted);
+      position: relative;
+    }
+    .phone-tab.active {
+      color: var(--teal);
+      font-weight: 700;
+    }
+    .phone-tab.active-violet {
+      color: #C4B5FD;
+      font-weight: 700;
+    }
+    .phone-tab svg {
+      width: 12px;
+      height: 12px;
+    }
+    .tab-badge {
+      position: absolute;
+      top: -3px;
+      right: -5px;
+      background: var(--rose);
+      color: #fff;
+      font-size: 0.4rem;
+      border-radius: 8px;
+      padding: 0 3px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .phone-home-indicator {
+      width: 76px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 2px;
+      margin: 3px auto 0;
+    }
+    
+    /* Screen 1: Shopivia / E-Commerce */
+    .scr-shop { background: linear-gradient(180deg, #0d1b30 0%, #060D17 100%); }
+    .scr-header { display: flex; align-items: center; justify-content: space-between; }
+    .scr-pill { font-size: .56rem; font-family: var(--fmon); background: rgba(0,212,170,0.14); color: var(--teal); padding: 2px 6px; border-radius: 4px; font-weight: 600; }
+    .scr-search-bar { background: rgba(255,255,255,0.06); border-radius: 6px; height: 24px; display: flex; align-items: center; padding: 0 7px; font-size: .58rem; color: var(--muted); }
+    .scr-cat-scroll { display: flex; gap: 4px; overflow: hidden; }
+    .scr-cat { font-size: 0.52rem; font-family: var(--fmon); padding: 2px 7px; border-radius: 12px; background: rgba(255, 255, 255, 0.05); color: var(--muted); border: 1px solid rgba(255, 255, 255, 0.06); white-space: nowrap; }
+    .scr-cat.active { background: var(--teal-dim); color: var(--teal); border-color: rgba(0, 212, 170, 0.3); font-weight: 600; }
+    .scr-banner-deal { background: linear-gradient(135deg, rgba(255, 92, 138, 0.18), rgba(56, 189, 248, 0.12)); border: 1px solid rgba(255, 92, 138, 0.3); border-radius: 8px; padding: 5px 8px; }
+    .scr-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .scr-card { background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.06); border-radius: 7px; padding: 5px; display: flex; flex-direction: column; gap: 2px; }
+    .scr-thumb { height: 44px; border-radius: 5px; background: linear-gradient(135deg, #1A2E4C, #0F1F35); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; position: relative; }
+    .scr-discount-tag { position: absolute; top: 2px; right: 2px; font-size: 0.42rem; font-family: var(--fmon); background: var(--rose); color: #fff; padding: 1px 3px; border-radius: 3px; font-weight: 700; }
+    .scr-prod-title { font-size: 0.56rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .scr-prod-row { display: flex; align-items: center; justify-content: space-between; font-family: var(--fmon); }
+    .scr-prod-price { font-size: 0.56rem; font-weight: 700; color: var(--teal); }
+    .scr-prod-rating { font-size: 0.48rem; color: #FBBF24; }
+    .scr-live-ticker { background: rgba(0, 212, 170, 0.06); border: 1px solid rgba(0, 212, 170, 0.15); border-radius: 6px; padding: 4px 7px; font-size: 0.5rem; color: var(--text-soft); display: flex; align-items: center; gap: 4px; }
+    
+    /* Screen 2: Qadaa / Islamic Tracker Hero Card & Ring */
+    .scr-qadaa {
+      background: linear-gradient(180deg, #071524 0%, #030a12 100%);
+    }
+    
+    .qadaa-ring-wrap {
+      background: linear-gradient(135deg, rgba(14, 30, 48, 0.85) 0%, rgba(6, 17, 28, 0.95) 100%);
+      border: 1px solid rgba(0, 212, 170, 0.28);
+      border-radius: 14px;
+      padding: 7px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 0 16px rgba(0, 212, 170, 0.1);
+      position: relative;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .qadaa-ring-wrap::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 15%; right: 15%; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(0, 212, 170, 0.7), transparent);
+    }
 
-    .prof-sec { display: flex; align-items: center; gap: 9px; padding: 6px 0 14px; }
-    .prof-av { width: 40px; height: 40px; border-radius: 11px; background: linear-gradient(135deg,var(--teal),#0074cc); }
-    .p-nl { width: 76px; height: 5px; background: rgba(255,255,255,.2); border-radius: 2px; margin-bottom: 4px; }
-    .p-rl { width: 52px; height: 4px; background: var(--teal); opacity: .5; border-radius: 2px; }
-    .menu-list { display: flex; flex-direction: column; gap: 6px; }
-    .menu-item { background: var(--bg3); border: 1px solid var(--bdr); border-radius: 8px; padding: 9px 11px; display: flex; align-items: center; justify-content: space-between; }
-    .mi-l { display: flex; align-items: center; gap: 7px; }
-    .mi-dot { width: 22px; height: 22px; border-radius: 5px; }
-    .mi-lbl { width: 58px; height: 4px; background: rgba(255,255,255,.18); border-radius: 2px; }
-    .mi-arr { width: 7px; height: 7px; border-right: 1.5px solid var(--muted); border-top: 1.5px solid var(--muted); transform: rotate(45deg); }
+    .qadaa-ring-box {
+      position: relative;
+      width: 68px;
+      height: 68px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .qadaa-svg {
+      transform: rotate(-90deg);
+      filter: drop-shadow(0 0 5px rgba(0, 212, 170, 0.45));
+    }
+    .qadaa-progress-arc {
+      transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: ringGlow 3s ease-in-out infinite alternate;
+    }
+    @keyframes ringGlow {
+      0% { filter: drop-shadow(0 0 2px rgba(0, 212, 170, 0.3)); }
+      100% { filter: drop-shadow(0 0 7px rgba(0, 212, 170, 0.75)); }
+    }
 
-    /* ── STATS ───────────────────────── */
+    .qadaa-ring-center {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    .qadaa-num {
+      font-family: var(--fdis);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+    .qadaa-pct {
+      font-size: 0.6rem;
+      color: var(--teal);
+      margin-left: 1px;
+      font-weight: 600;
+    }
+    .qadaa-sub {
+      font-size: 0.48rem;
+      color: var(--muted);
+      font-family: var(--fmon);
+      letter-spacing: 0.04em;
+      margin-top: 1px;
+      text-transform: uppercase;
+    }
+
+    .qadaa-stats-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 0;
+    }
+    .qadaa-badge-streak {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: rgba(232, 184, 109, 0.12);
+      border: 1px solid rgba(232, 184, 109, 0.28);
+      border-radius: 20px;
+      padding: 1px 6px;
+      width: fit-content;
+    }
+    .qadaa-fire {
+      font-size: 0.58rem;
+      line-height: 1;
+    }
+    .qadaa-streak-text {
+      font-size: 0.5rem;
+      font-family: var(--fmon);
+      font-weight: 600;
+      color: #FCD34D;
+      letter-spacing: 0.02em;
+    }
+
+    .qadaa-target-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.58rem;
+      color: var(--text-soft);
+    }
+    .qadaa-target-label {
+      color: var(--muted);
+      font-size: 0.54rem;
+    }
+    .qadaa-target-val strong {
+      color: var(--teal);
+      font-weight: 700;
+      font-family: var(--fdis);
+    }
+
+    /* 5 daily prayer segments */
+    .qadaa-segments {
+      display: flex;
+      gap: 2px;
+      width: 100%;
+      height: 3px;
+    }
+    .qadaa-seg {
+      flex: 1;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.1);
+      transition: var(--t);
+    }
+    .qadaa-seg.done {
+      background: linear-gradient(90deg, var(--teal), #38BDF8);
+      box-shadow: 0 0 4px rgba(0, 212, 170, 0.5);
+    }
+
+    .qadaa-recovery-total {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 0.5rem;
+      color: var(--muted);
+      font-family: var(--fmon);
+    }
+    .qadaa-total-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 5px var(--teal);
+    }
+
+    .prayer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 7px;
+      padding: 4px 7px;
+      transition: var(--t);
+    }
+    .prayer-row.done {
+      background: rgba(0, 212, 170, 0.04);
+      border-color: rgba(0, 212, 170, 0.14);
+    }
+    .prayer-left {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .prayer-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--teal);
+      box-shadow: 0 0 5px var(--teal);
+    }
+    .prayer-dot.pending {
+      background: rgba(255,255,255,0.2);
+      box-shadow: none;
+    }
+    .prayer-name {
+      font-size: 0.58rem;
+      font-weight: 600;
+      color: #F1F5F9;
+    }
+    .prayer-time {
+      font-size: 0.5rem;
+      color: var(--muted);
+      font-family: var(--fmon);
+    }
+    .prayer-status-chip {
+      font-size: 0.5rem;
+      font-family: var(--fmon);
+      color: var(--teal);
+      background: rgba(0, 212, 170, 0.12);
+      padding: 1px 5px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    .prayer-btn-qadaa {
+      font-size: 0.5rem;
+      font-family: var(--fmon);
+      color: var(--bg);
+      background: var(--teal);
+      padding: 1px 6px;
+      border-radius: 3px;
+      font-weight: 700;
+      box-shadow: 0 0 6px var(--teal-glo);
+    }
+    .qadaa-quote-card {
+      background: rgba(0, 212, 170, 0.05);
+      border: 1px solid rgba(0, 212, 170, 0.15);
+      border-radius: 7px;
+      padding: 3px 6px;
+      font-size: 0.5rem;
+      color: var(--text-soft);
+      text-align: center;
+      font-style: italic;
+    }
+
+    /* Screen 3: react-native-foldface / Authentic Demo App (FoldView Examples) */
+    .scr-fold {
+      background: #F2F2F7;
+      color: #1C1C1E;
+    }
+    .scr-fold .scr-status-row {
+      color: #1C1C1E;
+    }
+    .fold-demo-header {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .fold-demo-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .fold-demo-title {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', var(--fdis);
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #000;
+      letter-spacing: -0.02em;
+    }
+    .fold-demo-badge {
+      font-size: 0.46rem;
+      font-family: var(--fmon);
+      background: rgba(105, 72, 255, 0.12);
+      color: #6948FF;
+      border: 1px solid rgba(105, 72, 255, 0.25);
+      padding: 1px 5px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    
+    /* iOS Segmented Switcher [ Profile | Product ] */
+    .fold-switcher {
+      display: flex;
+      background: rgba(118, 118, 128, 0.14);
+      border-radius: 7px;
+      padding: 2px;
+      gap: 2px;
+    }
+    .fold-switch-btn {
+      flex: 1;
+      text-align: center;
+      font-size: 0.52rem;
+      font-weight: 600;
+      padding: 2px 0;
+      border-radius: 5px;
+      color: #3C3C43;
+      transition: var(--t);
+    }
+    .fold-switch-btn.active {
+      background: #FFFFFF;
+      color: #000000;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Authentic 3D Folding Card Structure */
+    .fold-card-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      perspective: 1000px;
+    }
+
+    /* Face 1: InfoCard (Cover face from Demo) */
+    .fold-face-info {
+      background: #FFFFFF;
+      border-radius: 12px 12px 0 0;
+      padding: 7px 9px;
+      border: 1px solid #E5E5EA;
+      border-bottom: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .fold-info-header {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 4px;
+    }
+    .fold-avatar {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: #6948FF;
+      color: #FFFFFF;
+      font-size: 0.68rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .fold-identity {
+      flex: 1;
+      min-width: 0;
+    }
+    .fold-name {
+      font-size: 0.64rem;
+      font-weight: 700;
+      color: #000;
+      line-height: 1.2;
+    }
+    .fold-handle {
+      font-size: 0.48rem;
+      color: #8E8E93;
+      font-family: var(--fmon);
+    }
+    .fold-follow-chip {
+      font-size: 0.46rem;
+      font-weight: 600;
+      background: rgba(105, 72, 255, 0.1);
+      color: #6948FF;
+      padding: 2px 6px;
+      border-radius: 10px;
+    }
+    .fold-bio {
+      font-size: 0.5rem;
+      color: #3C3C43;
+      line-height: 1.35;
+      margin-bottom: 5px;
+    }
+    .fold-stats-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid #F2F2F7;
+      padding-top: 3px;
+    }
+    .fold-stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .fold-stat-val {
+      font-size: 0.56rem;
+      font-weight: 700;
+      color: #000;
+    }
+    .fold-stat-lbl {
+      font-size: 0.42rem;
+      color: #8E8E93;
+    }
+
+    /* Face 2: 3D Origami Crease & PhotoCard (Exact blankFace #D6EFFF from Demo) */
+    .fold-face-crease {
+      background: linear-gradient(180deg, #D6EFFF 0%, #C2E4FF 100%);
+      padding: 5px 8px;
+      border-left: 1px solid #B8DCFA;
+      border-right: 1px solid #B8DCFA;
+      transform-origin: top center;
+      transform: perspective(600px) rotateX(-14deg);
+      box-shadow: 0 4px 8px rgba(0, 50, 100, 0.12), inset 0 2px 4px rgba(255,255,255,0.7);
+      position: relative;
+      z-index: 2;
+    }
+    .fold-crease-tag {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.46rem;
+      font-family: var(--fmon);
+      color: #0055AA;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .fold-photo-grid {
+      display: flex;
+      gap: 3px;
+    }
+    .fold-photo-thumb {
+      flex: 1;
+      height: 28px;
+      border-radius: 4px;
+      background: #99CEF5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      border: 1px solid rgba(255,255,255,0.75);
+    }
+
+    /* Face 3: Unfolded Reveal Details (ProfileDetailCard) */
+    .fold-face-lower {
+      background: #FFFFFF;
+      border: 1px solid #E5E5EA;
+      border-top: 1px solid #D6EFFF;
+      border-radius: 0 0 12px 12px;
+      padding: 5px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.04);
+    }
+    .fold-lower-text {
+      font-size: 0.48rem;
+      color: #3C3C43;
+      font-weight: 500;
+    }
+    .fold-collapse-btn {
+      font-size: 0.46rem;
+      font-weight: 600;
+      color: #6948FF;
+      background: rgba(105, 72, 255, 0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    /* Second Row: Nested Product Fold Preview */
+    .fold-product-row {
+      background: #FFFFFF;
+      border: 1px solid #E5E5EA;
+      border-radius: 11px;
+      padding: 6px 8px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+      margin-top: 3px;
+    }
+    .fold-prod-thumb {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      background: #EBF4FF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .fold-prod-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .fold-prod-title {
+      font-size: 0.58rem;
+      font-weight: 700;
+      color: #000;
+      line-height: 1.2;
+    }
+    .fold-prod-sub {
+      font-size: 0.46rem;
+      color: #8E8E93;
+    }
+    .fold-prod-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1px;
+    }
+    .fold-prod-price {
+      font-size: 0.54rem;
+      font-weight: 700;
+      color: #6948FF;
+    }
+    .fold-prod-hint {
+      font-size: 0.46rem;
+      color: #6948FF;
+      font-weight: 600;
+    }
+
+    /* ── STATS BAR ───────────────────── */
     #stats {
       background: var(--bg2);
       border-top: 1px solid var(--bdr); border-bottom: 1px solid var(--bdr);
-      padding: 2.5rem 5rem;
+      padding: 3rem 5rem; position: relative;
     }
     .stats-grid {
-      display: grid; grid-template-columns: repeat(4,1fr); gap: 2rem;
-      max-width: 860px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem;
+      max-width: 980px; margin: 0 auto;
     }
-    .stat-item { text-align: center; }
-    .stat-number { font-family: var(--fdis); font-size: 2.6rem; font-weight: 700; color: var(--teal); line-height: 1; margin-bottom: .25rem; }
-    .stat-label  { font-size: .82rem; color: var(--muted); font-weight: 500; letter-spacing: .03em; }
+    .stat-item {
+      text-align: center; position: relative;
+      padding: 0.5rem 1rem;
+    }
+    .stat-item:not(:last-child)::after {
+      content: ''; position: absolute; right: -1rem; top: 20%; bottom: 20%; width: 1px;
+      background: var(--bdr);
+    }
+    .stat-number {
+      font-family: var(--fdis); font-size: 2.9rem; font-weight: 700;
+      line-height: 1; margin-bottom: .4rem;
+      background: linear-gradient(135deg, var(--teal), #38BDF8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-number.violet {
+      background: linear-gradient(135deg, #B794F4, #9D7BFF);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-label {
+      font-size: .86rem; color: var(--muted); font-weight: 500;
+      letter-spacing: .02em;
+    }
 
     /* ── SHARED SECTION ──────────────── */
-    .sec { padding: 6rem 5rem; }
-    .eyebrow { font-family: var(--fmon); font-size: .72rem; color: var(--teal); letter-spacing: .12em; text-transform: uppercase; margin-bottom: .75rem; }
-    .sec-title { font-family: var(--fdis); font-size: clamp(1.8rem,3vw,2.5rem); font-weight: 700; letter-spacing: -.025em; margin-bottom: .75rem; }
-    .sec-sub { color: var(--muted); font-size: 1rem; max-width: 540px; line-height: 1.75; margin-bottom: 3.5rem; }
+    .sec { padding: 6.5rem 5rem; position: relative; }
+    .eyebrow {
+      font-family: var(--fmon); font-size: .75rem; color: var(--teal);
+      letter-spacing: .15em; text-transform: uppercase; margin-bottom: .75rem;
+      display: inline-flex; align-items: center; gap: .5rem;
+    }
+    .eyebrow::before {
+      content: ''; width: 16px; height: 1.5px; background: var(--teal);
+    }
+    .sec-title {
+      font-family: var(--fdis); font-size: clamp(2rem, 3.2vw, 2.75rem);
+      font-weight: 700; letter-spacing: -.025em; margin-bottom: .85rem; line-height: 1.15;
+    }
+    .sec-sub {
+      color: var(--muted); font-size: 1.05rem; max-width: 600px;
+      line-height: 1.75; margin-bottom: 3.5rem;
+    }
 
     /* ── ABOUT ───────────────────────── */
     #about { background: var(--bg); }
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .about-text { color: var(--muted); font-size: 1rem; line-height: 1.8; }
-    .about-text p { margin-bottom: 1rem; }
-    .about-text strong { color: var(--text); }
+    .about-text { color: var(--text-soft); font-size: 1.02rem; line-height: 1.85; }
+    .about-text p { margin-bottom: 1.25rem; }
+    .about-text strong { color: #fff; font-weight: 600; }
 
-    .traits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-    .trait-card { background: var(--bg2); border: 1px solid var(--bdr); border-radius: var(--r); padding: 1.25rem; transition: var(--t); }
-    .trait-card:hover { border-color: var(--teal); background: var(--teal-dim); }
-    .trait-icon { font-size: 1.5rem; margin-bottom: .5rem; }
-    .trait-title { font-family: var(--fdis); font-size: .9rem; font-weight: 600; color: var(--text); margin-bottom: .25rem; }
-    .trait-desc  { font-size: .8rem; color: var(--muted); line-height: 1.5; }
-
-    /* ── SKILLS ──────────────────────── */
-    #skills { background: var(--bg2); }
-    .skills-groups { display: flex; flex-direction: column; gap: 2.5rem; }
-    .grp-title {
-      font-family: var(--fmon); font-size: .72rem; letter-spacing: .1em;
-      text-transform: uppercase; color: var(--muted); margin-bottom: 1rem;
-      display: flex; align-items: center; gap: .75rem;
+    .traits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .trait-card {
+      background: var(--card-bg); border: 1px solid var(--bdr); border-radius: var(--r);
+      padding: 1.4rem; transition: var(--t);
+      backdrop-filter: blur(10px);
     }
-    .grp-title::after { content: ''; flex: 1; height: 1px; background: var(--bdr); }
-    .pills { display: flex; flex-wrap: wrap; gap: .6rem; }
-    .pill {
-      display: inline-flex; align-items: center; gap: .35rem;
-      background: var(--bg); border: 1.5px solid var(--bdr); border-radius: 6px;
-      padding: .38rem .9rem; font-size: .83rem; font-weight: 500; color: var(--muted);
-      transition: var(--t); cursor: default;
+    .trait-card:hover {
+      border-color: var(--teal); background: rgba(0, 212, 170, 0.04);
+      transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.3);
     }
-    .pill:hover { border-color: var(--teal); color: var(--teal); background: var(--teal-dim); transform: translateY(-1px); }
-    .pill.hi { border-color: rgba(0,212,170,.35); color: var(--teal); background: var(--teal-dim); }
-
-    /* ── TIMELINE ────────────────────── */
-    #experience { background: var(--bg); }
-    .timeline { position: relative; padding-left: 1.75rem; }
-    .timeline::before {
-      content: ''; position: absolute; left: 0; top: 8px; bottom: 0; width: 1px;
-      background: linear-gradient(180deg,var(--teal) 0%,rgba(0,212,170,.08) 100%);
-    }
-    .tl-item { position: relative; padding: 0 0 3.5rem 2.5rem; }
-    .tl-item:last-child { padding-bottom: 0; }
-    .tl-dot {
-      position: absolute; left: -.45rem; top: 6px;
-      width: 14px; height: 14px; background: var(--teal); border-radius: 50%;
-      border: 2px solid var(--bg); box-shadow: 0 0 0 3px var(--teal-glo);
-    }
-    .tl-date   { font-family: var(--fmon); font-size: .72rem; color: var(--teal); letter-spacing: .08em; margin-bottom: .45rem; }
-    .tl-co     { font-family: var(--fdis); font-size: 1.3rem; font-weight: 700; margin-bottom: .2rem; }
-    .tl-role   { font-size: .9rem; color: var(--muted); margin-bottom: .2rem; }
-    .tl-loc    { font-size: .78rem; color: var(--muted); opacity: .65; margin-bottom: .9rem; }
-    .tl-desc {
-      font-size: .83rem; color: var(--muted); font-style: italic; margin-bottom: 1rem;
-      padding: .7rem 1rem; background: var(--bg2); border-radius: 8px; border-left: 2px solid var(--teal);
-    }
-    .tl-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
-    .tl-list li { font-size: .875rem; color: var(--muted); display: flex; gap: .55rem; align-items: flex-start; }
-    .tl-list li::before { content: '→'; color: var(--teal); font-size: .75rem; margin-top: 3px; flex-shrink: 0; }
+    .trait-icon { font-size: 1.75rem; margin-bottom: .6rem; }
+    .trait-title { font-family: var(--fdis); font-size: .98rem; font-weight: 700; color: #fff; margin-bottom: .35rem; }
+    .trait-desc { font-size: .83rem; color: var(--muted); line-height: 1.55; }
 
     /* ── PROJECTS ────────────────────── */
-    #projects { background: var(--bg2); }
-    .proj-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
-    .proj-card {
-      background: var(--bg); border: 1px solid var(--bdr); border-radius: 16px;
-      overflow: hidden; transition: var(--t);
+    #projects {
+      background: var(--bg2); position: relative; overflow: hidden;
     }
-    .proj-card:hover { border-color: var(--teal); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.3),0 0 20px var(--teal-glo); }
-    .proj-top { height: 120px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
-    .proj-icon { font-size: 2.4rem; position: relative; z-index: 1; }
-    .proj-body { padding: 1.2rem; }
-    .proj-region { font-family: var(--fmon); font-size: .62rem; color: var(--muted); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .4rem; }
-    .proj-name { font-family: var(--fdis); font-size: 1.1rem; font-weight: 700; margin-bottom: .5rem; }
-    .proj-desc { font-size: .83rem; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
-    .proj-tags { display: flex; flex-wrap: wrap; gap: .35rem; }
-    .tag { font-size: .68rem; font-family: var(--fmon); padding: .2rem .6rem; border-radius: 4px; background: var(--teal-dim); color: var(--teal); border: 1px solid rgba(0,212,170,.2); }
+    #projects::before {
+      content: ''; position: absolute; top: -150px; right: -150px; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(157, 123, 255, 0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Filter Controls */
+    .filter-bar {
+      display: flex; gap: .75rem; flex-wrap: wrap; margin-bottom: 3rem;
+      background: rgba(7, 14, 24, 0.5); padding: 5px; border-radius: 12px;
+      border: 1px solid var(--bdr); width: fit-content;
+    }
+    .filter-btn {
+      background: transparent; border: none; color: var(--muted);
+      padding: .5rem 1.2rem; border-radius: 8px; font-size: .86rem; font-weight: 600;
+      cursor: pointer; transition: var(--t); font-family: var(--fbod);
+    }
+    .filter-btn:hover { color: #fff; }
+    .filter-btn.active {
+      background: var(--teal); color: #070E18;
+      box-shadow: 0 4px 15px var(--teal-glo);
+    }
+
+    .proj-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem;
+    }
+
+    /* Enhanced Card */
+    .proj-card {
+      background: var(--bg); border: 1px solid var(--bdr);
+      border-radius: 18px; overflow: hidden; display: flex; flex-direction: column;
+      transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+    .proj-card:hover {
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
+    .proj-card.card-teal:hover { border-color: var(--teal); box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px var(--teal-glo); }
+    .proj-card.card-violet:hover { border-color: var(--violet); box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px var(--violet-glo); }
+    .proj-card.card-rose:hover { border-color: var(--rose); box-shadow: 0 20px 40px rgba(0,0,0,0.5), 0 0 25px var(--rose-glo); }
+
+    /* Visual Header Art */
+    .proj-preview {
+      height: 140px; position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      background: #09121F;
+    }
+    .proj-preview::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(circle at 50% 120%, rgba(255,255,255,0.06), transparent 70%);
+    }
+
+    /* Specific Preview Art */
+    .preview-foldface {
+      background: linear-gradient(135deg, #180D30 0%, #0A0618 100%);
+    }
+    .fold-graphic {
+      display: flex; align-items: center; gap: 8px; position: relative;
+    }
+    .fold-leaf {
+      width: 44px; height: 56px; border-radius: 6px;
+      border: 1.5px solid rgba(157, 123, 255, 0.5);
+      background: linear-gradient(135deg, rgba(157,123,255,0.25), rgba(157,123,255,0.08));
+      transform-origin: left center;
+      transition: transform 0.4s ease;
+    }
+    .proj-card:hover .fold-leaf-2 { transform: perspective(400px) rotateY(-45deg); }
+    .proj-card:hover .fold-leaf-3 { transform: perspective(400px) rotateY(-90deg); }
+
+    .preview-qadaa {
+      background: linear-gradient(135deg, #071D28 0%, #030D14 100%);
+    }
+    .qadaa-graphic-ring {
+      width: 65px; height: 65px; border-radius: 50%;
+      border: 3px solid rgba(0,212,170,0.2); border-top-color: var(--teal); border-left-color: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+    }
+
+    .preview-shopivia {
+      background: linear-gradient(135deg, #2A0E20 0%, #12040C 100%);
+    }
+    .shopivia-graphic {
+      display: flex; gap: 8px; align-items: center;
+    }
+    .shopivia-chip {
+      background: rgba(255, 92, 138, 0.15); border: 1px solid rgba(255, 92, 138, 0.35);
+      padding: 6px 10px; border-radius: 6px; font-size: .7rem; font-family: var(--fmon); color: #FFA3BE;
+    }
+
+    .preview-tjaara {
+      background: linear-gradient(135deg, #0C1E36 0%, #060E1A 100%);
+    }
+    .tjaara-graphic {
+      display: flex; gap: 6px; align-items: flex-end; height: 40px;
+    }
+    .tjaara-bar {
+      width: 8px; background: var(--teal); opacity: .75; border-radius: 3px 3px 0 0;
+    }
+
+    .proj-badge-top {
+      position: absolute; top: 12px; right: 12px; z-index: 2;
+      font-family: var(--fmon); font-size: .65rem; font-weight: 700;
+      padding: 3px 9px; border-radius: 20px; letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+    .badge-oss { background: rgba(157, 123, 255, 0.2); color: #C4B5FD; border: 1px solid rgba(157, 123, 255, 0.4); }
+    .badge-work { background: rgba(0, 212, 170, 0.15); color: var(--teal); border: 1px solid rgba(0, 212, 170, 0.3); }
+    .badge-personal { background: rgba(255, 92, 138, 0.15); color: #FDA4AF; border: 1px solid rgba(255, 92, 138, 0.35); }
+
+    .proj-body { padding: 1.4rem; display: flex; flex-direction: column; flex: 1; }
+    
+    .proj-meta-tag {
+      font-family: var(--fmon); font-size: .68rem; color: var(--muted);
+      letter-spacing: .05em; text-transform: uppercase; margin-bottom: .45rem;
+    }
+    .proj-name {
+      font-family: var(--fdis); font-size: 1.25rem; font-weight: 700;
+      margin-bottom: .55rem; color: #fff; line-height: 1.25;
+    }
+    .proj-desc {
+      font-size: .88rem; color: var(--muted); line-height: 1.65;
+      margin-bottom: 1.25rem; flex: 1;
+    }
+
+    .proj-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: 1.4rem; }
+    .tag {
+      font-size: .7rem; font-family: var(--fmon); padding: .25rem .65rem;
+      border-radius: 5px; background: rgba(255,255,255,0.04);
+      color: var(--text-soft); border: 1px solid var(--bdr);
+    }
+    .tag.hi-teal { background: var(--teal-dim); color: var(--teal); border-color: rgba(0,212,170,0.25); }
+    .tag.hi-violet { background: var(--violet-dim); color: #C4B5FD; border-color: rgba(157,123,255,0.3); }
+    .tag.hi-rose { background: var(--rose-dim); color: #FDA4AF; border-color: rgba(255,92,138,0.3); }
+
+    .proj-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-top: 1rem; border-top: 1px solid var(--bdr);
+      margin-top: auto;
+    }
+    .proj-links { display: flex; gap: .75rem; align-items: center; }
+    .proj-link {
+      font-size: .78rem; font-family: var(--fmon); text-decoration: none;
+      color: var(--text-soft); display: inline-flex; align-items: center; gap: .35rem;
+      padding: .35rem .75rem; border-radius: 6px; background: rgba(255,255,255,0.04);
+      border: 1px solid var(--bdr); transition: var(--t);
+    }
+    .proj-link:hover { color: var(--teal); border-color: var(--teal); background: var(--teal-dim); }
+    .proj-link.link-violet:hover { color: var(--violet); border-color: var(--violet); background: var(--violet-dim); }
+    .proj-status {
+      font-size: .72rem; font-family: var(--fmon); color: var(--muted);
+    }
+
+    /* ── TECH STACK ──────────────────── */
+    #skills { background: var(--bg); }
+    .skills-groups { display: flex; flex-direction: column; gap: 2.8rem; }
+    .grp-title {
+      font-family: var(--fmon); font-size: .75rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 1.1rem;
+      display: flex; align-items: center; gap: .85rem;
+    }
+    .grp-title::after { content: ''; flex: 1; height: 1px; background: var(--bdr); }
+    .pills { display: flex; flex-wrap: wrap; gap: .65rem; }
+    .pill {
+      display: inline-flex; align-items: center; gap: .4rem;
+      background: var(--bg2); border: 1px solid var(--bdr); border-radius: 7px;
+      padding: .42rem 1rem; font-size: .85rem; font-weight: 500; color: var(--text-soft);
+      transition: var(--t); cursor: default;
+    }
+    .pill:hover {
+      border-color: var(--teal); color: var(--teal);
+      background: var(--teal-dim); transform: translateY(-2px);
+    }
+    .pill.hi {
+      border-color: rgba(0, 212, 170, 0.35); color: var(--teal);
+      background: rgba(0, 212, 170, 0.08); font-weight: 600;
+    }
+    .pill.hi-violet {
+      border-color: rgba(157, 123, 255, 0.35); color: #C4B5FD;
+      background: rgba(157, 123, 255, 0.08); font-weight: 600;
+    }
+
+    /* ── TIMELINE ────────────────────── */
+    #experience { background: var(--bg2); }
+    .timeline { position: relative; padding-left: 2rem; max-width: 900px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 0; top: 10px; bottom: 0; width: 2px;
+      background: linear-gradient(180deg, var(--teal) 0%, rgba(0,212,170,0.15) 80%, transparent 100%);
+    }
+    .tl-item { position: relative; padding: 0 0 3.8rem 2.8rem; }
+    .tl-item:last-child { padding-bottom: 0; }
+    .tl-dot {
+      position: absolute; left: -2.35rem; top: 6px;
+      width: 14px; height: 14px; background: var(--teal); border-radius: 50%;
+      border: 3px solid var(--bg2); box-shadow: 0 0 0 4px var(--teal-glo);
+    }
+    .tl-date {
+      font-family: var(--fmon); font-size: .75rem; color: var(--teal);
+      letter-spacing: .08em; margin-bottom: .45rem; font-weight: 600;
+    }
+    .tl-co {
+      font-family: var(--fdis); font-size: 1.4rem; font-weight: 700; color: #fff; margin-bottom: .25rem;
+    }
+    .tl-role { font-size: .95rem; color: var(--text-soft); margin-bottom: .25rem; }
+    .tl-loc { font-size: .8rem; color: var(--muted); margin-bottom: 1rem; }
+    .tl-desc {
+      font-size: .88rem; color: var(--muted); font-style: italic; margin-bottom: 1.1rem;
+      padding: .8rem 1.1rem; background: rgba(7, 14, 24, 0.6); border-radius: 8px;
+      border-left: 3px solid var(--teal);
+    }
+    .tl-list { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .tl-list li {
+      font-size: .9rem; color: var(--text-soft); display: flex; gap: .65rem; align-items: flex-start;
+      line-height: 1.6;
+    }
+    .tl-list li::before {
+      content: '▹'; color: var(--teal); font-size: .9rem; flex-shrink: 0; margin-top: 1px;
+    }
 
     /* ── ACHIEVEMENTS ────────────────── */
     #achievements { background: var(--bg); }
-    .ach-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
+    .ach-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     .ach-card {
       background: var(--bg2); border: 1px solid var(--bdr); border-radius: var(--r);
-      padding: 1.5rem; transition: var(--t); position: relative; overflow: hidden;
+      padding: 1.7rem; transition: var(--t); position: relative; overflow: hidden;
     }
-    .ach-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold); }
-    .ach-card:hover { border-color: rgba(232,184,109,.35); background: var(--gold-dim); }
-    .ach-icon  { font-size: 1.75rem; margin-bottom: .75rem; }
-    .ach-title { font-family: var(--fdis); font-size: .95rem; font-weight: 700; margin-bottom: .5rem; line-height: 1.3; }
-    .ach-desc  { font-size: .82rem; color: var(--muted); line-height: 1.6; }
+    .ach-card::before {
+      content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%;
+      background: var(--gold);
+    }
+    .ach-card:hover {
+      border-color: rgba(232, 184, 109, 0.4); background: rgba(232, 184, 109, 0.04);
+      transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+    .ach-icon { font-size: 2rem; margin-bottom: .85rem; }
+    .ach-title {
+      font-family: var(--fdis); font-size: 1.05rem; font-weight: 700;
+      margin-bottom: .5rem; line-height: 1.35; color: #fff;
+    }
+    .ach-desc { font-size: .86rem; color: var(--muted); line-height: 1.65; }
 
-    /* ── EDUCATION ───────────────────── */
+    /* ── EDUCATION & LANGUAGES ───────── */
     #education { background: var(--bg2); }
-    .edu-lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+    .edu-lang-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: start; }
     .edu-card {
       background: var(--bg); border: 1px solid var(--bdr); border-radius: var(--r);
-      padding: 1.5rem 1.75rem; display: flex; align-items: center; gap: 1.2rem;
+      padding: 1.6rem 1.8rem; display: flex; align-items: center; gap: 1.4rem;
     }
-    .edu-ico { width: 50px; height: 50px; border-radius: 12px; background: var(--teal-dim); border: 1px solid var(--bdr); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; flex-shrink: 0; }
-    .edu-deg  { font-family: var(--fdis); font-size: 1rem; font-weight: 700; }
-    .edu-uni  { font-size: .875rem; color: var(--muted); margin-top: .2rem; }
-    .edu-yrs  { font-family: var(--fmon); font-size: .72rem; color: var(--teal); margin-top: .25rem; }
-    .lang-list { display: flex; flex-direction: column; gap: 1.1rem; }
-    .lang-item { display: flex; align-items: center; gap: 1rem; }
-    .lang-name { font-family: var(--fdis); font-size: .95rem; font-weight: 600; min-width: 75px; }
-    .lang-bar  { flex: 1; height: 4px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
-    .lang-fill { height: 100%; background: var(--teal); border-radius: 2px; }
-    .lang-lvl  { font-size: .75rem; color: var(--muted); min-width: 55px; text-align: right; }
+    .edu-ico {
+      width: 54px; height: 54px; border-radius: 12px; background: var(--teal-dim);
+      border: 1px solid var(--card-border); display: flex; align-items: center;
+      justify-content: center; font-size: 1.6rem; flex-shrink: 0;
+    }
+    .edu-deg { font-family: var(--fdis); font-size: 1.05rem; font-weight: 700; color: #fff; }
+    .edu-uni { font-size: .9rem; color: var(--muted); margin-top: .25rem; }
+    .edu-yrs { font-family: var(--fmon); font-size: .75rem; color: var(--teal); margin-top: .3rem; }
+    
+    .lang-list { display: flex; flex-direction: column; gap: 1.3rem; }
+    .lang-item { display: flex; align-items: center; gap: 1.2rem; }
+    .lang-name { font-family: var(--fdis); font-size: 1rem; font-weight: 600; min-width: 85px; color: #fff; }
+    .lang-bar { flex: 1; height: 6px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden; }
+    .lang-fill { height: 100%; background: linear-gradient(90deg, var(--teal), #38BDF8); border-radius: 3px; }
+    .lang-lvl { font-size: .8rem; color: var(--muted); min-width: 70px; text-align: right; font-family: var(--fmon); }
 
     /* ── CONTACT ─────────────────────── */
     #contact {
-      background: var(--bg); padding: 7rem 5rem;
+      background: var(--bg); padding: 8rem 5rem;
       text-align: center; position: relative; overflow: hidden;
     }
     #contact::before {
       content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-      width: 580px; height: 580px;
-      background: radial-gradient(circle,rgba(0,212,170,.05) 0%,transparent 70%);
+      width: 650px; height: 650px;
+      background: radial-gradient(circle, rgba(0,212,170,0.06) 0%, rgba(157,123,255,0.04) 50%, transparent 70%);
       pointer-events: none;
     }
-    .con-title { font-family: var(--fdis); font-size: clamp(2rem,4vw,3.4rem); font-weight: 700; letter-spacing: -.025em; margin-bottom: 1rem; line-height: 1.15; }
-    .con-sub   { color: var(--muted); font-size: 1.05rem; margin-bottom: 2.5rem; }
-    .con-btns  { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
-    .con-info  { display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
-    .con-item  { font-size: .83rem; color: var(--muted); display: flex; align-items: center; gap: .4rem; }
+    .con-title {
+      font-family: var(--fdis); font-size: clamp(2.2rem, 4.2vw, 3.6rem);
+      font-weight: 700; letter-spacing: -.03em; margin-bottom: 1.1rem; line-height: 1.15;
+    }
+    .con-sub { color: var(--muted); font-size: 1.1rem; margin-bottom: 2.8rem; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .con-btns { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 3.5rem; }
+    .con-info { display: flex; justify-content: center; gap: 2.5rem; flex-wrap: wrap; }
+    .con-item { font-size: .88rem; color: var(--muted); display: flex; align-items: center; gap: .5rem; font-family: var(--fmon); }
     .con-item a { color: inherit; text-decoration: none; transition: var(--t); }
     .con-item a:hover { color: var(--teal); }
 
     /* ── FOOTER ──────────────────────── */
-    footer { background: var(--bg2); border-top: 1px solid var(--bdr); padding: 1.5rem 5rem; display: flex; justify-content: space-between; align-items: center; }
-    footer p { font-size: .78rem; color: var(--muted); }
-    footer span { color: var(--teal); }
+    footer {
+      background: #040810; border-top: 1px solid var(--bdr);
+      padding: 1.8rem 5rem; display: flex; justify-content: space-between; align-items: center;
+    }
+    footer p { font-size: .82rem; color: var(--muted); }
+    footer span { color: var(--teal); font-weight: 600; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: var(--muted); text-decoration: none; font-size: .82rem; transition: var(--t); }
+    .footer-links a:hover { color: var(--teal); }
 
     /* ── SCROLL REVEAL ───────────────── */
-    .reveal { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
     .reveal.vis { opacity: 1; transform: none; }
-    .stagger > * { opacity: 0; transform: translateY(18px); transition: opacity .5s ease, transform .5s ease; }
+    .stagger > * { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
     .stagger.vis > *:nth-child(1) { opacity:1;transform:none;transition-delay:0s }
     .stagger.vis > *:nth-child(2) { opacity:1;transform:none;transition-delay:.08s }
     .stagger.vis > *:nth-child(3) { opacity:1;transform:none;transition-delay:.16s }
     .stagger.vis > *:nth-child(4) { opacity:1;transform:none;transition-delay:.24s }
     .stagger.vis > *:nth-child(5) { opacity:1;transform:none;transition-delay:.32s }
-    .stagger.vis > *:nth-child(6) { opacity:1;transform:none;transition-delay:.4s }
+    .stagger.vis > *:nth-child(6) { opacity:1;transform:none;transition-delay:.40s }
+
+    /* Card filter hidden state */
+    .proj-card.filtered-out {
+      display: none !important;
+    }
 
     /* ── RESPONSIVE ──────────────────── */
+    @media (max-width: 1100px) {
+      .proj-grid { grid-template-columns: 1fr 1fr; }
+    }
     @media (max-width: 1024px) {
-      #hero { grid-template-columns: 1fr; padding: 7rem 3rem 4rem; text-align: center; }
+      #hero { grid-template-columns: 1fr; padding: 7.5rem 3rem 4rem; text-align: center; }
       .hero-bio { margin: 0 auto 2.5rem; }
       .hero-actions, .hero-meta { justify-content: center; }
-      .hero-visual { margin-top: 3.5rem; }
-      .about-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .proj-grid { grid-template-columns: 1fr 1fr; }
+      .hero-visual { margin-top: 4rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 3.5rem; }
       .ach-grid { grid-template-columns: 1fr 1fr; }
       nav { padding: 1rem 2rem; }
       .nav-links { display: none; }
-      .sec, #contact { padding: 5rem 3rem; }
-      #stats { padding: 2rem 3rem; }
-      footer { padding: 1.5rem 3rem; }
+      .sec, #contact { padding: 5.5rem 2.5rem; }
+      #stats { padding: 2.5rem 2.5rem; }
+      footer { padding: 1.8rem 2.5rem; }
+    }
+    @media (max-width: 720px) {
+      .proj-grid, .ach-grid, .edu-lang-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1.8rem; }
+      .stat-item:nth-child(2)::after { display: none; }
     }
     @media (max-width: 640px) {
-      #hero { padding: 6rem 1.5rem 3rem; }
-      .sec, #contact { padding: 4rem 1.5rem; }
-      #stats { padding: 1.5rem; }
-      .stats-grid { grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
-      .proj-grid, .ach-grid, .edu-lang-grid { grid-template-columns: 1fr; }
+      #hero { padding: 6.5rem 1.5rem 3rem; }
+      .sec, #contact { padding: 4.5rem 1.5rem; }
+      #stats { padding: 2rem 1.5rem; }
       .traits-grid { grid-template-columns: 1fr; }
-      .phone-wrap { transform: scale(.9); }
-      footer { flex-direction: column; gap: .4rem; text-align: center; }
+      .phone-wrap { transform: scale(.92); }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .filter-bar { width: 100%; justify-content: center; }
     }
   </style>
 </head>
@@ -402,104 +1337,448 @@
 
 <!-- ─── NAV ───────────────────────────────── -->
 <nav id="nav">
-  <a class="nav-logo" href="#hero"><span class="logo-dot"></span>ME.</a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#achievements">Impact</a></li>
-    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
-  </ul>
+  <a class="nav-logo" href="#hero">
+    <span class="logo-dot"></span>
+    <span>Mohamed Elnady</span>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#achievements">Impact</a></li>
+    </ul>
+    <a href="https://github.com/mohamedelandy" target="_blank" rel="noopener noreferrer" class="nav-social-btn" title="GitHub Profile">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+    </a>
+    <a href="#contact" class="nav-cta">Hire Me</a>
+  </div>
 </nav>
 
 <!-- ─── HERO ──────────────────────────────── -->
 <section id="hero">
+  <div class="hero-glow-1"></div>
+  <div class="hero-glow-2"></div>
+  
   <div class="hero-content">
-    <div class="hero-badge"><span class="blink"></span>Open to Senior Mobile Roles</div>
+    <div class="hero-badge"><span class="blink"></span>Open to Senior Mobile Engineering Roles</div>
     <h1 class="hero-name">Mohamed<br><span>Elnady</span></h1>
     <div class="hero-title"><span id="typed"></span></div>
     <p class="hero-bio">
-      8+ years building scalable cross-platform mobile apps. Clean architecture, native modules, and production-grade CI/CD pipelines — all the way from commit to store.
+      Senior React Native Developer with <strong>8+ years</strong> architecting scalable mobile platforms, open source libraries, and native iOS/Android modules. Deep focus on clean architecture, fluid 60fps animations, and bulletproof CI/CD pipelines.
     </p>
     <div class="hero-actions">
-      <a href="mailto:muhammed.elnady@hotmail.com" class="btn btn-primary">✉ Get in Touch</a>
-      <a href="https://linkedin.com/in/mohammedelnady" target="_blank" rel="noopener noreferrer" class="btn btn-outline">LinkedIn ↗</a>
-      <!-- Replace '#' with your CV PDF link or a download attribute -->
-      <a href="#" class="btn btn-outline">Download CV ↓</a>
+      <a href="mailto:muhammed.elnady@hotmail.com" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Get in Touch
+      </a>
+      <a href="https://github.com/mohamedelandy" target="_blank" rel="noopener noreferrer" class="btn btn-github">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        GitHub ↗
+      </a>
+      <a href="https://linkedin.com/in/mohammedelnady" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn ↗
+      </a>
     </div>
+    
     <div class="hero-meta">
       <span class="hero-meta-item">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
         Cairo, Egypt
       </span>
       <span class="hero-meta-item">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.13 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.04 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 5.94 5.94l1.31-1.31a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-        +201226492575
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.13 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.04 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 5.94 5.94l1.31-1.31a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        +20 122 649 2575
       </span>
       <span class="hero-meta-item">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
-        React Native · iOS · Android
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        React Native · Swift · Kotlin
       </span>
     </div>
   </div>
 
-  <!-- Animated Phone Mockup -->
+  <!-- Interactive Mockup Visual -->
   <div class="hero-visual">
+    <div class="orbit-ring orbit-ring-1"></div>
+    <div class="orbit-ring orbit-ring-2"></div>
     <div class="phone-wrap">
       <div class="phone-glow"></div>
       <div class="phone-frame">
+        <div class="phone-notch">
+          <div class="notch-camera"></div>
+          <div class="notch-sensor"></div>
+        </div>
+        
         <div class="screen-track">
-
-          <!-- Screen 1: E-commerce Store -->
-          <div class="app-screen scr1">
-            <div class="scr-hdr">
-              <span class="scr-ttl">Tjaara Store</span>
-              <div style="width:22px;height:22px;border-radius:50%;background:var(--teal);opacity:.65;"></div>
-            </div>
-            <div class="p-grid">
-              <div class="p-card"><div class="p-img"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,170,0.5)" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg></div><div class="p-inf"><div class="p-lbl"></div><div class="p-prc"></div></div></div>
-              <div class="p-card"><div class="p-img"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,170,0.5)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="p-inf"><div class="p-lbl"></div><div class="p-prc"></div></div></div>
-              <div class="p-card"><div class="p-img"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,170,0.5)" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><div class="p-inf"><div class="p-lbl"></div><div class="p-prc"></div></div></div>
-              <div class="p-card"><div class="p-img"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(0,212,170,0.5)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="p-inf"><div class="p-lbl"></div><div class="p-prc"></div></div></div>
-            </div>
-          </div>
-
-          <!-- Screen 2: Dashboard -->
-          <div class="app-screen scr2">
-            <div class="scr-hdr"><span class="scr-ttl">Dashboard</span></div>
-            <div class="s-row">
-              <div class="s-blk"><div class="s-num">2.4k</div><div class="s-lbl">Orders Today</div></div>
-              <div class="s-blk"><div class="s-num" style="color:var(--gold)">$12k</div><div class="s-lbl">Revenue</div></div>
-            </div>
-            <div class="bar-wrap">
-              <div style="font-size:.58rem;color:var(--muted);margin-bottom:7px;">Weekly Sales</div>
-              <div class="bar-chart">
-                <div class="bar" style="height:44%"></div>
-                <div class="bar" style="height:68%"></div>
-                <div class="bar" style="height:55%"></div>
-                <div class="bar" style="height:80%"></div>
-                <div class="bar" style="height:62%"></div>
-                <div class="bar" style="height:95%;background:var(--gold)"></div>
-                <div class="bar" style="height:74%"></div>
+          <!-- Screen 1: Shopivia / E-Commerce -->
+          <div class="app-screen scr-shop">
+            <div class="scr-status-row">
+              <span>9:41</span>
+              <div class="scr-status-right">
+                <span>5G</span>
+                <span>100%</span>
               </div>
             </div>
+
+            <div class="scr-body">
+              <div class="scr-header">
+                <div style="display:flex; align-items:center; gap:5px;">
+                  <span style="font-family:var(--fdis); font-weight:700; font-size:0.8rem; color:#fff;">Shopivia</span>
+                  <span class="scr-pill">Store</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:6px; font-size:0.56rem; color:var(--muted); font-family:var(--fmon);">
+                  <span>🇸🇦 SAR</span>
+                  <span style="background:rgba(255,255,255,0.06); padding:1px 5px; border-radius:10px; color:#fff;">🛒 2</span>
+                </div>
+              </div>
+
+              <div class="scr-search-bar">
+                <span>🔍 Search 20+ categories...</span>
+              </div>
+
+              <div class="scr-cat-scroll">
+                <span class="scr-cat active">🔥 All</span>
+                <span class="scr-cat">👟 Shoes</span>
+                <span class="scr-cat">⌚ Watches</span>
+                <span class="scr-cat">🎧 Audio</span>
+              </div>
+
+              <div class="scr-banner-deal">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                  <span style="font-size:0.6rem; font-weight:700; color:#fff;">⚡ FLASH SALE</span>
+                  <span style="font-size:0.48rem; font-family:var(--fmon); color:#FFA3BE; background:rgba(255,92,138,0.22); padding:1px 5px; border-radius:3px; font-weight:700;">-40% OFF</span>
+                </div>
+                <div style="font-size:0.5rem; color:var(--text-soft); margin-top:1px;">Ends in: 04h 18m 32s · Stripe Ready</div>
+              </div>
+
+              <!-- 4 Product Cards Grid -->
+              <div class="scr-grid-2">
+                <div class="scr-card">
+                  <div class="scr-thumb">
+                    👟
+                    <span class="scr-discount-tag">-25%</span>
+                  </div>
+                  <div class="scr-prod-title">Air Stride Pro</div>
+                  <div class="scr-prod-row">
+                    <span class="scr-prod-price">SAR 420</span>
+                    <span class="scr-prod-rating">★ 4.9</span>
+                  </div>
+                </div>
+                <div class="scr-card">
+                  <div class="scr-thumb">
+                    ⌚
+                    <span class="scr-discount-tag">-15%</span>
+                  </div>
+                  <div class="scr-prod-title">Chronos Titan</div>
+                  <div class="scr-prod-row">
+                    <span class="scr-prod-price">SAR 890</span>
+                    <span class="scr-prod-rating">★ 4.8</span>
+                  </div>
+                </div>
+                <div class="scr-card">
+                  <div class="scr-thumb">
+                    🎧
+                    <span class="scr-discount-tag">-30%</span>
+                  </div>
+                  <div class="scr-prod-title">Aura ANC Buds</div>
+                  <div class="scr-prod-row">
+                    <span class="scr-prod-price">SAR 299</span>
+                    <span class="scr-prod-rating">★ 5.0</span>
+                  </div>
+                </div>
+                <div class="scr-card">
+                  <div class="scr-thumb">
+                    🕶️
+                  </div>
+                  <div class="scr-prod-title">Polarized Shade</div>
+                  <div class="scr-prod-row">
+                    <span class="scr-prod-price">SAR 185</span>
+                    <span class="scr-prod-rating">★ 4.7</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="scr-live-ticker">
+                <span>💬</span>
+                <span style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">Support: Live chat with seller available</span>
+              </div>
+            </div>
+
+            <!-- Bottom Tab Bar -->
+            <div class="phone-tabbar">
+              <div class="phone-tab-items">
+                <div class="phone-tab active">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                  <span>Home</span>
+                </div>
+                <div class="phone-tab">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                  <span>Catalog</span>
+                </div>
+                <div class="phone-tab">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+                  <span class="tab-badge">2</span>
+                  <span>Cart</span>
+                </div>
+                <div class="phone-tab">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  <span>Wish</span>
+                </div>
+                <div class="phone-tab">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                  <span>User</span>
+                </div>
+              </div>
+              <div class="phone-home-indicator"></div>
+            </div>
           </div>
 
-          <!-- Screen 3: Partners App -->
-          <div class="app-screen scr3">
-            <div class="prof-sec">
-              <div class="prof-av"></div>
-              <div><div class="p-nl"></div><div class="p-rl"></div></div>
+          <!-- Screen 2: Qadaa / Islamic Tracker -->
+          <div class="app-screen scr-qadaa">
+            <div class="scr-status-row">
+              <span>9:41</span>
+              <div class="scr-status-right">
+                <span>5G</span>
+                <span>100%</span>
+              </div>
             </div>
-            <div class="menu-list">
-              <div class="menu-item"><div class="mi-l"><div class="mi-dot" style="background:rgba(0,212,170,.28)"></div><div class="mi-lbl"></div></div><div class="mi-arr"></div></div>
-              <div class="menu-item"><div class="mi-l"><div class="mi-dot" style="background:rgba(232,184,109,.28)"></div><div class="mi-lbl"></div></div><div class="mi-arr"></div></div>
-              <div class="menu-item"><div class="mi-l"><div class="mi-dot" style="background:rgba(100,180,255,.28)"></div><div class="mi-lbl"></div></div><div class="mi-arr"></div></div>
-              <div class="menu-item"><div class="mi-l"><div class="mi-dot" style="background:rgba(200,100,255,.28)"></div><div class="mi-lbl"></div></div><div class="mi-arr"></div></div>
+
+            <div class="scr-body">
+              <div class="scr-header">
+                <div style="display:flex; align-items:center; gap:5px;">
+                  <span class="scr-pill" style="color:var(--teal); background:rgba(0,212,170,0.15);">قضاء · Qadaa</span>
+                  <span style="font-size:0.5rem; color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:1px 4px; border-radius:3px; font-family:var(--fmon);">Widget ✓</span>
+                </div>
+                <span style="font-size:0.54rem; color:var(--muted); font-family:var(--fmon);">١٤ رمضان · 14 Ram</span>
+              </div>
+
+              <!-- Luxury Circular SVG Progress Gauge -->
+              <div class="qadaa-ring-wrap">
+                <div class="qadaa-ring-box">
+                  <svg class="qadaa-svg" width="68" height="68" viewBox="0 0 76 76">
+                    <defs>
+                      <linearGradient id="qRingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#38BDF8" />
+                        <stop offset="60%" stop-color="#00D4AA" />
+                        <stop offset="100%" stop-color="#05E2B6" />
+                      </linearGradient>
+                    </defs>
+                    <circle cx="38" cy="38" r="31" fill="none" stroke="rgba(255, 255, 255, 0.05)" stroke-width="5.5" />
+                    <circle cx="38" cy="38" r="31" fill="none" stroke="rgba(0, 212, 170, 0.12)" stroke-width="5.5" />
+                    <circle cx="38" cy="38" r="31" fill="none" stroke="url(#qRingGrad)" stroke-width="5.5" stroke-linecap="round" stroke-dasharray="194.8" stroke-dashoffset="43" class="qadaa-progress-arc" />
+                  </svg>
+                  <div class="qadaa-ring-center">
+                    <span class="qadaa-num">78<span class="qadaa-pct">%</span></span>
+                    <span class="qadaa-sub">الرحلة</span>
+                  </div>
+                </div>
+
+                <div class="qadaa-stats-col">
+                  <div class="qadaa-badge-streak">
+                    <span class="qadaa-fire">🔥</span>
+                    <span class="qadaa-streak-text">14 Day Streak</span>
+                  </div>
+                  <div class="qadaa-target-row">
+                    <span class="qadaa-target-label">هدف اليوم</span>
+                    <span class="qadaa-target-val"><strong>4</strong> / 5</span>
+                  </div>
+                  <div class="qadaa-segments">
+                    <div class="qadaa-seg done" title="الفجر"></div>
+                    <div class="qadaa-seg done" title="الظهر"></div>
+                    <div class="qadaa-seg done" title="العصر"></div>
+                    <div class="qadaa-seg done" title="المغرب"></div>
+                    <div class="qadaa-seg" title="العشاء"></div>
+                  </div>
+                  <div class="qadaa-recovery-total">
+                    <span class="qadaa-total-dot"></span>
+                    <span>142 صلاة مقضية</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- All 5 Prayers -->
+              <div class="prayer-row done">
+                <div class="prayer-left">
+                  <span class="prayer-dot"></span>
+                  <span class="prayer-name">الفجر (Fajr)</span>
+                  <span class="prayer-time">04:32</span>
+                </div>
+                <span class="prayer-status-chip">+1 قضيت</span>
+              </div>
+              <div class="prayer-row done">
+                <div class="prayer-left">
+                  <span class="prayer-dot"></span>
+                  <span class="prayer-name">الظهر (Dhuhr)</span>
+                  <span class="prayer-time">12:05</span>
+                </div>
+                <span class="prayer-status-chip">+1 قضيت</span>
+              </div>
+              <div class="prayer-row done">
+                <div class="prayer-left">
+                  <span class="prayer-dot"></span>
+                  <span class="prayer-name">العصر (Asr)</span>
+                  <span class="prayer-time">03:28</span>
+                </div>
+                <span class="prayer-status-chip">+1 قضيت</span>
+              </div>
+              <div class="prayer-row done">
+                <div class="prayer-left">
+                  <span class="prayer-dot"></span>
+                  <span class="prayer-name">المغرب (Maghrib)</span>
+                  <span class="prayer-time">06:12</span>
+                </div>
+                <span class="prayer-status-chip">+1 قضيت</span>
+              </div>
+              <div class="prayer-row">
+                <div class="prayer-left">
+                  <span class="prayer-dot pending"></span>
+                  <span class="prayer-name">العشاء (Isha)</span>
+                  <span class="prayer-time">07:45</span>
+                </div>
+                <span class="prayer-btn-qadaa">تسجيل</span>
+              </div>
+
+              <div class="qadaa-quote-card">
+                «أحب الأعمال إلى الله أدومها وإن قل»
+              </div>
+            </div>
+
+            <!-- Bottom Tab Bar -->
+            <div class="phone-tabbar">
+              <div class="phone-tab-items">
+                <div class="phone-tab active">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span>اليوم</span>
+                </div>
+                <div class="phone-tab">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                  <span>الإحصائيات</span>
+                </div>
+                <div class="phone-tab">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <span>السجل</span>
+                </div>
+                <div class="phone-tab">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                  <span>الإعدادات</span>
+                </div>
+              </div>
+              <div class="phone-home-indicator"></div>
             </div>
           </div>
 
+          <!-- Screen 3: Foldface / Authentic FoldView Demo App -->
+          <div class="app-screen scr-fold">
+            <div class="scr-status-row">
+              <span style="font-weight:600;">9:41</span>
+              <div class="scr-status-right">
+                <span style="font-weight:600;">5G</span>
+                <span>100%</span>
+              </div>
+            </div>
+
+            <div class="scr-body">
+              <!-- Header & Segmented Switcher -->
+              <div class="fold-demo-header">
+                <div class="fold-demo-title-row">
+                  <span class="fold-demo-title">FoldView Examples</span>
+                  <span class="fold-demo-badge">v1.0.2 · npm</span>
+                </div>
+                <!-- [ Profile | Product ] Segmented Switcher -->
+                <div class="fold-switcher">
+                  <div class="fold-switch-btn active">Profile Fold</div>
+                  <div class="fold-switch-btn">Product Fold</div>
+                </div>
+              </div>
+
+              <!-- Authentic FoldView: Profile Fold in 3D Action -->
+              <div class="fold-card-container">
+                <!-- Face 1: InfoCard (Cover Frontface) -->
+                <div class="fold-face-info">
+                  <div class="fold-info-header">
+                    <div class="fold-avatar">A</div>
+                    <div class="fold-identity">
+                      <div class="fold-name">Alex Morgan</div>
+                      <div class="fold-handle">@alexmorgan</div>
+                    </div>
+                    <span class="fold-follow-chip">Following</span>
+                  </div>
+                  <p class="fold-bio">Product designer exploring 3D fold & flip animations in React Native.</p>
+                  <div class="fold-stats-row">
+                    <div class="fold-stat-item">
+                      <span class="fold-stat-val">128</span>
+                      <span class="fold-stat-lbl">Posts</span>
+                    </div>
+                    <div class="fold-stat-item">
+                      <span class="fold-stat-val">12.4k</span>
+                      <span class="fold-stat-lbl">Followers</span>
+                    </div>
+                    <div class="fold-stat-item">
+                      <span class="fold-stat-val">321</span>
+                      <span class="fold-stat-lbl">Following</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Face 2: 3D Origami Paper Crease (FoldView reveal with PhotoCard) -->
+                <div class="fold-face-crease">
+                  <div class="fold-crease-tag">
+                    <span>📐 FoldView (3D Reveal Face)</span>
+                    <span style="font-size:0.42rem; opacity:0.85;">Reanimated 4</span>
+                  </div>
+                  <div class="fold-photo-grid">
+                    <div class="fold-photo-thumb">🏔️</div>
+                    <div class="fold-photo-thumb">🌊</div>
+                    <div class="fold-photo-thumb">🏙️</div>
+                  </div>
+                </div>
+
+                <!-- Face 3: Lower Unfolded Section (ProfileDetailCard) -->
+                <div class="fold-face-lower">
+                  <span class="fold-lower-text">Cascading 3D Origami Layout</span>
+                  <span class="fold-collapse-btn">Tap to fold ⌃</span>
+                </div>
+              </div>
+
+              <!-- Second Row: Nested Product Fold Preview -->
+              <div class="fold-product-row">
+                <div class="fold-prod-thumb">👟</div>
+                <div class="fold-prod-info">
+                  <div class="fold-prod-title">Air Max Origami</div>
+                  <div class="fold-prod-sub">Nike · Foldable Special Edition</div>
+                  <div class="fold-prod-meta">
+                    <span class="fold-prod-price">$149.00</span>
+                    <span class="fold-prod-hint">Tap to unfold ›</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- iOS Bottom Tab Bar -->
+            <div class="phone-tabbar" style="background: rgba(255,255,255,0.95); border-color: #E5E5EA;">
+              <div class="phone-tab-items">
+                <div class="phone-tab active-violet" style="color:#6948FF;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  <span style="color:#6948FF;">Profile</span>
+                </div>
+                <div class="phone-tab" style="color:#8E8E93;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                  <span>Products</span>
+                </div>
+                <div class="phone-tab" style="color:#8E8E93;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+                  <span>Saved</span>
+                </div>
+                <div class="phone-tab" style="color:#8E8E93;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                  <span>Settings</span>
+                </div>
+              </div>
+              <div class="phone-home-indicator" style="background: rgba(0,0,0,0.25);"></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -509,74 +1788,343 @@
 <!-- ─── STATS ─────────────────────────────── -->
 <div id="stats">
   <div class="stats-grid stagger">
-    <div class="stat-item"><div class="stat-number" data-count="8">8+</div><div class="stat-label">Years Experience</div></div>
-    <div class="stat-item"><div class="stat-number" data-count="15">15+</div><div class="stat-label">Apps Shipped</div></div>
-    <div class="stat-item"><div class="stat-number" data-count="4">4</div><div class="stat-label">Companies</div></div>
-    <div class="stat-item"><div class="stat-number" data-count="2">2+</div><div class="stat-label">Countries Served</div></div>
+    <div class="stat-item">
+      <div class="stat-number" data-count="8">8+</div>
+      <div class="stat-label">Years of Experience</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-count="15">15+</div>
+      <div class="stat-label">Production Apps Shipped</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number violet" data-count="1">1</div>
+      <div class="stat-label">Published OSS Library (npm)</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-count="2">2+</div>
+      <div class="stat-label">Regional Markets (KSA & Egypt)</div>
+    </div>
   </div>
 </div>
 
 <!-- ─── ABOUT ─────────────────────────────── -->
 <section id="about" class="sec">
-  <div class="eyebrow">About Me</div>
-  <div class="sec-title">Crafting mobile experiences<br>people actually use</div>
+  <div class="eyebrow">About Mohamed</div>
+  <div class="sec-title">Architecting high-scale apps<br>and polished native tools</div>
   <div class="about-grid">
     <div class="about-text reveal">
-      <p>I'm a <strong>Senior React Native Developer</strong> based in Cairo, Egypt, with over 8 years building cross-platform mobile apps that scale in production.</p>
-      <p>My work spans <strong>e-commerce, real estate, and on-demand platforms</strong> — primarily across the Saudi and Egyptian markets. I care about architecture quality: clean code, proper testing, and CI/CD pipelines that make deployments worry-free.</p>
-      <p>Beyond writing code, I focus on <strong>engineering team growth</strong> — through code reviews, architecture discussions, and knowledge sharing that raises the bar for the whole team.</p>
-      <p>I thrive in environments where <strong>ownership is high</strong>, technical decisions matter, and shipping good products is the real goal.</p>
+      <p>I'm a <strong>Senior React Native Developer</strong> based in Cairo, Egypt, with over 8 years of production experience building scalable, clean-architecture mobile systems across e-commerce, real estate, on-demand services, and open source libraries.</p>
+      <p>My career has revolved around <strong>engineering quality</strong>: writing type-safe TypeScript, designing custom native iOS/Android bridges, eliminating jank with Reanimated 4 and Skia, and establishing automated CI/CD pipelines (Azure DevOps, GitHub Actions, Maestro E2E testing) so shipping feels effortless.</p>
+      <p>I'm passionate about the open source ecosystem — having authored and published <strong>react-native-foldface</strong> on npm to deliver fluid 3D fold transitions powered by Reanimated worklets.</p>
+      <p>Whether building multi-store architectures serving tens of thousands of shoppers or crafting native iOS widgets in Swift, I take end-to-end technical ownership from architectural blueprints to App Store deployment.</p>
     </div>
+    
     <div class="traits-grid stagger">
-      <div class="trait-card"><div class="trait-icon">📱</div><div class="trait-title">Cross-Platform Expert</div><div class="trait-desc">React Native with native iOS/Android modules for full platform coverage</div></div>
-      <div class="trait-card"><div class="trait-icon">⚡</div><div class="trait-title">Performance Focused</div><div class="trait-desc">Profiling, optimization, and clean architecture for apps that stay fast</div></div>
-      <div class="trait-card"><div class="trait-icon">🔄</div><div class="trait-title">CI/CD Automation</div><div class="trait-desc">Azure DevOps & GitHub Actions pipelines for reliable automated releases</div></div>
-      <div class="trait-card"><div class="trait-icon">🏗️</div><div class="trait-title">Clean Architecture</div><div class="trait-desc">Modular, maintainable code that scales across teams and years</div></div>
+      <div class="trait-card">
+        <div class="trait-icon">📱</div>
+        <div class="trait-title">Cross-Platform Specialist</div>
+        <div class="trait-desc">React Native expertise backed by native Swift, Kotlin, and Objective-C modules for full hardware & OS access.</div>
+      </div>
+      <div class="trait-card">
+        <div class="trait-icon">⚡</div>
+        <div class="trait-title">Performance & Fluid 60fps</div>
+        <div class="trait-desc">Reanimated 4 worklets, Skia shaders, memory profiling, and zero-jank UI thread optimizations.</div>
+      </div>
+      <div class="trait-card">
+        <div class="trait-icon">🔄</div>
+        <div class="trait-title">CI/CD & E2E Testing</div>
+        <div class="trait-desc">Automated release pipelines with Azure DevOps, GitHub Actions, and comprehensive Maestro test suites.</div>
+      </div>
+      <div class="trait-card">
+        <div class="trait-icon">🏗️</div>
+        <div class="trait-title">Clean Architecture</div>
+        <div class="trait-desc">Separation of concerns, strict domain boundaries, and offline-first data sync (WatermelonDB & MMKV).</div>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- ─── PROJECTS ──────────────────────────── -->
+<section id="projects" class="sec">
+  <div class="eyebrow">Featured Work</div>
+  <div class="sec-title">Featured Projects & Open Source</div>
+  <div class="sec-sub">A curated selection of live production apps, open-source libraries, and full-stack platforms.</div>
+
+  <!-- Filter Bar -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="oss">Open Source</button>
+    <button class="filter-btn" data-filter="work">Commercial / Work</button>
+    <button class="filter-btn" data-filter="personal">Personal Apps</button>
+  </div>
+
+  <div class="proj-grid stagger">
+
+    <!-- 1. react-native-foldface (OPEN SOURCE) -->
+    <div class="proj-card card-violet" data-category="oss">
+      <div class="proj-preview preview-foldface">
+        <span class="proj-badge-top badge-oss">Open Source</span>
+        <div class="fold-graphic">
+          <div class="fold-leaf fold-leaf-1"></div>
+          <div class="fold-leaf fold-leaf-2"></div>
+          <div class="fold-leaf fold-leaf-3"></div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-meta-tag">📦 npm library · v1.0.2 · MIT</div>
+        <h3 class="proj-name">react-native-foldface</h3>
+        <p class="proj-desc">High-performance React Native 3D fold & flip reveal animation component. Built with Reanimated 4 and worklets, featuring automatic rasterization, nested fold cascades, and zero runtime dependencies.</p>
+        <div class="proj-tags">
+          <span class="tag hi-violet">Reanimated 4</span>
+          <span class="tag hi-violet">Worklets</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Zero Deps</span>
+          <span class="tag">Jest</span>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-links">
+            <a href="https://github.com/mohamedelandy/react-native-foldface" target="_blank" rel="noopener noreferrer" class="proj-link link-violet">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              GitHub ↗
+            </a>
+            <a href="https://www.npmjs.com/package/react-native-foldface" target="_blank" rel="noopener noreferrer" class="proj-link link-violet">
+              📦 npm
+            </a>
+          </div>
+          <span class="proj-status">2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Qadaa (PERSONAL / MOBILE) -->
+    <div class="proj-card card-teal" data-category="personal">
+      <div class="proj-preview preview-qadaa">
+        <span class="proj-badge-top badge-personal">Personal App</span>
+        <div class="qadaa-graphic-ring">
+          🕌
+        </div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-meta-tag">📱 iOS & Android · RTL First</div>
+        <h3 class="proj-name">Qadaa (قضاء)</h3>
+        <p class="proj-desc">Offline-first, Arabic-first Islamic prayer recovery app built on Expo SDK 57. Features an iOS WidgetKit extension (Swift/SwiftUI bridge), Skia Aurora shaders, and a 42-flow Maestro automated E2E test suite.</p>
+        <div class="proj-tags">
+          <span class="tag hi-teal">Expo 57</span>
+          <span class="tag hi-teal">WidgetKit (Swift)</span>
+          <span class="tag">Zustand</span>
+          <span class="tag">Maestro (42 E2E)</span>
+          <span class="tag">Skia</span>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-links">
+            <a href="https://github.com/mohamedelandy/qadaa" target="_blank" rel="noopener noreferrer" class="proj-link">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              GitHub ↗
+            </a>
+          </div>
+          <span class="proj-status">2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Shopivia (PERSONAL / FULL-STACK) -->
+    <div class="proj-card card-rose" data-category="personal">
+      <div class="proj-preview preview-shopivia">
+        <span class="proj-badge-top badge-personal">Full-Stack Platform</span>
+        <div class="shopivia-graphic">
+          <span class="shopivia-chip">🛒 Store</span>
+          <span class="shopivia-chip">⚡ API</span>
+          <span class="shopivia-chip">📊 Admin</span>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-meta-tag">🛍️ Mobile + Express API + Dashboard</div>
+        <h3 class="proj-name">Shopivia Ecosystem</h3>
+        <p class="proj-desc">Full-scale bilingual (AR/EN) e-commerce suite. Features offline-first mobile sync with WatermelonDB, Stripe checkout, Socket.IO live customer support chat, Redis cart caching, and BullMQ queues.</p>
+        <div class="proj-tags">
+          <span class="tag hi-rose">Expo 56</span>
+          <span class="tag hi-rose">WatermelonDB</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Redis</span>
+          <span class="tag">Socket.IO</span>
+          <span class="tag">Stripe</span>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-links">
+            <span class="proj-link" style="opacity:0.8; cursor:default;">🔒 Private Architecture</span>
+          </div>
+          <span class="proj-status">2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Tjaara Stores App (COMMERCIAL / WORK) -->
+    <div class="proj-card card-teal" data-category="work">
+      <div class="proj-preview preview-tjaara">
+        <span class="proj-badge-top badge-work">Production Work</span>
+        <div class="tjaara-graphic">
+          <div class="tjaara-bar" style="height: 60%"></div>
+          <div class="tjaara-bar" style="height: 90%"></div>
+          <div class="tjaara-bar" style="height: 45%"></div>
+          <div class="tjaara-bar" style="height: 75%"></div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-meta-tag">🇸🇦 Saudi Arabia · Tjaara Company</div>
+        <h3 class="proj-name">Tjaara Stores Mobile App</h3>
+        <p class="proj-desc">Multi-store e-commerce application empowering Saudi businesses with personalized storefronts, dynamic theming engines, and localized payment solutions built to scale for high-concurrency traffic.</p>
+        <div class="proj-tags">
+          <span class="tag hi-teal">React Native</span>
+          <span class="tag hi-teal">Dynamic Theming</span>
+          <span class="tag">TypeScript</span>
+          <span class="tag">Firebase FCM</span>
+          <span class="tag">Azure DevOps</span>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-links">
+            <span class="proj-link" style="opacity:0.8; cursor:default;">Commercial App</span>
+          </div>
+          <span class="proj-status">2023 — Present</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. Tjaara Dashboard App (COMMERCIAL / WORK) -->
+    <div class="proj-card card-teal" data-category="work">
+      <div class="proj-preview preview-tjaara">
+        <span class="proj-badge-top badge-work">Production Work</span>
+        <div class="tjaara-graphic">
+          <div class="tjaara-bar" style="height: 80%; background: var(--gold);"></div>
+          <div class="tjaara-bar" style="height: 50%"></div>
+          <div class="tjaara-bar" style="height: 100%"></div>
+          <div class="tjaara-bar" style="height: 70%"></div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-meta-tag">🇸🇦 Saudi Arabia · Merchant Ops</div>
+        <h3 class="proj-name">Tjaara Dashboard App</h3>
+        <p class="proj-desc">Store management and live analytics suite for merchants. Provides real-time revenue visualization, order fulfillment workflows, and category/inventory controls on mobile.</p>
+        <div class="proj-tags">
+          <span class="tag hi-teal">React Native</span>
+          <span class="tag">Redux Toolkit</span>
+          <span class="tag">Live Analytics</span>
+          <span class="tag">RESTful API</span>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-links">
+            <span class="proj-link" style="opacity:0.8; cursor:default;">Commercial App</span>
+          </div>
+          <span class="proj-status">2024 — Present</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 6. Tjaara Partners App (COMMERCIAL / WORK) -->
+    <div class="proj-card card-teal" data-category="work">
+      <div class="proj-preview preview-tjaara">
+        <span class="proj-badge-top badge-work">Production Work</span>
+        <div class="tjaara-graphic">
+          <div class="tjaara-bar" style="height: 40%"></div>
+          <div class="tjaara-bar" style="height: 65%"></div>
+          <div class="tjaara-bar" style="height: 85%"></div>
+          <div class="tjaara-bar" style="height: 60%"></div>
+        </div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-meta-tag">🇸🇦 Saudi Arabia · Ecosystem</div>
+        <h3 class="proj-name">Tjaara Partners Platform</h3>
+        <p class="proj-desc">Merchant and developer ecosystem application enabling third-party developers and service partners to integrate apps, plugins, and custom themes smoothly into the Tjaara marketplace.</p>
+        <div class="proj-tags">
+          <span class="tag hi-teal">React Native</span>
+          <span class="tag">GraphQL</span>
+          <span class="tag">3rd-Party APIs</span>
+          <span class="tag">GitHub Actions</span>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-links">
+            <span class="proj-link" style="opacity:0.8; cursor:default;">Commercial App</span>
+          </div>
+          <span class="proj-status">2025 — Present</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <!-- ─── SKILLS ────────────────────────────── -->
 <section id="skills" class="sec">
-  <div class="eyebrow">Tech Stack</div>
-  <div class="sec-title">What I build with</div>
-  <div class="sec-sub">A focused set of tools, chosen for what they actually deliver in production mobile development.</div>
+  <div class="eyebrow">Technical Mastery</div>
+  <div class="sec-title">Tech Stack & Tools</div>
+  <div class="sec-sub">A focused stack chosen for resilience, performance, and developer ergonomics in production mobile systems.</div>
+  
   <div class="skills-groups reveal">
     <div>
-      <div class="grp-title">Mobile Development</div>
+      <div class="grp-title">Mobile Frameworks & Native Languages</div>
       <div class="pills">
-        <span class="pill hi">React Native</span><span class="pill hi">TypeScript</span><span class="pill hi">JavaScript ES6+</span>
-        <span class="pill">Swift</span><span class="pill">Objective-C</span><span class="pill">Kotlin</span><span class="pill">Java</span>
-        <span class="pill">Native Modules (iOS/Android)</span>
+        <span class="pill hi">React Native</span>
+        <span class="pill hi">Expo (Bare & Managed)</span>
+        <span class="pill hi">TypeScript</span>
+        <span class="pill">JavaScript ES6+</span>
+        <span class="pill">Swift (iOS)</span>
+        <span class="pill">Kotlin (Android)</span>
+        <span class="pill">Objective-C / Java</span>
+        <span class="pill">WidgetKit & Apple Targets</span>
+        <span class="pill">Native Modules & TurboModules</span>
       </div>
     </div>
+    
     <div>
-      <div class="grp-title">State Management & Frontend</div>
+      <div class="grp-title">Animation, Graphics & UI</div>
       <div class="pills">
-        <span class="pill hi">Redux</span><span class="pill hi">React Query</span><span class="pill">Zustand</span><span class="pill">Context API</span>
+        <span class="pill hi-violet">react-native-reanimated 4</span>
+        <span class="pill hi-violet">react-native-worklets</span>
+        <span class="pill">Shopify React Native Skia</span>
+        <span class="pill">Gesture Handler</span>
+        <span class="pill">SVG & SvgTransformer</span>
+        <span class="pill">Lottie</span>
+        <span class="pill">Figma</span>
       </div>
     </div>
+
     <div>
-      <div class="grp-title">Backend & APIs</div>
+      <div class="grp-title">State, Storage & Offline First</div>
       <div class="pills">
-        <span class="pill hi">REST APIs</span><span class="pill">GraphQL</span>
-        <span class="pill hi">Firebase (FCM · Firestore · Auth)</span>
-        <span class="pill">Google Maps API</span><span class="pill">Payment Gateways</span>
+        <span class="pill hi">Zustand</span>
+        <span class="pill hi">React Query</span>
+        <span class="pill">Redux Toolkit</span>
+        <span class="pill">WatermelonDB</span>
+        <span class="pill">react-native-mmkv</span>
+        <span class="pill">AsyncStorage</span>
+        <span class="pill">Context API</span>
       </div>
     </div>
+
     <div>
-      <div class="grp-title">Testing & CI/CD</div>
+      <div class="grp-title">Backend, APIs & Databases</div>
       <div class="pills">
-        <span class="pill hi">Jest</span><span class="pill hi">Detox</span><span class="pill">Unit Testing</span>
-        <span class="pill">E2E Testing</span><span class="pill hi">GitHub Actions</span><span class="pill hi">Azure DevOps</span>
+        <span class="pill hi">REST APIs</span>
+        <span class="pill">GraphQL</span>
+        <span class="pill">Node.js / Express</span>
+        <span class="pill">PostgreSQL & Prisma</span>
+        <span class="pill">Redis</span>
+        <span class="pill">Socket.IO</span>
+        <span class="pill">Stripe Payments</span>
+        <span class="pill">Firebase (FCM · Auth · Firestore)</span>
       </div>
     </div>
+
     <div>
-      <div class="grp-title">Tools & Design</div>
+      <div class="grp-title">Quality Assurance, CI/CD & Architecture</div>
       <div class="pills">
-        <span class="pill hi">Git</span><span class="pill">Agile / Scrum</span><span class="pill">Code Reviews</span>
-        <span class="pill">Clean Architecture</span><span class="pill">Figma</span>
-        <span class="pill">Responsive Design</span><span class="pill">Dynamic Theming</span>
+        <span class="pill hi">Maestro E2E Testing</span>
+        <span class="pill hi">Jest & React Native Testing Library</span>
+        <span class="pill">Detox</span>
+        <span class="pill hi">GitHub Actions</span>
+        <span class="pill hi">Azure DevOps</span>
+        <span class="pill">EAS Build & Submit</span>
+        <span class="pill">Clean Architecture</span>
+        <span class="pill">Sentry Crash Reporting</span>
       </div>
     </div>
   </div>
@@ -584,9 +2132,10 @@
 
 <!-- ─── EXPERIENCE ───────────────────────── -->
 <section id="experience" class="sec">
-  <div class="eyebrow">Career</div>
-  <div class="sec-title">Where I've worked</div>
-  <div class="sec-sub">8 years across four companies, each adding a new layer to my cross-platform mobile expertise.</div>
+  <div class="eyebrow">Track Record</div>
+  <div class="sec-title">Work Experience</div>
+  <div class="sec-sub">8 years architecting production software across four companies and open source projects.</div>
+  
   <div class="timeline">
 
     <div class="tl-item reveal">
@@ -595,106 +2144,54 @@
       <div class="tl-co">Tjaara Company</div>
       <div class="tl-role">Senior React Native Developer</div>
       <div class="tl-loc">📍 Cairo, Egypt</div>
-      <div class="tl-desc">All-in-one e-commerce platform helping businesses launch, manage, and grow online stores.</div>
+      <div class="tl-desc">All-in-one e-commerce ecosystem powering online stores across Saudi Arabia.</div>
       <ul class="tl-list">
-        <li>Led technical development of the Tjaara Multi-Stores mobile application</li>
-        <li>Implemented and maintained CI/CD pipelines using Azure DevOps & GitHub Actions</li>
-        <li>Designed reusable UI components and dynamic theming systems for multi-store configs</li>
-        <li>Contributed to Dashboard and Partners apps enabling store and developer workflows</li>
-        <li>Drove code reviews and engineering standards across the mobile team</li>
+        <li>Spearheaded technical development for the Tjaara Multi-Stores mobile app on iOS and Android.</li>
+        <li>Architected automated CI/CD release pipelines leveraging Azure DevOps and GitHub Actions for continuous deployments.</li>
+        <li>Engineered a reusable UI design system and dynamic JSON-driven theming engine for custom store branding.</li>
+        <li>Delivered the Dashboard & Partners applications to streamline merchant analytics and 3rd-party developer integrations.</li>
+        <li>Championed engineering consistency, leading code reviews and architecture design discussions across the mobile squad.</li>
       </ul>
     </div>
 
     <div class="tl-item reveal">
-      <div class="tl-dot" style="background:var(--gold);box-shadow:0 0 0 3px rgba(232,184,109,.3);"></div>
+      <div class="tl-dot" style="background:var(--gold); box-shadow:0 0 0 4px rgba(232,184,109,0.3);"></div>
       <div class="tl-date">2021 — 2023</div>
       <div class="tl-co">Ejjadh Company</div>
       <div class="tl-role">Senior Mobile Developer (React Native & Android)</div>
       <div class="tl-loc">📍 Mansoura, Egypt</div>
-      <div class="tl-desc">Saudi-based digital solutions firm delivering cross-platform apps across multiple industries.</div>
+      <div class="tl-desc">Saudi digital solutions firm building mission-critical apps across e-commerce, real estate, and delivery.</div>
       <ul class="tl-list">
-        <li>Delivered cross-platform apps in e-commerce, real estate, and on-demand domains</li>
-        <li>Built native Android/iOS modules to extend React Native capabilities</li>
-        <li>Integrated Firebase, Google Maps, and payment gateways</li>
-        <li>Ran automated unit and E2E tests using Jest and Detox</li>
+        <li>Delivered cross-platform mobile apps with native bridges for geolocation, hardware camera, and push notifications.</li>
+        <li>Integrated Firebase Cloud Messaging, Google Maps SDK, and regional payment gateways (Mada, Apple Pay, Stripe).</li>
+        <li>Maintained high code quality and test coverage using Jest and Detox E2E automated test suites.</li>
       </ul>
     </div>
 
     <div class="tl-item reveal">
-      <div class="tl-dot" style="background:var(--bg3);border:2px solid var(--teal);box-shadow:none;"></div>
+      <div class="tl-dot" style="background:var(--bg3); border:2px solid var(--teal); box-shadow:none;"></div>
       <div class="tl-date">2019 — 2021</div>
       <div class="tl-co">Leadership Orbit</div>
       <div class="tl-role">Senior Android Developer</div>
       <div class="tl-loc">📍 Cairo, Egypt</div>
-      <div class="tl-desc">Saudi digital solutions company delivering mobile and web platforms.</div>
+      <div class="tl-desc">Digital solutions enterprise specializing in high-performance native mobile apps.</div>
       <ul class="tl-list">
-        <li>Developed and deployed Android apps with Java and Kotlin using modular architecture</li>
-        <li>Applied Clean Architecture principles for maintainable, testable codebases</li>
-        <li>Contributed across the full product lifecycle from requirements to deployment</li>
+        <li>Built native Android apps in Kotlin and Java following Clean Architecture and MVVM patterns.</li>
+        <li>Streamlined network caching and offline-first storage mechanisms, drastically improving app launch times.</li>
       </ul>
     </div>
 
     <div class="tl-item reveal">
-      <div class="tl-dot" style="background:var(--bg3);border:2px solid rgba(0,212,170,.4);box-shadow:none;"></div>
+      <div class="tl-dot" style="background:var(--bg3); border:2px solid rgba(0,212,170,0.4); box-shadow:none;"></div>
       <div class="tl-date">2017 — 2019</div>
       <div class="tl-co">Rivers</div>
       <div class="tl-role">Android Developer</div>
       <div class="tl-loc">📍 Mansoura, Egypt</div>
-      <div class="tl-desc">Saudi software company specializing in custom mobile/web apps, e-commerce, and e-learning.</div>
+      <div class="tl-desc">Software development firm crafting custom apps for education, commerce, and enterprise clients.</div>
       <ul class="tl-list">
-        <li>Refactored 4 legacy projects into modern Kotlin-based implementations</li>
-        <li>Enforced clean code and scalable architecture across 5 projects</li>
-        <li>Collaborated with designers, PMs, and backend teams to ship user-friendly apps</li>
+        <li>Modernized legacy codebases from Java into modern Kotlin, reducing crash rates and boilerplate code.</li>
+        <li>Partnered closely with product managers and UX designers to build responsive, intuitive interfaces.</li>
       </ul>
-    </div>
-
-  </div>
-</section>
-
-<!-- ─── PROJECTS ──────────────────────────── -->
-<section id="projects" class="sec">
-  <div class="eyebrow">Work</div>
-  <div class="sec-title">Key Projects</div>
-  <div class="sec-sub">Live applications powering real businesses in Saudi Arabia and across the region.</div>
-  <div class="proj-grid stagger">
-
-    <div class="proj-card">
-      <div class="proj-top" style="background:linear-gradient(135deg,#0d2035 0%,#0B1524 100%);">
-        <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(0,212,170,.07) 0%,transparent 70%)"></div>
-        <div class="proj-icon">🛍️</div>
-      </div>
-      <div class="proj-body">
-        <div class="proj-region">🇸🇦 Saudi Arabia · 2023–Present</div>
-        <div class="proj-name">Tjaara Stores App</div>
-        <div class="proj-desc">E-commerce platform enabling businesses to create personalized online stores with customizable themes, product management, and seamless checkout.</div>
-        <div class="proj-tags"><span class="tag">React Native</span><span class="tag">TypeScript</span><span class="tag">Dynamic Theming</span><span class="tag">Firebase</span></div>
-      </div>
-    </div>
-
-    <div class="proj-card">
-      <div class="proj-top" style="background:linear-gradient(135deg,#0d2035 0%,#0B1524 100%);">
-        <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(232,184,109,.07) 0%,transparent 70%)"></div>
-        <div class="proj-icon">📊</div>
-      </div>
-      <div class="proj-body">
-        <div class="proj-region">🇸🇦 Saudi Arabia · 2024–Present</div>
-        <div class="proj-name">Tjaara Dashboard App</div>
-        <div class="proj-desc">Mobile management suite for store owners — real-time analytics, product/category control, and multi-store operations in the palm of your hand.</div>
-        <div class="proj-tags"><span class="tag">React Native</span><span class="tag">Redux</span><span class="tag">Analytics</span><span class="tag">Azure DevOps</span></div>
-      </div>
-    </div>
-
-    <div class="proj-card">
-      <div class="proj-top" style="background:linear-gradient(135deg,#0d2035 0%,#0B1524 100%);">
-        <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(100,150,255,.07) 0%,transparent 70%)"></div>
-        <div class="proj-icon">🤝</div>
-      </div>
-      <div class="proj-body">
-        <div class="proj-region">🇸🇦 Saudi Arabia · 2025–Present</div>
-        <div class="proj-name">Tjaara Partners App</div>
-        <div class="proj-desc">Developer/merchant platform enabling seamless third-party integration of apps, themes, and services within the Tjaara ecosystem.</div>
-        <div class="proj-tags"><span class="tag">React Native</span><span class="tag">GraphQL</span><span class="tag">3rd-Party APIs</span><span class="tag">GitHub Actions</span></div>
-      </div>
     </div>
 
   </div>
@@ -703,15 +2200,40 @@
 <!-- ─── ACHIEVEMENTS ──────────────────────── -->
 <section id="achievements" class="sec">
   <div class="eyebrow">Impact</div>
-  <div class="sec-title">Key Achievements</div>
-  <div class="sec-sub">Milestones that shaped my growth as a mobile engineer and technical lead.</div>
+  <div class="sec-title">Key Engineering Highlights</div>
+  <div class="sec-sub">Tangible achievements and milestones that define my engineering standards.</div>
+  
   <div class="ach-grid stagger">
-    <div class="ach-card"><div class="ach-icon">📦</div><div class="ach-title">Cross-Platform Delivery at Scale</div><div class="ach-desc">Delivered and maintained 15+ cross-platform mobile apps across diverse industries with production-grade stability and scalable architecture.</div></div>
-    <div class="ach-card"><div class="ach-icon">🏗️</div><div class="ach-title">Technical Ownership</div><div class="ach-desc">Took ownership of core mobile modules, driving architectural decisions, improving code quality, and ensuring release reliability through CI/CD automation.</div></div>
-    <div class="ach-card"><div class="ach-icon">⚡</div><div class="ach-title">Performance & Architecture</div><div class="ach-desc">Refactored legacy modules and optimized API integration layers using clean, modular architecture — improving responsiveness and long-term maintainability.</div></div>
-    <div class="ach-card"><div class="ach-icon">🛒</div><div class="ach-title">Tjaara Platform Expansion</div><div class="ach-desc">Key contributor to Tjaara's three-app ecosystem — Stores, Dashboard, and Partners — enabling multi-store operations and seamless third-party integrations.</div></div>
-    <div class="ach-card"><div class="ach-icon">👥</div><div class="ach-title">Engineering Standards</div><div class="ach-desc">Elevated team quality through consistent code reviews, architecture guidance, and knowledge sharing that strengthened engineering consistency.</div></div>
-    <div class="ach-card"><div class="ach-icon">🔄</div><div class="ach-title">Legacy Modernization</div><div class="ach-desc">Refactored 4 legacy Android projects into modern Kotlin implementations, significantly improving maintainability, scalability, and developer experience.</div></div>
+    <div class="ach-card">
+      <div class="ach-icon">📦</div>
+      <div class="ach-title">Open Source Creator</div>
+      <div class="ach-desc">Author of <code>react-native-foldface</code> on npm — providing the React Native ecosystem with worklet-powered 3D fold transitions and modular cover/reveal APIs.</div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-icon">🚀</div>
+      <div class="ach-title">Cross-Platform Delivery at Scale</div>
+      <div class="ach-desc">Delivered and maintained 15+ cross-platform mobile apps across diverse industries with production-grade stability and scalable clean architecture.</div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-icon">🛠️</div>
+      <div class="ach-title">Native Extension & Widgets</div>
+      <div class="ach-desc">Designed native iOS WidgetKit extensions in Swift/SwiftUI with custom App Group storage and IPC bridges to React Native for seamless real-time syncing.</div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-icon">🛒</div>
+      <div class="ach-title">Tjaara Platform Expansion</div>
+      <div class="ach-desc">Key architectural contributor across Tjaara's three-app ecosystem (Stores, Dashboard, and Partners), enabling multi-store operations and developer integrations.</div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-icon">🧪</div>
+      <div class="ach-title">Automated E2E Quality Gates</div>
+      <div class="ach-desc">Implemented comprehensive Maestro E2E test suites (42+ automated regression flows) ensuring zero regressions across auth, onboarding, and business flows.</div>
+    </div>
+    <div class="ach-card">
+      <div class="ach-icon">👥</div>
+      <div class="ach-title">Engineering Mentorship</div>
+      <div class="ach-desc">Elevated team quality through consistent code reviews, architecture guidance, and knowledge sharing that strengthened engineering consistency.</div>
+    </div>
   </div>
 </section>
 
@@ -719,30 +2241,21 @@
 <section id="education" class="sec">
   <div class="edu-lang-grid">
     <div>
-      <div class="eyebrow">Education</div>
-      <div class="sec-title" style="font-size:1.6rem;margin-bottom:2rem;">Academic Background</div>
+      <div class="eyebrow">Academic Background</div>
+      <div class="sec-title" style="font-size:1.75rem; margin-bottom:2rem;">Education</div>
       <div class="edu-card reveal">
         <div class="edu-ico">🎓</div>
         <div>
           <div class="edu-deg">Bachelor of Computer Science</div>
           <div class="edu-uni">Mansoura University</div>
-          <div class="edu-yrs">2011 — 2015</div>
+          <div class="edu-yrs">2011 — 2015 · Mansoura, Egypt</div>
         </div>
       </div>
-      <!-- SUGGESTED: Add certifications below this card
-      <div class="edu-card reveal" style="margin-top:1rem;">
-        <div class="edu-ico">🏅</div>
-        <div>
-          <div class="edu-deg">Your Certification Name</div>
-          <div class="edu-uni">Issuing Organization</div>
-          <div class="edu-yrs">Year</div>
-        </div>
-      </div>
-      -->
     </div>
+
     <div>
       <div class="eyebrow">Languages</div>
-      <div class="sec-title" style="font-size:1.6rem;margin-bottom:2rem;">Communication</div>
+      <div class="sec-title" style="font-size:1.75rem; margin-bottom:2rem;">Communication</div>
       <div class="lang-list reveal">
         <div class="lang-item">
           <div class="lang-name">Arabic</div>
@@ -751,8 +2264,8 @@
         </div>
         <div class="lang-item">
           <div class="lang-name">English</div>
-          <div class="lang-bar"><div class="lang-fill" style="width:80%"></div></div>
-          <div class="lang-lvl">Proficient</div>
+          <div class="lang-bar"><div class="lang-fill" style="width:85%"></div></div>
+          <div class="lang-lvl">Professional</div>
         </div>
       </div>
     </div>
@@ -761,12 +2274,24 @@
 
 <!-- ─── CONTACT ───────────────────────────── -->
 <section id="contact">
-  <div class="con-title">Let's build something<br><span style="color:var(--teal)">great together</span></div>
-  <p class="con-sub">Open to senior mobile roles, freelance projects, and technical collaboration.</p>
+  <div class="con-title">Let's build something<br><span style="color:var(--teal)">exceptional together</span></div>
+  <p class="con-sub">Open to senior mobile engineering roles, contract architectural consulting, and high-impact cross-platform product launches.</p>
+  
   <div class="con-btns">
-    <a href="mailto:muhammed.elnady@hotmail.com" class="btn btn-primary">✉ Send Email</a>
-    <a href="https://linkedin.com/in/mohammedelnady" target="_blank" rel="noopener noreferrer" class="btn btn-outline">LinkedIn Profile ↗</a>
+    <a href="mailto:muhammed.elnady@hotmail.com" class="btn btn-primary">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Send Email
+    </a>
+    <a href="https://github.com/mohamedelandy" target="_blank" rel="noopener noreferrer" class="btn btn-github">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+      GitHub Profile ↗
+    </a>
+    <a href="https://linkedin.com/in/mohammedelnady" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      LinkedIn Profile ↗
+    </a>
   </div>
+
   <div class="con-info">
     <div class="con-item">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.13 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.04 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 5.94 5.94l1.31-1.31a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -778,76 +2303,151 @@
     </div>
     <div class="con-item">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-      Cairo, Egypt
+      <span>Cairo, Egypt</span>
     </div>
   </div>
 </section>
 
 <!-- ─── FOOTER ────────────────────────────── -->
 <footer>
-  <p>© 2025 <span>Mohamed Elnady</span>. Crafted with care.</p>
-  <p>Senior React Native Developer · Cairo, Egypt</p>
+  <p>© 2026 <span>Mohamed Elnady</span>. Engineered with clean architecture & modern web design.</p>
+  <div class="footer-links">
+    <a href="https://github.com/mohamedelandy" target="_blank" rel="noopener noreferrer">GitHub</a>
+    <a href="https://linkedin.com/in/mohammedelnady" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="mailto:muhammed.elnady@hotmail.com">Email</a>
+  </div>
 </footer>
 
 <script>
   /* ── TYPING EFFECT ─────────────────────── */
-  const roles=['Senior React Native Developer','Cross-Platform Mobile Engineer','Native Module Specialist','Clean Architecture Advocate'];
-  let ri=0,ci=0,del=false;
-  const el=document.getElementById('typed');
-  function type(){
-    const s=roles[ri];
-    if(!del){el.textContent=s.slice(0,ci++);if(ci>s.length){del=true;setTimeout(type,2200);return;}}
-    else{el.textContent=s.slice(0,ci--);if(ci<0){del=false;ri=(ri+1)%roles.length;ci=0;setTimeout(type,450);return;}}
-    setTimeout(type,del?42:72);
+  const roles = [
+    'Senior React Native Developer',
+    'Open Source Creator (react-native-foldface)',
+    'Cross-Platform Mobile Architect',
+    'Native Module & WidgetKit Engineer'
+  ];
+  let ri = 0, ci = 0, del = false;
+  const el = document.getElementById('typed');
+  function type() {
+    const s = roles[ri];
+    if (!del) {
+      el.textContent = s.slice(0, ci++);
+      if (ci > s.length) {
+        del = true;
+        setTimeout(type, 2200);
+        return;
+      }
+    } else {
+      el.textContent = s.slice(0, ci--);
+      if (ci < 0) {
+        del = false;
+        ri = (ri + 1) % roles.length;
+        ci = 0;
+        setTimeout(type, 450);
+        return;
+      }
+    }
+    setTimeout(type, del ? 38 : 68);
   }
   type();
 
   /* ── COUNTER ANIMATION ─────────────────── */
-  let counted=false;
-  function runCounters(){
-    if(counted)return; counted=true;
-    document.querySelectorAll('[data-count]').forEach(el=>{
-      const target=parseInt(el.dataset.count);
-      const suffix=el.textContent.includes('+')?'+':'';
-      let n=0; const step=Math.max(1,Math.ceil(target/32));
-      const t=setInterval(()=>{
-        n=Math.min(n+step,target);
-        el.textContent=n+'+';
-        if(n>=target)clearInterval(t);
-      },48);
+  let counted = false;
+  function runCounters() {
+    if (counted) return;
+    counted = true;
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseInt(el.dataset.count);
+      const isPlus = el.textContent.includes('+');
+      let n = 0;
+      const step = Math.max(1, Math.ceil(target / 24));
+      const t = setInterval(() => {
+        n = Math.min(n + step, target);
+        el.textContent = n + (isPlus ? '+' : '');
+        if (n >= target) clearInterval(t);
+      }, 45);
     });
   }
 
   /* ── INTERSECTION OBSERVER ─────────────── */
-  const io=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting){
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
         e.target.classList.add('vis');
-        if(e.target.closest('#stats'))runCounters();
+        if (e.target.closest('#stats') || e.target.id === 'stats') runCounters();
         io.unobserve(e.target);
       }
     });
-  },{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.reveal,.stagger').forEach(el=>io.observe(el));
+  document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+  const statsEl = document.getElementById('stats');
+  if (statsEl) io.observe(statsEl);
 
-  /* ── NAV SCROLL ────────────────────────── */
-  window.addEventListener('scroll',()=>{
-    document.getElementById('nav').style.background=
-      window.scrollY>60?'rgba(11,21,36,0.97)':'rgba(11,21,36,0.85)';
-  },{passive:true});
+  /* ── NAV SCROLL BEHAVIOR ───────────────── */
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('nav');
+    if (window.scrollY > 40) {
+      nav.style.background = 'rgba(7, 14, 24, 0.95)';
+      nav.style.padding = '0.75rem 3.5rem';
+    } else {
+      nav.style.background = 'rgba(7, 14, 24, 0.82)';
+      nav.style.padding = '1rem 3.5rem';
+    }
+  }, { passive: true });
 
   /* ── ACTIVE NAV LINK ───────────────────── */
-  const secs=document.querySelectorAll('section[id]');
-  const links=document.querySelectorAll('.nav-links a');
-  const so=new IntersectionObserver(entries=>{
-    entries.forEach(e=>{
-      if(e.isIntersecting)links.forEach(l=>{
-        l.style.color=l.getAttribute('href')==='#'+e.target.id?'var(--teal)':'';
+  const secs = document.querySelectorAll('section[id]');
+  const links = document.querySelectorAll('.nav-links a');
+  const so = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => {
+          l.style.color = l.getAttribute('href') === '#' + e.target.id ? 'var(--teal)' : '';
+        });
+      }
+    });
+  }, { threshold: 0.4 });
+  secs.forEach(s => so.observe(s));
+
+  /* ── PROJECT CATEGORY FILTERING ────────── */
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projCards = document.querySelectorAll('.proj-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+
+      projCards.forEach(card => {
+        const cat = card.dataset.category;
+        if (filter === 'all' || cat === filter) {
+          card.classList.remove('filtered-out');
+        } else {
+          card.classList.add('filtered-out');
+        }
       });
     });
-  },{threshold:.45});
-  secs.forEach(s=>so.observe(s));
+  });
+
+  /* ── 3D PERSPECTIVE TILT ON PROJECT CARDS ─ */
+  projCards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      const rotateX = ((y - centerY) / centerY) * -5;
+      const rotateY = ((x - centerX) / centerX) * 5;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-6px)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = '';
+    });
+  });
 </script>
 
 </body>
