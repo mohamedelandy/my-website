@@ -1087,7 +1087,7 @@
     .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
     .about-text { color: var(--text-soft); font-size: 1.02rem; line-height: 1.85; }
     .about-text p { margin-bottom: 1.25rem; }
-    .about-text strong { color: #fff; font-weight: 600; }
+    .about-text strong { color: var(--text); font-weight: 600; }
 
     .traits-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
     .trait-card {
@@ -1570,3 +1570,47 @@
     /* Premium: consistent press feedback + dialog readability */
     .btn:active { transform: translateY(0); }
     .proj-card .proj-preview { border-bottom: 1px solid var(--bdr); }
+
+    /* ── CONTINUATION: light-theme contrast repairs ── */
+    :root[data-theme="light"] .btn-primary,
+    :root[data-theme="light"] .btn-primary:hover { color: #fff; }
+    :root[data-theme="light"] .btn-primary:hover { background: #009A86; }
+    :root[data-theme="light"] .btn-github { color: #5A3EC4; }
+    :root[data-theme="light"] .btn-github:hover { background: var(--violet); border-color: var(--violet); color: #fff; }
+    :root[data-theme="light"] .tag.hi-violet,
+    :root[data-theme="light"] .pill.hi-violet { color: #5A3EC4; }
+    :root[data-theme="light"] .tag.hi-rose { color: var(--rose); }
+    :root[data-theme="light"] .badge-oss { color: #6C4BD9; }
+    :root[data-theme="light"] .badge-personal { color: #C22757; }
+    :root[data-theme="light"] .stat-number { background: linear-gradient(135deg, var(--teal), var(--blue)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    :root[data-theme="light"] .stat-number.violet { background: linear-gradient(135deg, var(--violet), #4A2FBF); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    :root[data-theme="light"] .tl-desc { background: rgba(255,255,255,0.75); }
+    :root[data-theme="light"] .lang-bar { background: rgba(16,32,43,0.1); }
+    :root[data-theme="light"] .filter-bar { background: rgba(255,255,255,0.75); }
+    :root[data-theme="light"] .filter-btn:hover { color: var(--text); }
+    :root[data-theme="light"] .filter-btn.active { color: #fff; }
+    :root[data-theme="light"] .proj-link { background: rgba(16,32,43,0.04); }
+    :root[data-theme="light"] .qadaa-seg { background: rgba(16,32,43,0.12); }
+    :root[data-theme="light"] .prayer-dot.pending { background: rgba(16,32,43,0.2); }
+    :root[data-theme="light"] .scr-prod-rating { color: #B45309; }
+
+    /* ── CONTINUATION: hero phone screen dots (synced to 11s slide) ── */
+    .phone-dots { display: flex; gap: 6px; justify-content: center; margin-top: 12px; }
+    .phone-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--muted); opacity: 0.35; }
+    .phone-dots span:nth-child(1) { animation: dot1 11s ease-in-out infinite; }
+    .phone-dots span:nth-child(2) { animation: dot2 11s ease-in-out infinite; }
+    .phone-dots span:nth-child(3) { animation: dot3 11s ease-in-out infinite; }
+    @keyframes dot1 {
+      0%, 28% { opacity: 1; background: var(--teal); transform: scale(1.25); }
+      33%, 100% { opacity: 0.35; background: var(--muted); transform: none; }
+    }
+    @keyframes dot2 {
+      0%, 28% { opacity: 0.35; background: var(--muted); transform: none; }
+      33%, 62% { opacity: 1; background: var(--teal); transform: scale(1.25); }
+      67%, 100% { opacity: 0.35; background: var(--muted); transform: none; }
+    }
+    @keyframes dot3 {
+      0%, 62% { opacity: 0.35; background: var(--muted); transform: none; }
+      67%, 95% { opacity: 1; background: var(--teal); transform: scale(1.25); }
+      96%, 100% { opacity: 0.35; background: var(--muted); transform: none; }
+    }
