@@ -564,15 +564,15 @@
 
   <!-- Filter Bar -->
   <div class="filter-bar" role="group" aria-label="Filter projects">
-    <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All Projects</button>
-    <button class="filter-btn" type="button" data-filter="oss" aria-pressed="false">Open Source</button>
-    <button class="filter-btn" type="button" data-filter="work" aria-pressed="false">Commercial / Work</button>
-    <button class="filter-btn" type="button" data-filter="personal" aria-pressed="false">Personal Apps</button>
+    <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true" aria-controls="projectsGrid">All Projects</button>
+    <button class="filter-btn" type="button" data-filter="oss" aria-pressed="false" aria-controls="projectsGrid">Open Source</button>
+    <button class="filter-btn" type="button" data-filter="work" aria-pressed="false" aria-controls="projectsGrid">Commercial / Work</button>
+    <button class="filter-btn" type="button" data-filter="personal" aria-pressed="false" aria-controls="projectsGrid">Personal Apps</button>
   </div>
 
     <p class="filter-status" id="filterStatus" aria-live="polite">Showing all 6 projects</p>
 
-  <div class="proj-grid stagger">
+  <div class="proj-grid stagger" id="projectsGrid">
 
     <!-- 1. react-native-foldface (OPEN SOURCE) -->
     <div class="proj-card card-violet" data-category="oss">
@@ -597,7 +597,7 @@
         </div>
         <div class="proj-footer">
           <div class="proj-links">
-            <button class="proj-link project-view-btn" type="button" data-project-view>View overview</button>
+            <button class="proj-link project-view-btn" type="button" data-project-view aria-haspopup="dialog" aria-label="View overview for react-native-foldface">View overview</button>
             <a href="https://github.com/mohamedelandy/react-native-foldface" target="_blank" rel="noopener noreferrer" class="proj-link link-violet">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
               GitHub ↗
@@ -632,7 +632,7 @@
         </div>
         <div class="proj-footer">
           <div class="proj-links">
-            <button class="proj-link project-view-btn" type="button" data-project-view>View overview</button>
+            <button class="proj-link project-view-btn" type="button" data-project-view aria-haspopup="dialog" aria-label="View overview for Qadaa">View overview</button>
             <a href="https://github.com/mohamedelandy/qadaa" target="_blank" rel="noopener noreferrer" class="proj-link">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
               GitHub ↗
@@ -667,7 +667,7 @@
         </div>
         <div class="proj-footer">
           <div class="proj-links">
-            <button class="proj-link project-view-btn" type="button" data-project-view>View overview</button>
+            <button class="proj-link project-view-btn" type="button" data-project-view aria-haspopup="dialog" aria-label="View overview for Shopivia">View overview</button>
             <span class="proj-link" style="opacity:0.8; cursor:default;">🔒 Private Architecture</span>
           </div>
           <span class="proj-status">2026</span>
@@ -699,7 +699,7 @@
         </div>
         <div class="proj-footer">
           <div class="proj-links">
-            <button class="proj-link project-view-btn" type="button" data-project-view>View overview</button>
+            <button class="proj-link project-view-btn" type="button" data-project-view aria-haspopup="dialog" aria-label="View overview for Tjaara Stores">View overview</button>
             <span class="proj-link" style="opacity:0.8; cursor:default;">Commercial App</span>
           </div>
           <span class="proj-status">2023 — Present</span>
@@ -730,7 +730,7 @@
         </div>
         <div class="proj-footer">
           <div class="proj-links">
-            <button class="proj-link project-view-btn" type="button" data-project-view>View overview</button>
+            <button class="proj-link project-view-btn" type="button" data-project-view aria-haspopup="dialog" aria-label="View overview for Tjaara Dashboard">View overview</button>
             <span class="proj-link" style="opacity:0.8; cursor:default;">Commercial App</span>
           </div>
           <span class="proj-status">2024 — Present</span>
@@ -761,7 +761,7 @@
         </div>
         <div class="proj-footer">
           <div class="proj-links">
-            <button class="proj-link project-view-btn" type="button" data-project-view>View overview</button>
+            <button class="proj-link project-view-btn" type="button" data-project-view aria-haspopup="dialog" aria-label="View overview for Tjaara Partners">View overview</button>
             <span class="proj-link" style="opacity:0.8; cursor:default;">Commercial App</span>
           </div>
           <span class="proj-status">2025 — Present</span>
@@ -1058,6 +1058,8 @@
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="./app.js" defer></script>
 
 </body>

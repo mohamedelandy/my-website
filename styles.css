@@ -173,12 +173,13 @@
     .nav-links a {
       color: var(--muted); text-decoration: none; font-size: .88rem; font-weight: 500;
       transition: var(--t); letter-spacing: .02em;
+      min-height: 44px; display: inline-flex; align-items: center; padding: 0 .25rem;
     }
     .nav-links a:hover { color: var(--teal); }
     
     .nav-social-btn {
       display: inline-flex; align-items: center; justify-content: center;
-      width: 36px; height: 36px; border-radius: 8px;
+      width: 44px; height: 44px; min-width: 44px; min-height: 44px; border-radius: 8px;
       background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--bdr);
       color: var(--muted);
@@ -193,6 +194,7 @@
       border: 1.5px solid var(--teal); padding: .45rem 1.25rem; border-radius: 8px;
       font-weight: 600 !important; font-size: .86rem !important;
       transition: var(--t);
+      min-height: 44px; display: inline-flex; align-items: center; justify-content: center;
     }
     .nav-cta:hover {
       background: var(--teal) !important; color: var(--bg) !important;
@@ -206,11 +208,16 @@
       transition: top .2s ease;
     }
     .skip-link:focus { top: 0; }
-    :focus-visible { outline: 3px solid var(--teal); outline-offset: 4px; }
+    
+    /* Accessible focus ring */
+    :focus-visible {
+      outline: 2px solid var(--teal) !important;
+      outline-offset: 4px !important;
+    }
 
     .nav-icon-btn, .nav-menu-btn {
       display: inline-flex; align-items: center; justify-content: center;
-      width: 36px; height: 36px; border: 1px solid var(--bdr);
+      width: 44px; height: 44px; min-width: 44px; min-height: 44px; border: 1px solid var(--bdr);
       border-radius: 8px; background: rgba(255, 255, 255, .04);
       color: var(--muted); cursor: pointer; transition: var(--t);
     }
@@ -1121,8 +1128,9 @@
     }
     .filter-btn {
       background: transparent; border: none; color: var(--muted);
-      padding: .5rem 1.2rem; border-radius: 8px; font-size: .86rem; font-weight: 600;
+      padding: .5rem 1.25rem; border-radius: 8px; font-size: .86rem; font-weight: 600;
       cursor: pointer; transition: var(--t); font-family: var(--fbod);
+      min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center;
     }
     .filter-btn:hover { color: #fff; }
     .filter-btn.active {
@@ -1423,8 +1431,11 @@
     .project-dialog::backdrop { background: rgba(1, 5, 10, .78); backdrop-filter: blur(8px); }
     .dialog-inner { padding: clamp(1.25rem, 4vw, 2.2rem); }
     .dialog-close {
-      float: right; width: 36px; height: 36px; border: 1px solid var(--bdr); border-radius: 50%;
+      float: right; width: 44px; height: 44px; min-width: 44px; min-height: 44px;
+      display: inline-flex; align-items: center; justify-content: center;
+      border: 1px solid var(--bdr); border-radius: 50%;
       color: var(--muted); background: transparent; cursor: pointer; font-size: 1.25rem;
+      transition: var(--t);
     }
     .dialog-close:hover { color: var(--teal); border-color: var(--teal); }
     .dialog-eyebrow { color: var(--teal); font: .72rem var(--fmon); letter-spacing: .12em; text-transform: uppercase; margin-bottom: .7rem; }
