@@ -635,6 +635,61 @@
       .resume-canvas { padding: 0 .75rem; margin-top: 1.25rem; }
     }
 
+    @media (max-width: 520px) {
+      .ctrl-bar {
+        padding: .65rem .75rem;
+        gap: .5rem;
+      }
+      .back-link { padding: .4rem .65rem; font-size: .8rem; }
+      .back-link span { display: none; }
+      .action-btn { padding: .45rem .75rem; font-size: .8rem; gap: .35rem; }
+      .action-btn-outline { padding: .45rem .65rem; }
+      .action-btn-outline span { display: none; }
+
+      .sheet {
+        padding: 1.5rem 1rem;
+        border-radius: 14px;
+      }
+      .resume-name { font-size: clamp(1.8rem, 8vw, 2.4rem); word-break: break-word; }
+      .resume-title { font-size: .92rem; }
+      .contact-item { font-size: .78rem; word-break: break-all; overflow-wrap: anywhere; }
+      .contact-loc { font-size: .78rem; }
+      .summary-box { padding: 1rem; font-size: .88rem; }
+
+      .tl-header { flex-direction: column; align-items: flex-start; gap: .35rem; }
+      .tl-role { font-size: 1.02rem; }
+      .tl-bullets li { font-size: .86rem; }
+      
+      .resume-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+      }
+      .resume-footer > div {
+        width: 100%;
+        flex-direction: column;
+      }
+      .resume-footer .back-link,
+      .resume-footer .action-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .resume-footer .back-link span { display: inline; }
+    }
+
+    @media (max-width: 360px) {
+      .sheet {
+        padding: 1.2rem .75rem;
+        border-radius: 10px;
+      }
+      .resume-name { font-size: 1.65rem; }
+      .status-badge { font-size: .65rem; padding: .2rem .55rem; }
+      .skill-cat { padding: .75rem; }
+      .skill-chip { font-size: .72rem; padding: .2rem .5rem; }
+      .ach-card { padding: .9rem; }
+      .edu-card, .lang-card { padding: .9rem; }
+    }
+
     /* ── PRINT STYLES (Clean PDF/Printer Layout) ── */
     @media print {
       @page {

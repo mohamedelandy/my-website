@@ -284,9 +284,11 @@
         const key = name.includes('foldface') ? 'foldface'
           : name.includes('qadaa') ? 'qadaa'
           : name.includes('tjaara') ? 'tjaara' : 'shopivia';
+        const descEl = card.querySelector('.proj-desc');
+        const fallbackCopy = descEl ? descEl.textContent.trim() : 'Production mobile product architecture and delivery.';
         document.getElementById('dialogEyebrow').textContent = metaEl ? metaEl.textContent.trim() : 'Project overview';
         document.getElementById('dialogTitle').textContent = nameEl ? nameEl.textContent.trim() : 'Project overview';
-        document.getElementById('dialogCopy').textContent = copyFor[key];
+        document.getElementById('dialogCopy').textContent = copyFor[key] || fallbackCopy;
         const tagWrap = document.getElementById('dialogTags');
         tagWrap.innerHTML = '';
         card.querySelectorAll('.proj-tags .tag').forEach((t) => {
@@ -299,20 +301,38 @@
       });
     });
     dialog.querySelectorAll('[data-dialog-close]').forEach((b) => b.addEventListener('click', () => dialog.close()));
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
     dialog.addEventListener('close', () => { if (lastTrigger) lastTrigger.focus(); });
   }
 
-  /* ── 3D TILT — fine pointers only, disabled for reduced motion ── */
+  /* ── 3D TILT — fine pointers only, throttled with rAF, disabled for reduced motion ── */
   const finePointer = mq ? mq('(hover: hover) and (pointer: fine)') : { matches: true };
   if (!reduceMotion.matches && finePointer.matches) {
     projCards.forEach((card) => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const rx = ((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * -4;
-        const ry = ((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 4;
-        card.style.transform = 'perspective(1000px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-6px)';
+      let rafId = null;
+      let cachedRect = null;
+
+      card.addEventListener('mouseenter', () => {
+        cachedRect = card.getBoundingClientRect();
       });
-      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+
+      card.addEventListener('mousemove', (e) => {
+        if (!cachedRect) cachedRect = card.getBoundingClientRect();
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          const rx = ((e.clientY - cachedRect.top - cachedRect.height / 2) / (cachedRect.height / 2)) * -4;
+          const ry = ((e.clientX - cachedRect.left - cachedRect.width / 2) / (cachedRect.width / 2)) * 4;
+          card.style.transform = 'perspective(1000px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-6px)';
+        });
+      }, { passive: true });
+
+      card.addEventListener('mouseleave', () => {
+        if (rafId) cancelAnimationFrame(rafId);
+        cachedRect = null;
+        card.style.transform = '';
+      });
     });
   }
 })();
