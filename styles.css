@@ -1454,6 +1454,14 @@
     .stagger.vis > *:nth-child(5) { opacity:1;transform:none;transition-delay:.32s }
     .stagger.vis > *:nth-child(6) { opacity:1;transform:none;transition-delay:.40s }
 
+    /* When GSAP is active, delegate animation interpolation completely to GSAP */
+    html.gsap-loaded .reveal,
+    html.gsap-loaded .stagger > * {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: .01ms !important; animation-iteration-count: 1 !important;

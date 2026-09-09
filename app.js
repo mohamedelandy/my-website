@@ -105,19 +105,86 @@
     });
   }
 
-  /* ── SCROLL REVEAL ─────────────────────── */
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (e.isIntersecting) {
-        e.target.classList.add('vis');
-        if (e.target.id === 'stats' || e.target.closest('#stats')) runCounters();
-        io.unobserve(e.target);
-      }
+  /* ── SCROLL REVEAL & STAGGER ANIMATIONS ── */
+  if (typeof window.gsap !== 'undefined' && typeof window.ScrollTrigger !== 'undefined') {
+    document.documentElement.classList.add('gsap-loaded');
+    gsap.registerPlugin(ScrollTrigger);
+
+    const mm = gsap.matchMedia();
+
+    mm.add("(prefers-reduced-motion: no-preference)", () => {
+      // Section header scroll reveal
+      gsap.utils.toArray('.sec-title, .sec-sub, .eyebrow').forEach((el) => {
+        gsap.from(el, {
+          opacity: 0,
+          y: 14,
+          duration: 0.4,
+          ease: 'power1.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 92%',
+            toggleActions: 'play none none reverse'
+          }
+        });
+      });
+
+      // Stagger lists for project cards, traits, stats, achievements
+      gsap.utils.toArray('.stagger').forEach((container) => {
+        const items = container.children;
+        gsap.from(items, {
+          opacity: 0,
+          y: 18,
+          duration: 0.45,
+          stagger: 0.06,
+          ease: 'power1.out',
+          scrollTrigger: {
+            trigger: container,
+            start: 'top 88%',
+            toggleActions: 'play none none reverse',
+            onEnter: () => {
+              if (container.id === 'stats' || container.closest('#stats') || container.classList.contains('stats-grid')) {
+                runCounters();
+              }
+            }
+          }
+        });
+      });
+
+      // Individual reveal elements (about-text, tl-item, skills-groups, etc.)
+      gsap.utils.toArray('.reveal').forEach((el) => {
+        gsap.from(el, {
+          opacity: 0,
+          y: 20,
+          duration: 0.5,
+          ease: 'power1.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            toggleActions: 'play none none reverse'
+          }
+        });
+      });
     });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal, .stagger').forEach((el) => io.observe(el));
-  const statsEl = document.getElementById('stats');
-  if (statsEl) io.observe(statsEl);
+
+    // Ensure stats counter runs if reduced motion is preferred
+    mm.add("(prefers-reduced-motion: reduce)", () => {
+      runCounters();
+    });
+  } else {
+    /* Fallback IntersectionObserver */
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('vis');
+          if (e.target.id === 'stats' || e.target.closest('#stats')) runCounters();
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal, .stagger').forEach((el) => io.observe(el));
+    const statsEl = document.getElementById('stats');
+    if (statsEl) io.observe(statsEl);
+  }
 
   /* ── NAV SCROLL STATE (class-based so media queries stay intact) ── */
   const nav = document.getElementById('nav');
@@ -158,6 +225,9 @@
           : filter === 'oss' ? 'open-source projects'
           : filter === 'work' ? 'commercial projects' : 'personal projects';
         statusEl.textContent = 'Showing ' + shown + ' ' + label;
+      }
+      if (typeof window.ScrollTrigger !== 'undefined') {
+        window.ScrollTrigger.refresh();
       }
     });
   });
