@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /my-website/
+Sitemap: https://mohamedelandy.github.io/my-website/sitemap.xml
