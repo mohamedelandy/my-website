@@ -3,15 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Mohamed Elnady — Senior React Native Developer & Open Source Creator with 8+ years building scalable mobile apps.">
-  <meta property="og:title" content="Mohamed Elnady · Senior React Native Developer">
-  <meta property="og:description" content="8+ years building production-grade mobile apps across e-commerce, real estate, and open source libraries.">
+  <meta name="description" content="Mohamed Elnady — Mobile product architect and Senior React Native Developer building scalable, accessible mobile products, native extensions, and open-source tools.">
+  <meta name="theme-color" content="#070E18">
+  <meta name="color-scheme" content="dark light">
+  <meta name="robots" content="index, follow">
+  <meta property="og:title" content="Mohamed Elnady · Mobile Product Architect">
+  <meta property="og:description" content="Senior React Native Developer building resilient mobile products, native extensions, and open-source tools across e-commerce and digital platforms.">
   <meta property="og:type" content="website">
-  <title>Mohamed Elnady · Senior React Native Developer</title>
+  <meta property="og:site_name" content="Mohamed Elnady">
+  <meta property="og:locale" content="en_US">
+  <title>Mohamed Elnady · Mobile Product Architect</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
+    [hidden] { display: none !important; }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
 
@@ -46,11 +53,54 @@
       --muted:       #8A9BB3;
       --bdr:         rgba(255, 255, 255, 0.08);
       --bdr-accent:  rgba(0, 212, 170, 0.18);
+      --nav-bg:      rgba(7, 14, 24, 0.82);
+      --shadow:      rgba(0, 0, 0, 0.42);
       --r:           14px;
       --t:           all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
       --fdis:        'Space Grotesk', sans-serif;
       --fbod:        'Inter', sans-serif;
       --fmon:        'JetBrains Mono', monospace;
+    }
+
+    :root[data-theme="light"] {
+      color-scheme: light;
+      --bg:          #F5F8FA;
+      --bg2:         #EAF1F4;
+      --bg3:         #D9E7EB;
+      --card-bg:     rgba(255, 255, 255, 0.82);
+      --card-border: rgba(0, 145, 126, 0.18);
+      --card-hover:  rgba(0, 145, 126, 0.28);
+      --teal:        #007F70;
+      --teal-dim:    rgba(0, 127, 112, 0.1);
+      --teal-glo:    rgba(0, 127, 112, 0.22);
+      --violet:      #6C4BD9;
+      --violet-dim:  rgba(108, 75, 217, 0.1);
+      --violet-glo:  rgba(108, 75, 217, 0.22);
+      --rose:        #D83F70;
+      --rose-dim:    rgba(216, 63, 112, 0.1);
+      --rose-glo:    rgba(216, 63, 112, 0.2);
+      --blue:        #087EA4;
+      --blue-dim:    rgba(8, 126, 164, 0.1);
+      --text:        #10202B;
+      --text-soft:   #304653;
+      --muted:       #5B707C;
+      --bdr:         rgba(16, 32, 43, 0.12);
+      --bdr-accent:  rgba(0, 127, 112, 0.22);
+      --nav-bg:      rgba(245, 248, 250, 0.86);
+      --shadow:      rgba(16, 32, 43, 0.16);
+    }
+
+    :root[data-theme="light"] .hero-name span {
+      background: linear-gradient(135deg, #007F70 0%, #087EA4 60%, #6C4BD9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    :root[data-theme="light"] #hero::before {
+      background-image:
+        radial-gradient(circle at 1px 1px, rgba(0,127,112,0.1) 1px, transparent 0),
+        linear-gradient(rgba(16,32,43,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(16,32,43,0.035) 1px, transparent 1px);
     }
 
     body {
@@ -60,6 +110,7 @@
       line-height: 1.6;
       overflow-x: hidden;
       selection-background-color: var(--teal);
+      transition: background-color .35s ease, color .35s ease;
     }
     ::selection { background: var(--teal); color: var(--bg); }
 
@@ -73,7 +124,7 @@
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       padding: 1rem 3.5rem;
       display: flex; align-items: center; justify-content: space-between;
-      background: rgba(7, 14, 24, 0.82);
+      background: var(--nav-bg);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--bdr);
@@ -122,6 +173,52 @@
       background: var(--teal) !important; color: var(--bg) !important;
       box-shadow: 0 0 20px var(--teal-glo);
     }
+
+    .skip-link {
+      position: fixed; left: 1rem; top: -5rem; z-index: 300;
+      background: var(--teal); color: var(--bg); padding: .7rem 1rem;
+      border-radius: 0 0 8px 8px; font-weight: 700; text-decoration: none;
+      transition: top .2s ease;
+    }
+    .skip-link:focus { top: 0; }
+    :focus-visible { outline: 3px solid var(--teal); outline-offset: 4px; }
+
+    .nav-icon-btn, .nav-menu-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px; border: 1px solid var(--bdr);
+      border-radius: 8px; background: rgba(255, 255, 255, .04);
+      color: var(--muted); cursor: pointer; transition: var(--t);
+    }
+    .nav-icon-btn:hover, .nav-menu-btn:hover {
+      color: var(--teal); border-color: var(--teal); background: var(--teal-dim);
+    }
+    .theme-icon { font-size: 1.15rem; line-height: 1; }
+    .nav-menu-btn { display: none; flex-direction: column; gap: 4px; }
+    .nav-menu-btn span { width: 16px; height: 1.5px; background: currentColor; transition: transform .25s ease, opacity .25s ease; }
+    body.menu-open { overflow: hidden; }
+    body.menu-open .nav-menu-btn span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
+    body.menu-open .nav-menu-btn span:nth-child(2) { opacity: 0; }
+    body.menu-open .nav-menu-btn span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
+    .mobile-menu {
+      position: fixed; inset: 0; z-index: 90; padding: 5.5rem 1.5rem 1.5rem;
+      background: color-mix(in srgb, var(--bg) 94%, transparent);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    }
+    .mobile-menu-inner {
+      display: flex; flex-direction: column; gap: .25rem; max-width: 32rem; margin: 0 auto;
+      min-height: 100%; padding: 1.5rem 0 1rem;
+    }
+    .mobile-menu-kicker {
+      color: var(--teal); font: 600 .7rem var(--fmon); letter-spacing: .14em;
+      text-transform: uppercase; margin-bottom: 1rem;
+    }
+    .mobile-menu-inner > a:not(.btn) {
+      color: var(--text); text-decoration: none; font: 600 clamp(1.8rem, 8vw, 3rem) var(--fdis);
+      letter-spacing: -.03em; padding: .35rem 0; transition: color .2s ease, transform .2s ease;
+    }
+    .mobile-menu-inner > a:not(.btn):hover { color: var(--teal); transform: translateX(5px); }
+    .mobile-menu-footer { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: auto; padding-top: 2rem; }
+    .mobile-menu-footer .btn { flex: 1 1 12rem; justify-content: center; }
 
     /* ── HERO ────────────────────────── */
     #hero {
@@ -1284,7 +1381,33 @@
     .footer-links a { color: var(--muted); text-decoration: none; font-size: .82rem; transition: var(--t); }
     .footer-links a:hover { color: var(--teal); }
 
-    /* ── SCROLL REVEAL ───────────────── */
+    .filter-status {
+      color: var(--muted); font: .75rem var(--fmon); margin: -1.9rem 0 2rem;
+    }
+    .filter-btn[aria-pressed="true"] { background: var(--teal); color: var(--bg); box-shadow: 0 4px 15px var(--teal-glo); }
+    .filter-btn[aria-pressed="false"] { background: transparent; }
+    .proj-card { will-change: transform; }
+    .proj-card[data-project="shopivia"] { order: -1; }
+    .project-view-btn { border: 0; cursor: pointer; font-family: var(--fmon); }
+
+    .project-dialog {
+      width: min(680px, calc(100% - 2rem)); max-height: min(760px, calc(100dvh - 2rem));
+      padding: 0; border: 1px solid var(--bdr-accent); border-radius: 20px;
+      background: var(--bg2); color: var(--text); box-shadow: 0 30px 100px var(--shadow);
+    }
+    .project-dialog::backdrop { background: rgba(1, 5, 10, .78); backdrop-filter: blur(8px); }
+    .dialog-inner { padding: clamp(1.25rem, 4vw, 2.2rem); }
+    .dialog-close {
+      float: right; width: 36px; height: 36px; border: 1px solid var(--bdr); border-radius: 50%;
+      color: var(--muted); background: transparent; cursor: pointer; font-size: 1.25rem;
+    }
+    .dialog-close:hover { color: var(--teal); border-color: var(--teal); }
+    .dialog-eyebrow { color: var(--teal); font: .72rem var(--fmon); letter-spacing: .12em; text-transform: uppercase; margin-bottom: .7rem; }
+    .dialog-title { font: 700 clamp(1.7rem, 4vw, 2.5rem) var(--fdis); line-height: 1.1; margin-bottom: .9rem; }
+    .dialog-copy { color: var(--text-soft); line-height: 1.8; margin-bottom: 1.25rem; }
+    .dialog-tags { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .dialog-tags .tag { font-size: .72rem; }
+
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
     .reveal.vis { opacity: 1; transform: none; }
     .stagger > * { opacity: 0; transform: translateY(20px); transition: opacity .5s ease, transform .5s ease; }
@@ -1294,6 +1417,14 @@
     .stagger.vis > *:nth-child(4) { opacity:1;transform:none;transition-delay:.24s }
     .stagger.vis > *:nth-child(5) { opacity:1;transform:none;transition-delay:.32s }
     .stagger.vis > *:nth-child(6) { opacity:1;transform:none;transition-delay:.40s }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important; transition-duration: .01ms !important;
+      }
+      .reveal, .stagger > * { opacity: 1; transform: none; }
+    }
 
     /* Card filter hidden state */
     .proj-card.filtered-out {
@@ -1332,12 +1463,62 @@
       .filter-bar { width: 100%; justify-content: center; }
     }
   </style>
+  <style>
+    @media (max-width: 1024px) {
+      nav { padding: .85rem 1.5rem; }
+      .nav-right { gap: .65rem; }
+      .nav-links, .nav-social-btn { display: none; }
+      .nav-menu-btn { display: inline-flex; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: .75rem 1rem; }
+      .nav-logo { font-size: 1rem; }
+      .nav-cta { display: none; }
+      #hero { min-height: auto; padding-top: 7.5rem; }
+      .hero-name { font-size: clamp(2.8rem, 15vw, 4.4rem); }
+      .hero-title { justify-content: center; min-height: 3.2rem; text-align: center; }
+      .hero-bio { font-size: .96rem; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+      .hero-visual { margin-top: 2rem; min-height: 470px; }
+      .phone-wrap { transform: scale(.8); transform-origin: top center; margin-bottom: -115px; }
+      .orbit-ring-1 { width: 320px; height: 320px; }
+      .orbit-ring-2 { width: 390px; height: 390px; }
+      .filter-bar { overflow-x: auto; justify-content: flex-start; flex-wrap: nowrap; max-width: 100%; }
+      .filter-btn { flex: 0 0 auto; white-space: nowrap; }
+      .filter-status { margin-top: -1.5rem; }
+      .proj-footer { align-items: flex-start; gap: .65rem; flex-direction: column; }
+      .proj-links { flex-wrap: wrap; }
+      .lang-item { gap: .65rem; flex-wrap: wrap; }
+      .lang-name { min-width: 70px; }
+      .lang-bar { min-width: 120px; }
+      .lang-lvl { margin-left: auto; }
+    }
+    nav.scrolled { background: color-mix(in srgb, var(--bg) 94%, transparent); box-shadow: 0 12px 32px var(--shadow); }
+    .nav-links a.active-link { color: var(--teal); }
+    :root[data-theme="light"] nav,
+    :root[data-theme="light"] .mobile-menu { background-color: var(--nav-bg); }
+    :root[data-theme="light"] .proj-card,
+    :root[data-theme="light"] .ach-card,
+    :root[data-theme="light"] .edu-card { background: rgba(255,255,255,.75); }
+    :root[data-theme="light"] .proj-name,
+    :root[data-theme="light"] .trait-title,
+    :root[data-theme="light"] .ach-title,
+    :root[data-theme="light"] .tl-co,
+    :root[data-theme="light"] .edu-deg,
+    :root[data-theme="light"] .lang-name { color: var(--text); }
+    :root[data-theme="light"] footer { background: #E5EEF1; }
+    :root[data-theme="light"] .btn-outline { color: var(--text); border-color: rgba(16,32,43,.2); }
+
+  </style>
 </head>
 <body>
 
+<!-- Skip navigation for keyboard and assistive technology users -->
+<a class="skip-link" href="#main-content">Skip to content</a>
+
 <!-- ─── NAV ───────────────────────────────── -->
-<nav id="nav">
-  <a class="nav-logo" href="#hero">
+<nav id="nav" aria-label="Primary navigation">
+  <a class="nav-logo" href="#hero" aria-label="Mohamed Elnady home">
     <span class="logo-dot"></span>
     <span>Mohamed Elnady</span>
   </a>
@@ -1349,13 +1530,35 @@
       <li><a href="#experience">Experience</a></li>
       <li><a href="#achievements">Impact</a></li>
     </ul>
-    <a href="https://github.com/mohamedelandy" target="_blank" rel="noopener noreferrer" class="nav-social-btn" title="GitHub Profile">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+    <a href="https://github.com/mohamedelandy" target="_blank" rel="noopener noreferrer" class="nav-social-btn" title="GitHub Profile" aria-label="Open GitHub profile">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
     </a>
+    <button class="nav-icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch to light theme" title="Switch theme">
+      <span class="theme-icon" aria-hidden="true">☼</span>
+    </button>
     <a href="#contact" class="nav-cta">Hire Me</a>
+    <button class="nav-menu-btn" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open navigation menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
 
+<div class="mobile-menu" id="mobileMenu" hidden>
+  <div class="mobile-menu-inner">
+    <p class="mobile-menu-kicker">Navigate</p>
+    <a href="#about">About</a>
+    <a href="#projects">Selected work</a>
+    <a href="#skills">Capabilities</a>
+    <a href="#experience">Experience</a>
+    <a href="#achievements">Impact</a>
+    <div class="mobile-menu-footer">
+      <a href="resume.html" class="btn btn-primary">View résumé <span aria-hidden="true">↗</span></a>
+      <a href="#contact" class="btn btn-outline">Start a conversation</a>
+    </div>
+  </div>
+</div>
+
+<main id="main-content">
 <!-- ─── HERO ──────────────────────────────── -->
 <section id="hero">
   <div class="hero-glow-1"></div>
@@ -1366,7 +1569,7 @@
     <h1 class="hero-name">Mohamed<br><span>Elnady</span></h1>
     <div class="hero-title"><span id="typed"></span></div>
     <p class="hero-bio">
-      Senior React Native Developer with <strong>8+ years</strong> architecting scalable mobile platforms, open source libraries, and native iOS/Android modules. Deep focus on clean architecture, fluid 60fps animations, and bulletproof CI/CD pipelines.
+      Senior React Native Developer with <strong>8+ years</strong> turning complex product requirements into resilient mobile experiences. I work across React Native, Swift, Kotlin, architecture, and delivery — from the first interaction model to reliable releases.
     </p>
     <div class="hero-actions">
       <a href="mailto:muhammed.elnady@hotmail.com" class="btn btn-primary">
@@ -1377,9 +1580,8 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
         GitHub ↗
       </a>
-      <a href="https://linkedin.com/in/mohammedelnady" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-        LinkedIn ↗
+      <a href="resume.html" class="btn btn-outline">
+        View résumé ↗
       </a>
     </div>
     
@@ -1847,16 +2049,18 @@
 <!-- ─── PROJECTS ──────────────────────────── -->
 <section id="projects" class="sec">
   <div class="eyebrow">Featured Work</div>
-  <div class="sec-title">Featured Projects & Open Source</div>
-  <div class="sec-sub">A curated selection of live production apps, open-source libraries, and full-stack platforms.</div>
+  <div class="sec-title">Selected work, shaped for real products</div>
+  <div class="sec-sub">A focused view of the products, platforms, and open-source tools where architecture, interaction, and delivery meet.</div>
 
   <!-- Filter Bar -->
-  <div class="filter-bar">
-    <button class="filter-btn active" data-filter="all">All Projects</button>
-    <button class="filter-btn" data-filter="oss">Open Source</button>
-    <button class="filter-btn" data-filter="work">Commercial / Work</button>
-    <button class="filter-btn" data-filter="personal">Personal Apps</button>
+  <div class="filter-bar" role="group" aria-label="Filter projects">
+    <button class="filter-btn active" type="button" data-filter="all" aria-pressed="true">All Projects</button>
+    <button class="filter-btn" type="button" data-filter="oss" aria-pressed="false">Open Source</button>
+    <button class="filter-btn" type="button" data-filter="work" aria-pressed="false">Commercial / Work</button>
+    <button class="filter-btn" type="button" data-filter="personal" aria-pressed="false">Personal Apps</button>
   </div>
+
+    <p class="filter-status" id="filterStatus" aria-live="polite">Showing all 6 projects</p>
 
   <div class="proj-grid stagger">
 
@@ -1883,6 +2087,7 @@
         </div>
         <div class="proj-footer">
           <div class="proj-links">
+            <button class="proj-link project-view-btn" type="button" data-project-view>View overview</button>
             <a href="https://github.com/mohamedelandy/react-native-foldface" target="_blank" rel="noopener noreferrer" class="proj-link link-violet">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
               GitHub ↗
@@ -1917,6 +2122,7 @@
         </div>
         <div class="proj-footer">
           <div class="proj-links">
+            <button class="proj-link project-view-btn" type="button" data-project-view>View overview</button>
             <a href="https://github.com/mohamedelandy/qadaa" target="_blank" rel="noopener noreferrer" class="proj-link">
               <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
               GitHub ↗
@@ -1928,7 +2134,7 @@
     </div>
 
     <!-- 3. Shopivia (PERSONAL / FULL-STACK) -->
-    <div class="proj-card card-rose" data-category="personal">
+    <div class="proj-card card-rose" data-category="personal" data-project="shopivia">
       <div class="proj-preview preview-shopivia">
         <span class="proj-badge-top badge-personal">Full-Stack Platform</span>
         <div class="shopivia-graphic">
@@ -1951,6 +2157,7 @@
         </div>
         <div class="proj-footer">
           <div class="proj-links">
+            <button class="proj-link project-view-btn" type="button" data-project-view>View overview</button>
             <span class="proj-link" style="opacity:0.8; cursor:default;">🔒 Private Architecture</span>
           </div>
           <span class="proj-status">2026</span>
@@ -1982,6 +2189,7 @@
         </div>
         <div class="proj-footer">
           <div class="proj-links">
+            <button class="proj-link project-view-btn" type="button" data-project-view>View overview</button>
             <span class="proj-link" style="opacity:0.8; cursor:default;">Commercial App</span>
           </div>
           <span class="proj-status">2023 — Present</span>
@@ -2012,6 +2220,7 @@
         </div>
         <div class="proj-footer">
           <div class="proj-links">
+            <button class="proj-link project-view-btn" type="button" data-project-view>View overview</button>
             <span class="proj-link" style="opacity:0.8; cursor:default;">Commercial App</span>
           </div>
           <span class="proj-status">2024 — Present</span>
@@ -2042,6 +2251,7 @@
         </div>
         <div class="proj-footer">
           <div class="proj-links">
+            <button class="proj-link project-view-btn" type="button" data-project-view>View overview</button>
             <span class="proj-link" style="opacity:0.8; cursor:default;">Commercial App</span>
           </div>
           <span class="proj-status">2025 — Present</span>
@@ -2278,7 +2488,10 @@
   <p class="con-sub">Open to senior mobile engineering roles, contract architectural consulting, and high-impact cross-platform product launches.</p>
   
   <div class="con-btns">
-    <a href="mailto:muhammed.elnady@hotmail.com" class="btn btn-primary">
+    <a href="resume.html" class="btn btn-primary">
+      View résumé <span aria-hidden="true">↗</span>
+    </a>
+    <a href="mailto:muhammed.elnady@hotmail.com" class="btn btn-outline">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
       Send Email
     </a>
@@ -2308,146 +2521,251 @@
   </div>
 </section>
 
+</main>
+
+<dialog class="project-dialog" id="projectDialog" aria-labelledby="dialogTitle">
+  <div class="dialog-inner">
+    <button class="dialog-close" type="button" data-dialog-close aria-label="Close project overview">×</button>
+    <div class="dialog-eyebrow" id="dialogEyebrow">Project overview</div>
+    <h2 class="dialog-title" id="dialogTitle">Project overview</h2>
+    <p class="dialog-copy" id="dialogCopy"></p>
+    <div class="dialog-tags" id="dialogTags"></div>
+    <div class="dialog-actions" style="margin-top:1.5rem; display:flex; gap:.75rem; flex-wrap:wrap;">
+      <a class="btn btn-primary" id="dialogPrimary" href="#contact">Discuss a similar product <span aria-hidden="true">↗</span></a>
+      <button class="btn btn-outline" type="button" data-dialog-close>Close</button>
+    </div>
+  </div>
+</dialog>
+
 <!-- ─── FOOTER ────────────────────────────── -->
 <footer>
   <p>© 2026 <span>Mohamed Elnady</span>. Engineered with clean architecture & modern web design.</p>
   <div class="footer-links">
     <a href="https://github.com/mohamedelandy" target="_blank" rel="noopener noreferrer">GitHub</a>
     <a href="https://linkedin.com/in/mohammedelnady" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a href="resume.html">Résumé</a>
     <a href="mailto:muhammed.elnady@hotmail.com">Email</a>
   </div>
 </footer>
 
 <script>
-  /* ── TYPING EFFECT ─────────────────────── */
-  const roles = [
-    'Senior React Native Developer',
-    'Open Source Creator (react-native-foldface)',
-    'Cross-Platform Mobile Architect',
-    'Native Module & WidgetKit Engineer'
-  ];
-  let ri = 0, ci = 0, del = false;
-  const el = document.getElementById('typed');
-  function type() {
-    const s = roles[ri];
-    if (!del) {
-      el.textContent = s.slice(0, ci++);
-      if (ci > s.length) {
-        del = true;
-        setTimeout(type, 2200);
-        return;
-      }
+(function () {
+  'use strict';
+
+  const root = document.documentElement;
+  const mq = (typeof window.matchMedia === 'function') ? window.matchMedia.bind(window) : null;
+  const reduceMotion = mq ? mq('(prefers-reduced-motion: reduce)') : { matches: false, addEventListener: function () {} };
+
+  /* ── THEME: system default + persisted manual override ── */
+  const themeToggle = document.querySelector('[data-theme-toggle]');
+  const themeIcon = themeToggle ? themeToggle.querySelector('.theme-icon') : null;
+  const systemDark = mq ? mq('(prefers-color-scheme: dark)') : { matches: false, addEventListener: function () {} };
+  let stored = null;
+  try { stored = localStorage.getItem('theme'); } catch (e) { /* storage unavailable */ }
+
+  function applyTheme(mode) {
+    if (mode === 'light') {
+      root.setAttribute('data-theme', 'light');
+      if (themeIcon) themeIcon.textContent = '☾';
+      if (themeToggle) themeToggle.setAttribute('aria-label', 'Switch to dark theme');
     } else {
-      el.textContent = s.slice(0, ci--);
-      if (ci < 0) {
-        del = false;
-        ri = (ri + 1) % roles.length;
-        ci = 0;
-        setTimeout(type, 450);
-        return;
-      }
+      root.removeAttribute('data-theme');
+      if (themeIcon) themeIcon.textContent = '☼';
+      if (themeToggle) themeToggle.setAttribute('aria-label', 'Switch to light theme');
     }
-    setTimeout(type, del ? 38 : 68);
   }
-  type();
+  applyTheme(stored === 'light' || stored === 'dark' ? stored : (systemDark.matches ? 'dark' : 'light'));
+
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const next = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      applyTheme(next);
+      try { localStorage.setItem('theme', next); } catch (e) { /* ignore */ }
+    });
+  }
+  systemDark.addEventListener('change', (e) => {
+    try { if (!localStorage.getItem('theme')) applyTheme(e.matches ? 'dark' : 'light'); } catch (err) { /* ignore */ }
+  });
+
+  /* ── MOBILE MENU ───────────────────────── */
+  const menuBtn = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  function setMenu(open) {
+    if (!menuBtn || !mobileMenu) return;
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Close navigation menu' : 'Open navigation menu');
+    document.body.classList.toggle('menu-open', open);
+    if (open) {
+      mobileMenu.hidden = false;
+      const first = mobileMenu.querySelector('a');
+      if (first) first.focus();
+    } else {
+      mobileMenu.hidden = true;
+      menuBtn.focus();
+    }
+  }
+  if (menuBtn && mobileMenu) {
+    menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
+    mobileMenu.addEventListener('click', (e) => { if (e.target.closest('a')) setMenu(false); });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') setMenu(false);
+    });
+  }
+
+  /* ── TYPING EFFECT (skipped for reduced motion) ── */
+  const typedEl = document.getElementById('typed');
+  const roles = [
+    'Mobile Product Architect',
+    'Senior React Native Developer',
+    'Open Source Creator — react-native-foldface',
+    'Native Modules · Swift · Kotlin'
+  ];
+  if (typedEl && !reduceMotion.matches) {
+    let ri = 0, ci = 0, del = false;
+    (function type() {
+      const s = roles[ri];
+      if (!del) {
+        typedEl.textContent = s.slice(0, ci++);
+        if (ci > s.length) { del = true; setTimeout(type, 2200); return; }
+      } else {
+        typedEl.textContent = s.slice(0, ci--);
+        if (ci < 0) { del = false; ri = (ri + 1) % roles.length; ci = 0; setTimeout(type, 450); return; }
+      }
+      setTimeout(type, del ? 38 : 68);
+    })();
+  } else if (typedEl) {
+    typedEl.textContent = roles[0];
+  }
 
   /* ── COUNTER ANIMATION ─────────────────── */
   let counted = false;
   function runCounters() {
     if (counted) return;
     counted = true;
-    document.querySelectorAll('[data-count]').forEach(el => {
-      const target = parseInt(el.dataset.count);
-      const isPlus = el.textContent.includes('+');
+    document.querySelectorAll('[data-count]').forEach((el) => {
+      const target = parseInt(el.dataset.count, 10);
+      const suffix = el.textContent.includes('+') ? '+' : '';
+      if (reduceMotion.matches) { el.textContent = target + suffix; return; }
       let n = 0;
       const step = Math.max(1, Math.ceil(target / 24));
       const t = setInterval(() => {
         n = Math.min(n + step, target);
-        el.textContent = n + (isPlus ? '+' : '');
+        el.textContent = n + suffix;
         if (n >= target) clearInterval(t);
       }, 45);
     });
   }
 
-  /* ── INTERSECTION OBSERVER ─────────────── */
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
+  /* ── SCROLL REVEAL ─────────────────────── */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
       if (e.isIntersecting) {
         e.target.classList.add('vis');
-        if (e.target.closest('#stats') || e.target.id === 'stats') runCounters();
+        if (e.target.id === 'stats' || e.target.closest('#stats')) runCounters();
         io.unobserve(e.target);
       }
     });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-  document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+  document.querySelectorAll('.reveal, .stagger').forEach((el) => io.observe(el));
   const statsEl = document.getElementById('stats');
   if (statsEl) io.observe(statsEl);
 
-  /* ── NAV SCROLL BEHAVIOR ───────────────── */
-  window.addEventListener('scroll', () => {
-    const nav = document.getElementById('nav');
-    if (window.scrollY > 40) {
-      nav.style.background = 'rgba(7, 14, 24, 0.95)';
-      nav.style.padding = '0.75rem 3.5rem';
-    } else {
-      nav.style.background = 'rgba(7, 14, 24, 0.82)';
-      nav.style.padding = '1rem 3.5rem';
-    }
-  }, { passive: true });
+  /* ── NAV SCROLL STATE (class-based so media queries stay intact) ── */
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav && nav.classList.toggle('scrolled', window.scrollY > 40);
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
   /* ── ACTIVE NAV LINK ───────────────────── */
-  const secs = document.querySelectorAll('section[id]');
   const links = document.querySelectorAll('.nav-links a');
-  const so = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        links.forEach(l => {
-          l.style.color = l.getAttribute('href') === '#' + e.target.id ? 'var(--teal)' : '';
-        });
-      }
+  const so = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (!e.isIntersecting) return;
+      links.forEach((l) => l.classList.toggle('active-link', l.getAttribute('href') === '#' + e.target.id));
     });
   }, { threshold: 0.4 });
-  secs.forEach(s => so.observe(s));
+  document.querySelectorAll('section[id]').forEach((s) => so.observe(s));
 
   /* ── PROJECT CATEGORY FILTERING ────────── */
   const filterBtns = document.querySelectorAll('.filter-btn');
   const projCards = document.querySelectorAll('.proj-card');
+  const statusEl = document.getElementById('filterStatus');
 
-  filterBtns.forEach(btn => {
+  filterBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+      filterBtns.forEach((b) => {
+        b.classList.toggle('active', b === btn);
+        b.setAttribute('aria-pressed', String(b === btn));
+      });
       const filter = btn.dataset.filter;
+      let shown = 0;
+      projCards.forEach((card) => {
+        const show = filter === 'all' || card.dataset.category === filter;
+        card.classList.toggle('filtered-out', !show);
+        if (show) shown++;
+      });
+      if (statusEl) {
+        const label = filter === 'all' ? 'all projects'
+          : filter === 'oss' ? 'open-source projects'
+          : filter === 'work' ? 'commercial projects' : 'personal projects';
+        statusEl.textContent = 'Showing ' + shown + ' ' + label;
+      }
+    });
+  });
 
-      projCards.forEach(card => {
-        const cat = card.dataset.category;
-        if (filter === 'all' || cat === filter) {
-          card.classList.remove('filtered-out');
-        } else {
-          card.classList.add('filtered-out');
-        }
+  /* ── PROJECT OVERVIEW DIALOG ───────────── */
+  const dialog = document.getElementById('projectDialog');
+  let lastTrigger = null;
+  const copyFor = {
+    foldface: 'react-native-foldface is an open-source React Native library for 3D fold and flip reveal transitions. It runs on Reanimated 4 worklets, rasterizes automatically for performance, supports nested fold cascades, and ships with zero runtime dependencies.',
+    qadaa: 'Qadaa is an offline-first, Arabic-first prayer recovery app built on Expo SDK 57. It pairs a Swift/SwiftUI WidgetKit extension with Skia-powered visuals and a 42-flow Maestro E2E suite that keeps regressions out of releases.',
+    shopivia: 'Shopivia is a bilingual (AR/EN) e-commerce ecosystem: an Expo 56 mobile app with offline-first WatermelonDB sync, an Express API on PostgreSQL and Redis, Stripe checkout, Socket.IO support chat, and BullMQ background jobs.',
+    tjaara: 'Tjaara is a multi-store commerce platform serving Saudi merchants. I lead the mobile architecture across the Stores, Dashboard, and Partners apps — dynamic theming, RTL-first UX, Firebase integrations, and CI/CD on Azure DevOps.'
+  };
+  if (dialog) {
+    document.querySelectorAll('[data-project-view]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const card = btn.closest('.proj-card');
+        if (!card) return;
+        lastTrigger = btn;
+        const nameEl = card.querySelector('.proj-name');
+        const metaEl = card.querySelector('.proj-meta-tag');
+        const name = nameEl ? nameEl.textContent.toLowerCase() : '';
+        const key = name.includes('foldface') ? 'foldface'
+          : name.includes('qadaa') ? 'qadaa'
+          : name.includes('tjaara') ? 'tjaara' : 'shopivia';
+        document.getElementById('dialogEyebrow').textContent = metaEl ? metaEl.textContent.trim() : 'Project overview';
+        document.getElementById('dialogTitle').textContent = nameEl ? nameEl.textContent.trim() : 'Project overview';
+        document.getElementById('dialogCopy').textContent = copyFor[key];
+        const tagWrap = document.getElementById('dialogTags');
+        tagWrap.innerHTML = '';
+        card.querySelectorAll('.proj-tags .tag').forEach((t) => {
+          const span = document.createElement('span');
+          span.className = 'tag';
+          span.textContent = t.textContent;
+          tagWrap.appendChild(span);
+        });
+        dialog.showModal();
       });
     });
-  });
+    dialog.querySelectorAll('[data-dialog-close]').forEach((b) => b.addEventListener('click', () => dialog.close()));
+    dialog.addEventListener('close', () => { if (lastTrigger) lastTrigger.focus(); });
+  }
 
-  /* ── 3D PERSPECTIVE TILT ON PROJECT CARDS ─ */
-  projCards.forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -5;
-      const rotateY = ((x - centerX) / centerX) * 5;
-      card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateY(-6px)`;
+  /* ── 3D TILT — fine pointers only, disabled for reduced motion ── */
+  const finePointer = mq ? mq('(hover: hover) and (pointer: fine)') : { matches: true };
+  if (!reduceMotion.matches && finePointer.matches) {
+    projCards.forEach((card) => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const rx = ((e.clientY - rect.top - rect.height / 2) / (rect.height / 2)) * -4;
+        const ry = ((e.clientX - rect.left - rect.width / 2) / (rect.width / 2)) * 4;
+        card.style.transform = 'perspective(1000px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-6px)';
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = ''; });
     });
-
-    card.addEventListener('mouseleave', () => {
-      card.style.transform = '';
-    });
-  });
+  }
+})();
 </script>
 
 </body>
