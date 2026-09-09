@@ -371,6 +371,7 @@
     .hero-visual {
       display: flex; justify-content: center; align-items: center;
       position: relative; z-index: 1;
+      perspective: 1000px;
     }
 
     .orbit-ring {
@@ -383,8 +384,10 @@
 
     .phone-wrap {
       position: relative; width: 285px; animation: float 5s ease-in-out infinite;
+      transform-style: preserve-3d;
+      will-change: transform;
     }
-    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-14px)} }
+    @keyframes float { 0%,100%{ top: 0; } 50%{ top: -14px; } }
 
     .phone-glow {
       position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);

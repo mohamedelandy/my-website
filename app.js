@@ -166,6 +166,37 @@
       });
     });
 
+    // Interactive Parallax Hero Mockup
+    mm.add("(prefers-reduced-motion: no-preference) and (hover: hover)", () => {
+      const hero = document.getElementById('hero');
+      const phone = document.querySelector('.phone-wrap');
+
+      if (hero && phone) {
+        hero.addEventListener('mousemove', (e) => {
+          const rect = hero.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
+
+          gsap.to(phone, {
+            rotateY: x * 15,
+            rotateX: -y * 15,
+            duration: 0.5,
+            ease: 'power2.out',
+            transformPerspective: 1000
+          });
+        });
+
+        hero.addEventListener('mouseleave', () => {
+          gsap.to(phone, {
+            rotateY: 0,
+            rotateX: 0,
+            duration: 1,
+            ease: 'elastic.out(1, 0.3)'
+          });
+        });
+      }
+    });
+
     // Ensure stats counter runs if reduced motion is preferred
     mm.add("(prefers-reduced-motion: reduce)", () => {
       runCounters();
