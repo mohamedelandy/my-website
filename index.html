@@ -136,12 +136,12 @@
             <div class="scr-body">
               <div class="scr-header">
                 <div style="display:flex; align-items:center; gap:5px;">
-                  <span style="font-family:var(--fdis); font-weight:700; font-size:0.8rem; color:#fff;">Shopivia</span>
+                  <span class="scr-brand">Shopivia</span>
                   <span class="scr-pill">Store</span>
                 </div>
                 <div style="display:flex; align-items:center; gap:6px; font-size:0.56rem; color:var(--muted); font-family:var(--fmon);">
                   <span>🇸🇦 SAR</span>
-                  <span style="background:rgba(255,255,255,0.06); padding:1px 5px; border-radius:10px; color:#fff;">🛒 2</span>
+                  <span class="scr-cart-chip">🛒 2</span>
                 </div>
               </div>
 
@@ -158,10 +158,10 @@
 
               <div class="scr-banner-deal">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
-                  <span style="font-size:0.6rem; font-weight:700; color:#fff;">⚡ FLASH SALE</span>
-                  <span style="font-size:0.48rem; font-family:var(--fmon); color:#FFA3BE; background:rgba(255,92,138,0.22); padding:1px 5px; border-radius:3px; font-weight:700;">-40% OFF</span>
+                  <span class="scr-deal-title">⚡ FLASH SALE</span>
+                  <span class="scr-deal-off">-40% OFF</span>
                 </div>
-                <div style="font-size:0.5rem; color:var(--text-soft); margin-top:1px;">Ends in: 04h 18m 32s · Stripe Ready</div>
+                <div class="scr-deal-sub">Ends in: 04h 18m 32s · Stripe Ready</div>
               </div>
 
               <!-- 4 Product Cards Grid -->
@@ -259,7 +259,7 @@
             <div class="scr-body">
               <div class="scr-header">
                 <div style="display:flex; align-items:center; gap:5px;">
-                  <span class="scr-pill" style="color:var(--teal); background:rgba(0,212,170,0.15);">قضاء · Qadaa</span>
+                  <span class="scr-pill">قضاء · Qadaa</span>
                   <span style="font-size:0.5rem; color:var(--teal); border:1px solid rgba(0,212,170,0.3); padding:1px 4px; border-radius:3px; font-family:var(--fmon);">Widget ✓</span>
                 </div>
                 <span style="font-size:0.54rem; color:var(--muted); font-family:var(--fmon);">١٤ رمضان · 14 Ram</span>
@@ -468,26 +468,26 @@
             </div>
 
             <!-- iOS Bottom Tab Bar -->
-            <div class="phone-tabbar" style="background: rgba(255,255,255,0.95); border-color: #E5E5EA;">
+            <div class="phone-tabbar fold-tabbar">
               <div class="phone-tab-items">
-                <div class="phone-tab active-violet" style="color:#6948FF;">
+                <div class="phone-tab active-violet">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                  <span style="color:#6948FF;">Profile</span>
+                  <span>Profile</span>
                 </div>
-                <div class="phone-tab" style="color:#8E8E93;">
+                <div class="phone-tab fold-tab">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
                   <span>Products</span>
                 </div>
-                <div class="phone-tab" style="color:#8E8E93;">
+                <div class="phone-tab fold-tab">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
                   <span>Saved</span>
                 </div>
-                <div class="phone-tab" style="color:#8E8E93;">
+                <div class="phone-tab fold-tab">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                   <span>Settings</span>
                 </div>
               </div>
-              <div class="phone-home-indicator" style="background: rgba(0,0,0,0.25);"></div>
+              <div class="phone-home-indicator fold-indicator"></div>
             </div>
           </div>
         </div>

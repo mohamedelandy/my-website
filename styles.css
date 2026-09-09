@@ -37,6 +37,28 @@
       --bdr-accent:  rgba(0, 212, 170, 0.18);
       --nav-bg:      rgba(7, 14, 24, 0.82);
       --shadow:      rgba(0, 0, 0, 0.42);
+      --phone-frame-bg:  #08101D;
+      --phone-notch-bg:  #050A12;
+      --phone-tabbar-bg: rgba(7, 14, 25, 0.95);
+      --phone-tabbar-bdr: rgba(255, 255, 255, 0.08);
+      --phone-status:    rgba(255, 255, 255, 0.7);
+      --phone-indicator: rgba(255, 255, 255, 0.35);
+      --scr-shop-bg:     linear-gradient(180deg, #0d1b30 0%, #060D17 100%);
+      --scr-qadaa-bg:    linear-gradient(180deg, #071524 0%, #030a12 100%);
+      --scr-card-bg:     rgba(255, 255, 255, 0.035);
+      --scr-card-bdr:    rgba(255, 255, 255, 0.06);
+      --scr-search-bg:   rgba(255, 255, 255, 0.06);
+      --scr-cat-bg:      rgba(255, 255, 255, 0.05);
+      --scr-cat-bdr:     rgba(255, 255, 255, 0.06);
+      --scr-thumb-bg:    linear-gradient(135deg, #1A2E4C, #0F1F35);
+      --scr-prod-title:  #ffffff;
+      --scr-cart-bg:     rgba(255, 255, 255, 0.06);
+      --scr-cart-color:  #ffffff;
+      --scr-deal-title:  #ffffff;
+      --qadaa-ring-bg:   linear-gradient(135deg, rgba(14, 30, 48, 0.85) 0%, rgba(6, 17, 28, 0.95) 100%);
+      --prayer-bg:       rgba(255, 255, 255, 0.035);
+      --prayer-bdr:      rgba(255, 255, 255, 0.05);
+      --prayer-name:     #F1F5F9;
       --r:           14px;
       --t:           all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
       --fdis:        'Space Grotesk', sans-serif;
@@ -70,6 +92,28 @@
       --bdr-accent:  rgba(0, 127, 112, 0.22);
       --nav-bg:      rgba(245, 248, 250, 0.86);
       --shadow:      rgba(16, 32, 43, 0.16);
+      --phone-frame-bg:  #08101D;
+      --phone-notch-bg:  #050A12;
+      --phone-tabbar-bg: rgba(255, 255, 255, 0.94);
+      --phone-tabbar-bdr: rgba(16, 32, 43, 0.1);
+      --phone-status:    rgba(16, 32, 43, 0.62);
+      --phone-indicator: rgba(16, 32, 43, 0.28);
+      --scr-shop-bg:     linear-gradient(180deg, #FFFFFF 0%, #E7F2EE 100%);
+      --scr-qadaa-bg:    linear-gradient(180deg, #FFFFFF 0%, #E7F3EF 100%);
+      --scr-card-bg:     rgba(255, 255, 255, 0.95);
+      --scr-card-bdr:    rgba(16, 32, 43, 0.09);
+      --scr-search-bg:   rgba(16, 32, 43, 0.05);
+      --scr-cat-bg:      rgba(16, 32, 43, 0.05);
+      --scr-cat-bdr:     rgba(16, 32, 43, 0.09);
+      --scr-thumb-bg:    linear-gradient(135deg, #D8E9E5, #C3DAD5);
+      --scr-prod-title:  #10202B;
+      --scr-cart-bg:     rgba(16, 32, 43, 0.06);
+      --scr-cart-color:  #10202B;
+      --scr-deal-title:  #10202B;
+      --qadaa-ring-bg:   linear-gradient(135deg, #FFFFFF 0%, #E9F4F0 100%);
+      --prayer-bg:       rgba(255, 255, 255, 0.75);
+      --prayer-bdr:      rgba(16, 32, 43, 0.09);
+      --prayer-name:     #10202B;
     }
 
     :root[data-theme="light"] .hero-name span {
@@ -91,7 +135,6 @@
       font-family: var(--fbod);
       line-height: 1.6;
       overflow-x: hidden;
-      selection-background-color: var(--teal);
       transition: background-color .35s ease, color .35s ease;
     }
     ::selection { background: var(--teal); color: var(--bg); }
@@ -345,7 +388,7 @@
     .phone-frame {
       width: 285px; height: 570px;
       border: 2px solid rgba(255, 255, 255, 0.16);
-      border-radius: 42px; background: #08101D;
+      border-radius: 42px; background: var(--phone-frame-bg);
       position: relative; overflow: hidden;
       box-shadow: 
         0 0 0 1px rgba(0, 212, 170, 0.15),
@@ -354,7 +397,7 @@
     }
     .phone-notch {
       position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
-      width: 86px; height: 22px; background: #050A12; border-radius: 12px; z-index: 20;
+      width: 86px; height: 22px; background: var(--phone-notch-bg); border-radius: 12px; z-index: 20;
       display: flex; align-items: center; justify-content: space-between; padding: 0 10px;
     }
     .notch-camera { width: 7px; height: 7px; background: #1a2a40; border-radius: 50%; }
@@ -389,7 +432,7 @@
       justify-content: space-between;
       font-size: 0.56rem;
       font-family: var(--fmon);
-      color: rgba(255, 255, 255, 0.7);
+      color: var(--phone-status);
       padding: 0 4px 4px;
     }
     .scr-status-right {
@@ -409,8 +452,8 @@
 
     /* Universal Phone Bottom Tab Bar */
     .phone-tabbar {
-      background: rgba(7, 14, 25, 0.95);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: var(--phone-tabbar-bg);
+      border: 1px solid var(--phone-tabbar-bdr);
       border-radius: 12px;
       padding: 4px 8px 3px;
       margin-top: 4px;
@@ -460,25 +503,25 @@
     .phone-home-indicator {
       width: 76px;
       height: 3px;
-      background: rgba(255, 255, 255, 0.35);
+      background: var(--phone-indicator);
       border-radius: 2px;
       margin: 3px auto 0;
     }
     
     /* Screen 1: Shopivia / E-Commerce */
-    .scr-shop { background: linear-gradient(180deg, #0d1b30 0%, #060D17 100%); }
+    .scr-shop { background: var(--scr-shop-bg); }
     .scr-header { display: flex; align-items: center; justify-content: space-between; }
     .scr-pill { font-size: .56rem; font-family: var(--fmon); background: rgba(0,212,170,0.14); color: var(--teal); padding: 2px 6px; border-radius: 4px; font-weight: 600; }
-    .scr-search-bar { background: rgba(255,255,255,0.06); border-radius: 6px; height: 24px; display: flex; align-items: center; padding: 0 7px; font-size: .58rem; color: var(--muted); }
+    .scr-search-bar { background: var(--scr-search-bg); border-radius: 6px; height: 24px; display: flex; align-items: center; padding: 0 7px; font-size: .58rem; color: var(--muted); }
     .scr-cat-scroll { display: flex; gap: 4px; overflow: hidden; }
-    .scr-cat { font-size: 0.52rem; font-family: var(--fmon); padding: 2px 7px; border-radius: 12px; background: rgba(255, 255, 255, 0.05); color: var(--muted); border: 1px solid rgba(255, 255, 255, 0.06); white-space: nowrap; }
+    .scr-cat { font-size: 0.52rem; font-family: var(--fmon); padding: 2px 7px; border-radius: 12px; background: var(--scr-cat-bg); color: var(--muted); border: 1px solid var(--scr-cat-bdr); white-space: nowrap; }
     .scr-cat.active { background: var(--teal-dim); color: var(--teal); border-color: rgba(0, 212, 170, 0.3); font-weight: 600; }
     .scr-banner-deal { background: linear-gradient(135deg, rgba(255, 92, 138, 0.18), rgba(56, 189, 248, 0.12)); border: 1px solid rgba(255, 92, 138, 0.3); border-radius: 8px; padding: 5px 8px; }
     .scr-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
-    .scr-card { background: rgba(255,255,255,0.035); border: 1px solid rgba(255,255,255,0.06); border-radius: 7px; padding: 5px; display: flex; flex-direction: column; gap: 2px; }
-    .scr-thumb { height: 44px; border-radius: 5px; background: linear-gradient(135deg, #1A2E4C, #0F1F35); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; position: relative; }
+    .scr-card { background: var(--scr-card-bg); border: 1px solid var(--scr-card-bdr); border-radius: 7px; padding: 5px; display: flex; flex-direction: column; gap: 2px; }
+    .scr-thumb { height: 44px; border-radius: 5px; background: var(--scr-thumb-bg); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; position: relative; }
     .scr-discount-tag { position: absolute; top: 2px; right: 2px; font-size: 0.42rem; font-family: var(--fmon); background: var(--rose); color: #fff; padding: 1px 3px; border-radius: 3px; font-weight: 700; }
-    .scr-prod-title { font-size: 0.56rem; font-weight: 600; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .scr-prod-title { font-size: 0.56rem; font-weight: 600; color: var(--scr-prod-title); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .scr-prod-row { display: flex; align-items: center; justify-content: space-between; font-family: var(--fmon); }
     .scr-prod-price { font-size: 0.56rem; font-weight: 700; color: var(--teal); }
     .scr-prod-rating { font-size: 0.48rem; color: #FBBF24; }
@@ -486,11 +529,11 @@
     
     /* Screen 2: Qadaa / Islamic Tracker Hero Card & Ring */
     .scr-qadaa {
-      background: linear-gradient(180deg, #071524 0%, #030a12 100%);
+      background: var(--scr-qadaa-bg);
     }
     
     .qadaa-ring-wrap {
-      background: linear-gradient(135deg, rgba(14, 30, 48, 0.85) 0%, rgba(6, 17, 28, 0.95) 100%);
+      background: var(--qadaa-ring-bg);
       border: 1px solid rgba(0, 212, 170, 0.28);
       border-radius: 14px;
       padding: 7px 10px;
@@ -651,8 +694,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: rgba(255,255,255,0.035);
-      border: 1px solid rgba(255,255,255,0.05);
+      background: var(--prayer-bg);
+      border: 1px solid var(--prayer-bdr);
       border-radius: 7px;
       padding: 4px 7px;
       transition: var(--t);
@@ -680,7 +723,7 @@
     .prayer-name {
       font-size: 0.58rem;
       font-weight: 600;
-      color: #F1F5F9;
+      color: var(--prayer-name);
     }
     .prayer-time {
       font-size: 0.5rem;
@@ -1460,8 +1503,8 @@
       .hero-title { justify-content: center; min-height: 3.2rem; text-align: center; }
       .hero-bio { font-size: .96rem; }
       .hero-actions .btn { width: 100%; justify-content: center; }
-      .hero-visual { margin-top: 2rem; min-height: 470px; }
-      .phone-wrap { transform: scale(.8); transform-origin: top center; margin-bottom: -115px; }
+      .hero-visual { margin-top: 2rem; min-height: 505px; }
+      .phone-wrap { transform: scale(.85); transform-origin: top center; margin-bottom: -85px; }
       .orbit-ring-1 { width: 320px; height: 320px; }
       .orbit-ring-2 { width: 390px; height: 390px; }
       .filter-bar { overflow-x: auto; justify-content: flex-start; flex-wrap: nowrap; max-width: 100%; }
@@ -1491,3 +1534,39 @@
     :root[data-theme="light"] .btn-outline { color: var(--text); border-color: rgba(16,32,43,.2); }
 
   
+
+    /* ── PAGES REFRESH: theme-ready phone screens + foundations + premium ── */
+    html { scroll-padding-top: 84px; }
+    section[id], #stats { scroll-margin-top: 84px; }
+
+    /* New semantic phone classes (replacing hard-coded inline styles) */
+    .scr-brand { font-family: var(--fdis); font-weight: 700; font-size: 0.8rem; color: var(--scr-prod-title); }
+    .scr-cart-chip { background: var(--scr-cart-bg); padding: 1px 5px; border-radius: 10px; color: var(--scr-cart-color); }
+    .scr-deal-title { font-size: 0.6rem; font-weight: 700; color: var(--scr-deal-title); }
+    .scr-deal-off { font-size: 0.48rem; font-family: var(--fmon); color: #FFA3BE; background: rgba(255,92,138,0.22); padding: 1px 5px; border-radius: 3px; font-weight: 700; }
+    .scr-deal-sub { font-size: 0.5rem; color: var(--text-soft); margin-top: 1px; }
+    :root[data-theme="light"] .scr-deal-off { color: #C22757; background: rgba(216,63,112,0.14); }
+
+    /* Fold screen keeps native iOS light chrome in both site themes (app screenshot) */
+    .fold-tabbar { background: rgba(255,255,255,0.95) !important; border-color: #E5E5EA !important; }
+    .fold-tabbar .phone-tab { color: #8E8E93; }
+    .fold-tabbar .phone-tab.active-violet { color: #6948FF; }
+    .fold-indicator { background: rgba(0,0,0,0.25) !important; }
+
+    /* Light-mode contrast repairs inside adaptive screens */
+    :root[data-theme="light"] .scr-card { box-shadow: 0 1px 4px rgba(16,32,43,0.08); }
+    :root[data-theme="light"] .qadaa-num { color: #10202B; }
+    :root[data-theme="light"] .qadaa-streak-text { color: #8A5E00; }
+    :root[data-theme="light"] .qadaa-badge-streak { background: rgba(232,184,109,0.18); border-color: rgba(138,94,0,0.3); }
+    :root[data-theme="light"] .qadaa-ring-wrap { box-shadow: 0 8px 20px rgba(16,32,43,0.1), inset 0 1px 0 rgba(255,255,255,0.9); }
+    :root[data-theme="light"] .phone-glow { opacity: 0.55; }
+    :root[data-theme="light"] .orbit-ring { border-color: rgba(0,127,112,0.18); }
+    :root[data-theme="light"] .orbit-ring-2 { border-color: rgba(108,75,217,0.16); }
+
+    /* Calm motion: pause hero device animation on hover/focus */
+    .phone-wrap:hover, .phone-wrap:focus-within { animation-play-state: paused; }
+    .screen-track:hover { animation-play-state: paused; }
+
+    /* Premium: consistent press feedback + dialog readability */
+    .btn:active { transform: translateY(0); }
+    .proj-card .proj-preview { border-bottom: 1px solid var(--bdr); }
