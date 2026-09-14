@@ -290,7 +290,7 @@
         document.getElementById('dialogTitle').textContent = nameEl ? nameEl.textContent.trim() : 'Project overview';
         document.getElementById('dialogCopy').textContent = copyFor[key] || fallbackCopy;
         const tagWrap = document.getElementById('dialogTags');
-        tagWrap.innerHTML = '';
+        tagWrap.textContent = '';
         card.querySelectorAll('.proj-tags .tag').forEach((t) => {
           const span = document.createElement('span');
           span.className = 'tag';
