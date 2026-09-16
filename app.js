@@ -268,9 +268,7 @@
         if (show) shown++;
       });
       if (statusEl) {
-        const label = filter === 'all' ? 'all projects'
-          : filter === 'oss' ? 'open-source projects'
-          : filter === 'work' ? 'commercial projects' : 'personal projects';
+        const label = btn.dataset.label;
         statusEl.textContent = 'Showing ' + shown + ' ' + label;
       }
       if (typeof window.ScrollTrigger !== 'undefined') {
