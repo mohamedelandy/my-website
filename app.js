@@ -95,13 +95,20 @@
       const target = parseInt(el.dataset.count, 10);
       const suffix = el.textContent.includes('+') ? '+' : '';
       if (reduceMotion.matches) { el.textContent = target + suffix; return; }
+      if (el.dataset.intervalId) {
+        clearInterval(parseInt(el.dataset.intervalId, 10));
+      }
       let n = 0;
       const step = Math.max(1, Math.ceil(target / 24));
       const t = setInterval(() => {
         n = Math.min(n + step, target);
         el.textContent = n + suffix;
-        if (n >= target) clearInterval(t);
+        if (n >= target) {
+          clearInterval(t);
+          delete el.dataset.intervalId;
+        }
       }, 45);
+      el.dataset.intervalId = t;
     });
   }
 
