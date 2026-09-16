@@ -172,10 +172,18 @@
       const phone = document.querySelector('.phone-wrap');
 
       if (hero && phone) {
+        let heroRect = null;
+
+        hero.addEventListener('mouseenter', () => {
+          heroRect = hero.getBoundingClientRect();
+        });
+
         hero.addEventListener('mousemove', (e) => {
-          const rect = hero.getBoundingClientRect();
-          const x = (e.clientX - rect.left) / rect.width - 0.5;
-          const y = (e.clientY - rect.top) / rect.height - 0.5;
+          if (!heroRect) {
+            heroRect = hero.getBoundingClientRect();
+          }
+          const x = (e.clientX - heroRect.left) / heroRect.width - 0.5;
+          const y = (e.clientY - heroRect.top) / heroRect.height - 0.5;
 
           gsap.to(phone, {
             rotateY: x * 15,
@@ -187,6 +195,7 @@
         });
 
         hero.addEventListener('mouseleave', () => {
+          heroRect = null;
           gsap.to(phone, {
             rotateY: 0,
             rotateX: 0,
