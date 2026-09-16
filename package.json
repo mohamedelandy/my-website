@@ -1,0 +1,25 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mohamedelandy/my-website.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mohamedelandy/my-website/issues"
+  },
+  "homepage": "https://github.com/mohamedelandy/my-website#readme",
+  "devDependencies": {
+    "jest": "^30.5.1",
+    "jest-environment-jsdom": "^30.5.1"
+  }
+}
