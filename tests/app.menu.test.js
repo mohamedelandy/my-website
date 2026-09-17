@@ -40,7 +40,7 @@ describe('setMenu functionality', () => {
     mobileMenu = document.getElementById('mobileMenu');
 
     // require app.js so that it binds events to the elements in JSDOM
-    require('./app.js');
+    require('../app.js');
   });
 
   it('opens the menu when menuToggle is clicked', () => {
@@ -102,6 +102,6 @@ describe('setMenu functionality', () => {
   it('does nothing if elements are missing', () => {
     document.body.innerHTML = '';
     jest.resetModules();
-    expect(() => require('./app.js')).not.toThrow();
+    expect(() => require('../app.js')).not.toThrow();
   });
 });
