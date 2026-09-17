@@ -307,6 +307,11 @@
     dialog.addEventListener('close', () => { if (lastTrigger) lastTrigger.focus(); });
   }
 
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { runCounters, resetCounted: () => { counted = false; } };
+  }
+
   /* ── 3D TILT — fine pointers only, throttled with rAF, disabled for reduced motion ── */
   const finePointer = mq ? mq('(hover: hover) and (pointer: fine)') : { matches: true };
   if (!reduceMotion.matches && finePointer.matches) {
