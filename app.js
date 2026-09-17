@@ -95,20 +95,13 @@
       const target = parseInt(el.dataset.count, 10);
       const suffix = el.textContent.includes('+') ? '+' : '';
       if (reduceMotion.matches) { el.textContent = target + suffix; return; }
-      if (el.dataset.intervalId) {
-        clearInterval(parseInt(el.dataset.intervalId, 10));
-      }
       let n = 0;
       const step = Math.max(1, Math.ceil(target / 24));
       const t = setInterval(() => {
         n = Math.min(n + step, target);
         el.textContent = n + suffix;
-        if (n >= target) {
-          clearInterval(t);
-          delete el.dataset.intervalId;
-        }
+        if (n >= target) clearInterval(t);
       }, 45);
-      el.dataset.intervalId = t;
     });
   }
 
@@ -179,18 +172,10 @@
       const phone = document.querySelector('.phone-wrap');
 
       if (hero && phone) {
-        let heroRect = null;
-
-        hero.addEventListener('mouseenter', () => {
-          heroRect = hero.getBoundingClientRect();
-        });
-
         hero.addEventListener('mousemove', (e) => {
-          if (!heroRect) {
-            heroRect = hero.getBoundingClientRect();
-          }
-          const x = (e.clientX - heroRect.left) / heroRect.width - 0.5;
-          const y = (e.clientY - heroRect.top) / heroRect.height - 0.5;
+          const rect = hero.getBoundingClientRect();
+          const x = (e.clientX - rect.left) / rect.width - 0.5;
+          const y = (e.clientY - rect.top) / rect.height - 0.5;
 
           gsap.to(phone, {
             rotateY: x * 15,
@@ -202,7 +187,6 @@
         });
 
         hero.addEventListener('mouseleave', () => {
-          heroRect = null;
           gsap.to(phone, {
             rotateY: 0,
             rotateX: 0,
@@ -268,7 +252,9 @@
         if (show) shown++;
       });
       if (statusEl) {
-        const label = btn.dataset.label;
+        const label = filter === 'all' ? 'all projects'
+          : filter === 'oss' ? 'open-source projects'
+          : filter === 'work' ? 'commercial projects' : 'personal projects';
         statusEl.textContent = 'Showing ' + shown + ' ' + label;
       }
       if (typeof window.ScrollTrigger !== 'undefined') {
@@ -280,6 +266,12 @@
   /* ── PROJECT OVERVIEW DIALOG ───────────── */
   const dialog = document.getElementById('projectDialog');
   let lastTrigger = null;
+  const copyFor = {
+    foldface: 'react-native-foldface is an open-source React Native library for 3D fold and flip reveal transitions. It runs on Reanimated 4 worklets, rasterizes automatically for performance, supports nested fold cascades, and ships with zero runtime dependencies.',
+    qadaa: 'Qadaa is an offline-first, Arabic-first prayer recovery app built on Expo SDK 57. It pairs a Swift/SwiftUI WidgetKit extension with Skia-powered visuals and a 42-flow Maestro E2E suite that keeps regressions out of releases.',
+    shopivia: 'Shopivia is a bilingual (AR/EN) e-commerce ecosystem: an Expo 56 mobile app with offline-first WatermelonDB sync, an Express API on PostgreSQL and Redis, Stripe checkout, Socket.IO support chat, and BullMQ background jobs.',
+    tjaara: 'Tjaara is a multi-store commerce platform serving Saudi merchants. I lead the mobile architecture across the Stores, Dashboard, and Partners apps — dynamic theming, RTL-first UX, Firebase integrations, and CI/CD on Azure DevOps.'
+  };
   if (dialog) {
     document.querySelectorAll('[data-project-view]').forEach((btn) => {
       btn.addEventListener('click', () => {
@@ -288,11 +280,15 @@
         lastTrigger = btn;
         const nameEl = card.querySelector('.proj-name');
         const metaEl = card.querySelector('.proj-meta-tag');
+        const name = nameEl ? nameEl.textContent.toLowerCase() : '';
+        const key = name.includes('foldface') ? 'foldface'
+          : name.includes('qadaa') ? 'qadaa'
+          : name.includes('tjaara') ? 'tjaara' : 'shopivia';
         const descEl = card.querySelector('.proj-desc');
         const fallbackCopy = descEl ? descEl.textContent.trim() : 'Production mobile product architecture and delivery.';
         document.getElementById('dialogEyebrow').textContent = metaEl ? metaEl.textContent.trim() : 'Project overview';
         document.getElementById('dialogTitle').textContent = nameEl ? nameEl.textContent.trim() : 'Project overview';
-        document.getElementById('dialogCopy').textContent = card.dataset.description || fallbackCopy;
+        document.getElementById('dialogCopy').textContent = copyFor[key] || fallbackCopy;
         const tagWrap = document.getElementById('dialogTags');
         tagWrap.textContent = '';
         card.querySelectorAll('.proj-tags .tag').forEach((t) => {
@@ -309,6 +305,11 @@
       if (e.target === dialog) dialog.close();
     });
     dialog.addEventListener('close', () => { if (lastTrigger) lastTrigger.focus(); });
+  }
+
+
+  if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { runCounters, resetCounted: () => { counted = false; } };
   }
 
   /* ── 3D TILT — fine pointers only, throttled with rAF, disabled for reduced motion ── */
