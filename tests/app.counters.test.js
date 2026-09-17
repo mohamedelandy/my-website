@@ -40,7 +40,7 @@ describe('runCounters', () => {
 
   it('should animate counters to their target values', () => {
     reducedMotionMatch = false;
-    const app = require('./app.js');
+    const app = require('../app.js');
     runCounters = app.runCounters;
     resetCounted = app.resetCounted;
     resetCounted();
@@ -61,7 +61,7 @@ describe('runCounters', () => {
 
   it('should skip animation and set value instantly if reduced motion is preferred', () => {
     reducedMotionMatch = true;
-    const app = require('./app.js');
+    const app = require('../app.js');
     runCounters = app.runCounters;
     resetCounted = app.resetCounted;
     resetCounted();
@@ -75,7 +75,7 @@ describe('runCounters', () => {
 
   it('should run only once', () => {
     reducedMotionMatch = false;
-    const app = require('./app.js');
+    const app = require('../app.js');
     runCounters = app.runCounters;
     resetCounted = app.resetCounted;
     resetCounted();
