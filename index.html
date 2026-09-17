@@ -46,7 +46,7 @@
     <button class="nav-icon-btn theme-toggle" type="button" data-theme-toggle aria-label="Switch to light theme" title="Switch theme">
       <span class="theme-icon" aria-hidden="true">☼</span>
     </button>
-    <a href="#contact" class="nav-cta">Hire Me</a>
+    <a href="#contact" class="nav-cta btn-beam">Hire Me</a>
     <button class="nav-menu-btn" id="menuToggle" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open navigation menu">
       <span></span><span></span><span></span>
     </button>
@@ -71,6 +71,7 @@
 <main id="main-content">
 <!-- ─── HERO ──────────────────────────────── -->
 <section id="hero">
+  <div class="hero-three-container" id="heroThreeContainer" aria-hidden="true"></div>
   <div class="hero-glow-1"></div>
   <div class="hero-glow-2"></div>
   
@@ -82,7 +83,7 @@
       Senior React Native Developer with <strong>8+ years</strong> turning complex product requirements into resilient mobile experiences. I work across React Native, Swift, Kotlin, architecture, and delivery — from the first interaction model to reliable releases.
     </p>
     <div class="hero-actions">
-      <a href="mailto:muhammed.elnady@hotmail.com" class="btn btn-primary">
+      <a href="mailto:muhammed.elnady@hotmail.com" class="btn btn-primary btn-beam">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Get in Touch
       </a>
@@ -1059,8 +1060,10 @@
   </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" integrity="sha512-dLxUelApnYxpLt6K2iomGngnHO83iUvZytA3YjDUCjT0HDOHKXnVYdf3hU4JjM8uEhxf9nD1/ey98U3t2vZ0qQ==" crossorigin="anonymous" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" integrity="sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg==" crossorigin="anonymous" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" integrity="sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg==" crossorigin="anonymous" defer></script>
+<script src="./three-hero.js" defer></script>
 <script src="./app.js" defer></script>
 
 </body>

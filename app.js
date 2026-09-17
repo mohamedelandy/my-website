@@ -327,9 +327,13 @@
         if (!cachedRect) cachedRect = card.getBoundingClientRect();
         if (rafId) cancelAnimationFrame(rafId);
         rafId = requestAnimationFrame(() => {
-          const rx = ((e.clientY - cachedRect.top - cachedRect.height / 2) / (cachedRect.height / 2)) * -4;
-          const ry = ((e.clientX - cachedRect.left - cachedRect.width / 2) / (cachedRect.width / 2)) * 4;
+          const offsetX = e.clientX - cachedRect.left;
+          const offsetY = e.clientY - cachedRect.top;
+          const rx = ((offsetY - cachedRect.height / 2) / (cachedRect.height / 2)) * -4.5;
+          const ry = ((offsetX - cachedRect.width / 2) / (cachedRect.width / 2)) * 4.5;
           card.style.transform = 'perspective(1000px) rotateX(' + rx.toFixed(2) + 'deg) rotateY(' + ry.toFixed(2) + 'deg) translateY(-6px)';
+          card.style.setProperty('--mouse-x', (offsetX / cachedRect.width * 100).toFixed(1) + '%');
+          card.style.setProperty('--mouse-y', (offsetY / cachedRect.height * 100).toFixed(1) + '%');
         });
       }, { passive: true });
 
@@ -337,6 +341,8 @@
         if (rafId) cancelAnimationFrame(rafId);
         cachedRect = null;
         card.style.transform = '';
+        card.style.removeProperty('--mouse-x');
+        card.style.removeProperty('--mouse-y');
       });
     });
   }
